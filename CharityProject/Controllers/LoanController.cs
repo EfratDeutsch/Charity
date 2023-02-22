@@ -12,7 +12,7 @@ namespace CharityProject.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1hdfjsk", "value2" };
+            return new string[] { "value1hdfjsk", "jgkldfjgkdfljgdk" };
         }
 
         // GET api/<LoanController>/5
