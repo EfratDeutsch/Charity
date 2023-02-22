@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Entities;
+using Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +10,12 @@ namespace CharityProject.Controllers
     [ApiController]
     public class LoanController : ControllerBase
     {
+        private readonly ILoanService _loanService;
+
+        public LoanController(ILoanService loanService)
+        {
+            _loanService = loanService;
+        }
         // GET: api/<LoanController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +32,15 @@ namespace CharityProject.Controllers
 
         // POST api/<LoanController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<Loan>> Post([FromBody] Loan loan)
         {
+            Loan newLoan = _loanService.addLoan(loan);
+
+            if (newLoan != null)
+                return newLoan;
+            else return Ok(newLoan);
+            
+
         }
 
         // PUT api/<LoanController>/5
