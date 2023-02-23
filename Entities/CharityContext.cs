@@ -95,17 +95,17 @@ namespace Entities
 
                 entity.Property(e => e.ReturnDate).HasColumnType("date");
 
-                entity.HasOne(d => d.Charity)
-                    .WithMany(p => p.Loans)
-                    .HasForeignKey(d => d.CharityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_LOAN_CHARITY");
+                //entity.HasOne(d => d.Charity)
+                //    .WithMany(p => p.Loans)
+                //    .HasForeignKey(d => d.CharityId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_LOAN_CHARITY");
 
-                entity.HasOne(d => d.Status)
-                    .WithMany(p => p.Loans)
-                    .HasForeignKey(d => d.StatusId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_LOAN_STATUS");
+                //entity.HasOne(d => d.Status)
+                //    .WithMany(p => p.Loans)
+                //    .HasForeignKey(d => d.StatusId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_LOAN_STATUS");
             });
 
             modelBuilder.Entity<Status>(entity =>

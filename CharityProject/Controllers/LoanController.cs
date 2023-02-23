@@ -18,9 +18,12 @@ namespace CharityProject.Controllers
         }
         // GET: api/<LoanController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task <ActionResult<List<Loan>>> Get()
         {
-            return new string[] { "value1hdfjsk", "jgkldfjgkdfljgdk" };
+            List<Loan> list = await _loanService.getNotReturnedItem();
+            if (list != null)
+                return list;
+            else return StatusCode(204);
         }
 
         // GET api/<LoanController>/5
@@ -34,7 +37,7 @@ namespace CharityProject.Controllers
         [HttpPost]
         public async Task<ActionResult<Loan>> Post([FromBody] Loan loan)
         {
-            Loan newLoan = _loanService.addLoan(loan);
+            Loan newLoan =await _loanService.addLoan(loan);
 
             if (newLoan != null)
                 return newLoan;
