@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 using Entities;
 using Repository;
+using Category = Entities.Category;
 
 namespace Services
 {
@@ -18,12 +20,15 @@ namespace Services
         }
         public async Task<List<Category>> getAllCategories()
         {
+
             return await _ICategoryRepository.getAllCategories();
         }
 
         public async Task<List<Category>> getCategoryByFilter(int?[] categoryIds, string? desc)
         {
-            return await _ICategoryRepository.getCategoryByFilter( categoryIds,desc);
+            //List<Category> categories= await _ICategoryRepository.getCategoryByFilter(categoryIds, desc);
+            //List<CategoryDTO> categoriesDTO = new();
+            return await _ICategoryRepository.getCategoryByFilter(categoryIds,desc);
 
         }
 

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using Entities;
-
+using DTO;
+using AutoMapper;
 
 namespace CharityProject.Controllers
 {
@@ -11,14 +12,16 @@ namespace CharityProject.Controllers
     {
 
         private readonly IUserService _IUserService;
-        public UserController(IUserService UserService)
+        private readonly IMapper _mapper;
+        public UserController(IUserService UserService,IMapper mapper)
         {
             _IUserService = UserService;
+            _mapper = mapper;
         }
 
         // GET: api/<UserController>
         [HttpGet]
-        public async Task <ActionResult<User>>  Get(  string userName ,string password)
+        public async Task <ActionResult<User>>  Get(string userName ,string password)
         {
             User user = await _IUserService.getUser(userName, password);
             if (user != null)
@@ -38,20 +41,25 @@ namespace CharityProject.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] User user)
+        public async Task<ActionResult<UserDTO>> Post([FromBody] UserDTO user)
         {
-            user = await _IUserService.addUser(user);
-            if (user != null)
-                return user;
-            else return Ok(user);
+            User newuser = _mapper.Map<UserDTO,User>(user);
+            User myuser = await _IUserService.addUser(newuser);
+            UserDTO newUserDTO = _mapper.Map<User,UserDTO>(myuser);
+            if (newUserDTO != null)
+                return newUserDTO;
+            else return Ok(newUserDTO);
 
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User user)
+        public  Task  Put(int id, [FromBody] UserDTO user)
         {
-           _IUserService.updateUser(id, user);
+            User myuser = _mapper.Map<UserDTO,User>(user);
+              return  _IUserService.updateUser(id,myuser);
+           // UserDTO userdto = _mapper.Map<User,UserDTO>(newuser);
+
         }
 
         // DELETE api/<UserController>/5

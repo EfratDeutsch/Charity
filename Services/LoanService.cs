@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities;
 using Repository;
+using Loan = Entities.Loan;
 
 namespace Services
 {

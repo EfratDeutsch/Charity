@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entities
+namespace DTO
 {
-    public partial class Loan
+    public class LoanDTO
     {
         public int LoanId { get; set; }
         public int CharityId { get; set; }
         public DateTime? LoanDate { get; set; }
         public DateTime? ReturnDate { get; set; }
-    
+
         public int StatusId { get; set; }
         public string ItemName { get; set; } = null!;
-      
-        public virtual Charity Charity { get; set; } = null!;
-
-        public virtual Status Status { get; set; } = null!;
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
-namespace Entities
+namespace Repository
 {
     public partial class User
     {
@@ -17,7 +16,6 @@ namespace Entities
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
-     
         public virtual ICollection<Charity> Charities { get; set; }
     }
 }

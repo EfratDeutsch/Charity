@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Entities;
 using Services;
+using AutoMapper;
+using DTO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,18 +13,21 @@ namespace CharityProject.Controllers
     public class LoanController : ControllerBase
     {
         private readonly ILoanService _loanService;
+        private readonly IMapper _mapper;
 
-        public LoanController(ILoanService loanService)
+        public LoanController(ILoanService loanService,IMapper mapper)
         {
             _loanService = loanService;
+            _mapper = mapper;
         }
         // GET: api/<LoanController>
         [HttpGet]
-        public async Task <ActionResult<List<Loan>>> Get()
+        public async Task <ActionResult<List<LoanDTO>>> Get()
         {
             List<Loan> list = await _loanService.getNotReturnedItem();
-            if (list != null)
-                return list;
+            List<LoanDTO> mylist = _mapper.Map<List<LoanDTO>>(list);
+            if (mylist != null)
+                return mylist;
             else return StatusCode(204);
         }
 
@@ -35,13 +40,15 @@ namespace CharityProject.Controllers
 
         // POST api/<LoanController>
         [HttpPost]
-        public async Task<ActionResult<Loan>> Post([FromBody] Loan loan)
+        public async Task<ActionResult<LoanDTO>> Post([FromBody] LoanDTO loan)
         {
-            Loan newLoan =await _loanService.addLoan(loan);
+            Loan loandto = _mapper.Map<LoanDTO, Loan>(loan);
+            Loan newLoan =await _loanService.addLoan(loandto);
+            LoanDTO myLoan = _mapper.Map<Loan, LoanDTO>(newLoan);
 
-            if (newLoan != null)
-                return newLoan;
-            else return Ok(newLoan);
+            if (myLoan != null)
+                return myLoan;
+            else return Ok(myLoan);
             
 
         }

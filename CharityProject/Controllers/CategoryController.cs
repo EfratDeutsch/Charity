@@ -1,6 +1,8 @@
 ﻿using Entities;
 using Services;
 using Microsoft.AspNetCore.Mvc;
+using DTO;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,21 +14,25 @@ namespace CharityProject.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _ICategoryService;
-        public CategoryController(ICategoryService categoryService)
+        IMapper _mapper;
+        public CategoryController(ICategoryService categoryService,IMapper mapper)
         {
             _ICategoryService = categoryService;
+            _mapper = mapper;
         }
-        // GET: api/<CategoryController>
+       // GET: api/<CategoryController>
         [HttpGet]
-        public async Task <ActionResult<List<Category>>> Get()
+        public async Task<ActionResult<List<CategoryDTO>>> Get()
         {
             List<Category> categories = await _ICategoryService.getAllCategories();
-            if (categories != null)
-                return Ok(categories);
+             List<CategoryDTO> newCategoryDTO = _mapper.Map<List<CategoryDTO>>(categories);
+
+            if (newCategoryDTO != null)
+                return Ok(newCategoryDTO);
             else return StatusCode(204);
         }
 
-        // GET api/<CategoryController>/5
+       //GET api/<CategoryController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -43,12 +49,17 @@ namespace CharityProject.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public async Task <ActionResult<Category>> Post([FromBody] Category category)
+        public async Task <ActionResult<CategoryDTO>> Post([FromBody] CategoryDTO category)
         {
-            Category newCategory= await _ICategoryService.addCategory(category);
-            if (newCategory != null)
-                return newCategory;
-            else return Ok(newCategory);
+            Category category1 = _mapper.Map<Category>(category);
+           
+            Category newCategory= await _ICategoryService.addCategory(category1);
+           
+            CategoryDTO newCategoryDTO = _mapper.Map<CategoryDTO>(newCategory);
+         
+            if (newCategoryDTO != null)
+                return newCategoryDTO;
+            else return Ok(newCategoryDTO);
         }
 
         // PUT api/<CategoryController>/5

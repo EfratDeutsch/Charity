@@ -1,7 +1,10 @@
+using AutoMapper;
+using CharityProject;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Services;
 using Repository;
+using CharityContext = Entities.CharityContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,14 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//var mapperConfig = new MapperConfiguration(mc =>
+//{
+//    mc.AddProfile(new MappingProfile());
+//});
+
+//IMapper mapper = mapperConfig.CreateMapper();
 
 
 builder.Services.AddControllers();

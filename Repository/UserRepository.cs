@@ -30,7 +30,7 @@ namespace Repository
             return user;
         }
        
-        public  void updateUser(int id, User user)
+        public  async Task updateUser(int id, User user)
         {
             _charityContext.Update(user);
              _charityContext.SaveChangesAsync();

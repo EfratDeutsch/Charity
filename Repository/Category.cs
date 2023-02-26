@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
-namespace Entities
+namespace Repository
 {
     public partial class Category
     {
@@ -14,7 +13,7 @@ namespace Entities
         public int CategoryId { get; set; }
         public string CategoryName { get; set; } = null!;
         public string ImageUrl { get; set; } = null!;
-      
+
         public virtual ICollection<Charity> Charities { get; set; }
     }
 }
