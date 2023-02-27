@@ -4,7 +4,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Services;
 using Repository;
-using CharityContext = Entities.CharityContext;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

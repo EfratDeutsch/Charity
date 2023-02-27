@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Repository;
 using Entities;
-using User = Repository.User;
+
 
 namespace Services
 {
@@ -37,7 +37,7 @@ namespace Services
             else return null;
         }
 
-       public async Task updateUser( int id,User user)
+        public async Task updateUser(int id, User user)
         {
             _IUserRepository.updateUser(id, user);
         }

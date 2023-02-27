@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using DTO;
 using Entities;
 using Repository;
-using Category = Entities.Category;
+
+
 
 namespace Services
 {
@@ -18,13 +19,15 @@ namespace Services
             _ICategoryRepository = CategoryRepository;
 
         }
-        public async Task<List<Category>> getAllCategories()
-        {
-
+        public async Task<IEnumerable<Category>> getAllCategories()
+        { 
+       
             return await _ICategoryRepository.getAllCategories();
+            
+     
         }
 
-        public async Task<List<Category>> getCategoryByFilter(int?[] categoryIds, string? desc)
+        public async Task<IEnumerable<Category>> getCategoryByFilter(int?[] categoryIds, string? desc)
         {
             //List<Category> categories= await _ICategoryRepository.getCategoryByFilter(categoryIds, desc);
             //List<CategoryDTO> categoriesDTO = new();

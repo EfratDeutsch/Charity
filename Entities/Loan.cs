@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Entities
 {
@@ -10,12 +9,10 @@ namespace Entities
         public int CharityId { get; set; }
         public DateTime? LoanDate { get; set; }
         public DateTime? ReturnDate { get; set; }
-    
         public int StatusId { get; set; }
         public string ItemName { get; set; } = null!;
-      
-        public virtual Charity Charity { get; set; } = null!;
 
+        public virtual Charity Charity { get; set; } = null!;
         public virtual Status Status { get; set; } = null!;
     }
 }

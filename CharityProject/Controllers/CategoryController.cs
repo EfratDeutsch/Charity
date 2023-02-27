@@ -22,10 +22,10 @@ namespace CharityProject.Controllers
         }
        // GET: api/<CategoryController>
         [HttpGet]
-        public async Task<ActionResult<List<CategoryDTO>>> Get()
+        public async Task<ActionResult<IEnumerable<CategoryDTO>>> Get()
         {
-            List<Category> categories = await _ICategoryService.getAllCategories();
-             List<CategoryDTO> newCategoryDTO = _mapper.Map<List<CategoryDTO>>(categories);
+            IEnumerable<Category> categories = await _ICategoryService.getAllCategories();
+            IEnumerable<CategoryDTO> newCategoryDTO = _mapper.Map<List<CategoryDTO>>(categories);
 
             if (newCategoryDTO != null)
                 return Ok(newCategoryDTO);
@@ -43,7 +43,7 @@ namespace CharityProject.Controllers
         [HttpGet("GetFilter")]
         public async Task<ActionResult<Category>> GetFilter([FromQuery] int?[] categoryIds, [FromQuery] string? name = null)
         {
-            List<Category> product = await _ICategoryService.getCategoryByFilter(categoryIds, name);
+            IEnumerable<Category> product = await _ICategoryService.getCategoryByFilter(categoryIds, name);
             return Ok(product);
         }
 

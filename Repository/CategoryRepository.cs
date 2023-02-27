@@ -16,14 +16,13 @@ namespace Repository
             _charityContext = charityContext;
         }
 
-        public async Task<List<Category>> getAllCategories()
+        public async Task<IEnumerable<Category>> getAllCategories()
         {
-            var categories = (from category in _charityContext.Categories
-                              select category).ToList<Category>();
+            IEnumerable <Category> categories =  await _charityContext.Categories.ToListAsync();
             return categories;
         }
 
-        public async Task<List<Category>> getCategoryByFilter(int?[] categoryIds,string? name)
+        public async Task<IEnumerable<Category>> getCategoryByFilter(int?[] categoryIds,string? name)
         {
             var query = _charityContext.Categories.Where(category =>
                 (name == null ? (true) : category.CategoryName.Contains(name))
@@ -31,7 +30,7 @@ namespace Repository
                 && ((categoryIds.Length == 0) ? (true) : (categoryIds.Contains(category.CategoryId))))
                 .OrderBy(Category => Category.CategoryId);
             Console.WriteLine(query.ToQueryString());
-            List<Category> categories = await query.ToListAsync();
+            IEnumerable<Category> categories = await query.ToListAsync();
             return categories;
 
 
