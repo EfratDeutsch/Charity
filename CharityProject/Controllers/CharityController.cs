@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Entities;
+using DTO;
+using AutoMapper;
+using Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,18 +12,32 @@ namespace CharityProject.Controllers
     [ApiController]
     public class CharityController : ControllerBase
     {
+        private readonly ICharityService _charityService;
+        private IMapper _mapper;
+        public CharityController(ICharityService charityService,IMapper mapper)
+        {
+            _charityService = charityService;
+            _mapper = mapper;
+        }
         // GET: api/<CharityController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "hello", "everybody" };
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/<CharityController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{categoryId}")]
+        public async Task<IEnumerable<CharityDTO>> GetCharityByCategory(int categoryId)
         {
-            return "value";
+           IEnumerable <Charity> charity= await  _charityService.GetCharityByCategory(categoryId);
+           IEnumerable <CharityDTO> newCharityDTO = _mapper.Map<IEnumerable<CharityDTO>>(charity);
+           
+
+            if (newCharityDTO != null)
+                return newCharityDTO;
+            return null;
+
         }
 
         // POST api/<CharityController>
