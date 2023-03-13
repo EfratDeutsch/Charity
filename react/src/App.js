@@ -18,7 +18,8 @@ const App=()=>(
     <Route path="/Signin" element={<Signin/>}></Route>
     <Route path="/CategoryMenu" element={<CategoryMenu/>}></Route>
     <Route path="/AboutUs" element={<AboutUs/>}></Route>
-    <Route path="/Charity" element={<Charity />}></Route>
+    <Route path="/Charity/:id" element={<Charity/> }></Route> 
+     {/* <Route path="/Charity" element={<Charity id="" />} ></Route> */}
  </Routes>
  </BrowserRouter>
  )
