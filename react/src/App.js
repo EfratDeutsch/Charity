@@ -4,9 +4,11 @@ import './App.css';
  import React  from 'react';
 
 import Login from './Login';
-import Signin from './Signin'
-import CategoryMenu from './CategoryMenu'
-import AboutUs from './AboutUs'
+import Signin from './Signin';
+import CategoryMenu from './CategoryMenu';
+import AboutUs from './AboutUs';
+import Charity from './Charity';
+
 const App=()=>(
   
 
@@ -16,6 +18,7 @@ const App=()=>(
     <Route path="/Signin" element={<Signin/>}></Route>
     <Route path="/CategoryMenu" element={<CategoryMenu/>}></Route>
     <Route path="/AboutUs" element={<AboutUs/>}></Route>
+    <Route path="/Charity" element={<Charity />}></Route>
  </Routes>
  </BrowserRouter>
  )

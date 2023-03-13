@@ -35,6 +35,7 @@ return(
         <input className="input" type="password" placeholder="אנחנו רוצים גם את הסיסמא שלך צדיק" onChange={(e)=>setPassword(e.target.value)} ></input>
        <button onClick={GetUser}>אני כלכך רוצה להיכנס👩‍🦰🧓👩👨‍🦱</button>
        <button onClick={SignIn}>אנירוצה להירשם לאתר שלכם</button>
+       
    
    
     </div>
