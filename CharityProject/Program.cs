@@ -21,6 +21,8 @@ builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 builder.Services.AddScoped<ICharityService, CharityService>();
 builder.Services.AddScoped<ICharityRepository, CharityRepository>();
+builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //var mapperConfig = new MapperConfiguration(mc =>

@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Entities;
+using Services;
+using DTO;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +12,21 @@ namespace CharityProject.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
+        private readonly ICityService _ICityService;
+        public CityController(ICityService ICityService)
+        {
+            _ICityService = ICityService;
+        }
+
         // GET: api/<CityController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<City>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<City> cities = await _ICityService.getAllCities();
+            if (cities != null)
+                return cities.ToList();
+            else return Ok(cities);
+
         }
 
         // GET api/<CityController>/5
