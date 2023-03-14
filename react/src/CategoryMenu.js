@@ -89,6 +89,7 @@ export default function ShowCategory() {
             {myarray}
             <input className="input" type="text" placeholder=" כאן אפשר לחפש קטגוריה🔎" onChange={(e) => setFilterName(e.target.value)}></input>
             <button onClick={filter}>יאללה חפש לי👈</button>
+        
 
         </tbody>
 

@@ -3,6 +3,8 @@ using Entities;
 using Services;
 using DTO;
 using System.Collections.Generic;
+using AutoMapper;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,21 +15,28 @@ namespace CharityProject.Controllers
     public class CityController : ControllerBase
     {
         private readonly ICityService _ICityService;
-        public CityController(ICityService ICityService)
+
+        private readonly IMapper _mapper;
+        public CityController(ICityService ICityService,IMapper mapper)
         {
             _ICityService = ICityService;
+            _mapper = mapper;
         }
 
         // GET: api/<CityController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<City>>> Get()
+        public async Task<ActionResult<IEnumerable<CityDTO>>> Get()
         {
-            IEnumerable<City> cities = await _ICityService.getAllCities();
-            if (cities != null)
-                return cities.ToList();
-            else return Ok(cities);
+            IEnumerable<City> cities = (List<City>)await _ICityService.getAllCities();
+            IEnumerable<CityDTO> citiesDTO = _mapper.Map<List<CityDTO>>(cities);
+
+
+            if (citiesDTO != null)
+                return citiesDTO.ToList();
+            else return Ok(citiesDTO);
 
         }
+        
 
         // GET api/<CityController>/5
         [HttpGet("{id}")]

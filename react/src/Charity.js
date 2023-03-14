@@ -7,6 +7,7 @@ const Charity = () => {
   const params = useParams();
   const categoryId = params.id;
   const [array, setArray] = useState([]);
+  const[citiesArray,setCitiesArray]=useState([]);
   
   
   
@@ -14,6 +15,7 @@ const Charity = () => {
     console.log(params.id);
     console.log("אני בצאריטי");
     GetCharitiesById();
+    GetAllCities();
 
   }, [])
 
@@ -24,15 +26,27 @@ const Charity = () => {
        setArray(res.data);
        console.log(array);
 
+
     }
     catch (error) {
       console.log(error);
     }
   }
 
-  const myarray = array.map((a) =>
-  <>
+const GetAllCities=async()=>{
+try{
+  const res2= await axios.get(`https://localhost:44397/api/City`)
+  console.log(res2);
+  setCitiesArray(res2);
+}
+catch(error){
+  console.log(error);
+}
+}
 
+
+const myarray = array.map((a) =>
+  <>
 
   <table>
 <tr>
@@ -61,6 +75,9 @@ const Charity = () => {
 </table>
 
 
+
+
+
       {/* <h1>charityId:{a.charityId}</h1>
       <h1>charityName:{a.charityName}</h1>
       <h1>categoryId:{a.categoryId}</h1>
@@ -71,12 +88,27 @@ const Charity = () => {
       <h1>phone:{a.phone}</h1> */}
   </>
   )
+//   const cities= citiesArray.map((a)=>
+//   <tbody>
+//  <h1>שם העיר</h1>
+//   <h1>{a.CityName}</h1>
+//   </tbody>
+  
+//   )
 
   return (
    <tbody>
       {myarray}
- 
+      <h1>חיפוש לפי ערים </h1>
+      {/* {cities} */}
+      {/* <select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select> */}
     </tbody>
+   
 
   )
 }
