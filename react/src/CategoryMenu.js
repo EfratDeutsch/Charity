@@ -47,26 +47,13 @@ export default function ShowCategory() {
     )
     const ab = (a) => {
 
-        // setId(a.categoryId);
-
         console.log(a.categoryId);
         console.log(id);
         navigate(`/Charity/${a.categoryId}`);
 
-        // navigate("/Charity" {state:{id:1}});
-        // navigate('/Charity',{state:{id:a.categoryId}});
-        //     if (a.categoryId!=0){
-        //     Charity(a.categoryId);
-
-        //    navigate("/Charity", {id:a.categoryId});
-        // }
+    
     }
-    // useEffect=(()=>{
-
-    //     console.log(id);  
-    //     navigate('/Charity',{id:id});
-    // },[id])
-
+   
     const filter = async () => {
         try {
             await axios.get(`https://localhost:44397/api/Category/GetFilter?name=${filterName}`)
