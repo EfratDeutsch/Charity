@@ -24,6 +24,17 @@ namespace Repository
             else return null;
 
         }
+        //public async Task<IEnumerable<City>> GetCityById(int cityId)
+        //{
+
+        //    var query = _charityContext.Cities.Where(city =>
+        //            (city.CityId == cityId)
+        //        );
+
+        //    IEnumerable<City> cities = await query.ToListAsync();
+        //    return cities;
+
+        //}
 
     }
 }

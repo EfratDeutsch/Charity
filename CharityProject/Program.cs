@@ -35,7 +35,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<CharityContext>(options =>options.UseSqlServer(homeConnectionString));
+builder.Services.AddDbContext<CharityContext>(options =>options.UseSqlServer(schoolConnectionString));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

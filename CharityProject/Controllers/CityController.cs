@@ -39,11 +39,18 @@ namespace CharityProject.Controllers
         
 
         // GET api/<CityController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        [HttpGet("{cityid}")]
+        //public async Task<IEnumerable<CityDTO>> GetCityById(int cityId)
+        //{
+        //    IEnumerable<City> city = await _ICityService.GetCityById(cityId);
+        //    IEnumerable<CityDTO> newCityDTO = _mapper.Map<IEnumerable<CityDTO>>(city);
+
+        //    if (newCityDTO != null)
+        //        return newCityDTO;
+        //    return null;
+
+        //}
+
 
         // POST api/<CityController>
         [HttpPost]

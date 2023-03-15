@@ -24,6 +24,12 @@ namespace Services
 
         }
 
-
+        //public async Task<IEnumerable<City>> GetCityById(int cityId)
+        //{
+        //    IEnumerable<City> list = await _ICityRepository.GetCityById(cityId);
+        //    if (list != null)
+        //        return list;
+        //    else return null;
+        //}
     }
 }

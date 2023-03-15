@@ -28,6 +28,7 @@ namespace CharityProject.Controllers
 
         // GET api/<CharityController>/5
         [HttpGet("{categoryId}")]
+        //[Route("api/Charity/GetCharityByCategory/{categoryId}")]
         public async Task<IEnumerable<CharityDTO>> GetCharityByCategory(int categoryId)
         {
            IEnumerable <Charity> charity= await  _charityService.GetCharityByCategory(categoryId);
