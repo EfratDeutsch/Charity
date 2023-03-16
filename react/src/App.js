@@ -8,6 +8,7 @@ import Signin from './Signin';
 import CategoryMenu from './CategoryMenu';
 import AboutUs from './AboutUs';
 import Charity from './Charity';
+import Manager from './Manager'
 
 const App=()=>(
   
@@ -19,7 +20,8 @@ const App=()=>(
     <Route path="/CategoryMenu" element={<CategoryMenu/>}></Route>
     <Route path="/AboutUs" element={<AboutUs/>}></Route>
     <Route path="/Charity/:id" element={<Charity/> }></Route> 
-     {/* <Route path="/Charity" element={<Charity id="" />} ></Route> */}
+    <Route path="/Manager" element={<Manager/>}></Route>
+
  </Routes>
  </BrowserRouter>
  )
