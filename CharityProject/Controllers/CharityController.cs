@@ -41,6 +41,9 @@ namespace CharityProject.Controllers
 
         }
 
+
+       // יהיה לנו כאן עוד פונקציה שמקבלת אידי של מנהל ומחזירה את כל הגמחים שלו סבבבי?
+
         // POST api/<CharityController>
         [HttpPost]
         public void Post([FromBody] string value)
