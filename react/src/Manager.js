@@ -10,52 +10,65 @@ export default function Manager() {
   const [citiesArray, setCitiesArray] = useState([]);
   const [cityNum, setCityNum] = useState(Number);
   const [categoryId, setCategoryId] = useState(Number);
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
-  const [neigborhood, setNeigborhood] = useState("");
+  const [charityName, setCharityName] = useState("");
+  const [charityDesc, setCharityDesc] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
   const [phone, setPhone] = useState("");
-  const [userId, setUserId] = useState(Number)
+  const [userId, setUserId] = useState(0)
   const [charities, setCharities] = useState([])
-  useEffect(() => {
-    getCategories()
-    GetAllCities()
-    GetDataFromSession()
-    getUsersCharities()
+  const [userFirstName, setUserFirstName] = useState("")
+  const [userLastName, setUserLastName] = useState("")
 
-  }, [])
-
-  const GetDataFromSession = () => {
-    const obj = JSON.parse(sessionStorage.getItem("User"));
-    setUserId(obj.userId)
-
-
-  }
-
-  
-
+  // useEffect(() => {
+  //   GetDataFromSession()
+  // },[])
+  // // useEffect(() => {
+  // //   console.log("ddddddddddddddd",userId)
+  // //   getUsersCharities()
+  // //   // getCategories()
+  // //   // GetAllCities()
+  // // }, [userId])
   const getUsersCharities = async () => {
     try {
-      await axios.get(`https://localhost:44397/api/Charity/${userId}`)
-      .then(res=>{
-   
-        console.log(res.data);
-        setCharities(res.data)
-      
-        console.log(charities);
-      })
+      if (userId == 0)
+        throw Error("not fount")
+      console.log("in getuser with userid ", userId)
+      const res = await axios.get(`https://localhost:44397/api/Charity/${userId}`);
+      setCharities(res.data)
+      console.log(charities);
     }
     catch (error) {
       console.log(error);
     }
   }
 
-  const NewCharity = { CharityName: name, CategoryId: categoryId, UserId: userId, CityId: cityNum, Neighborhood: neigborhood, CharityDesc: desc, Phone: phone }
-  const saveCharity = async () => {
+  const GetDataFromSession = async () => {
+    const obj = await JSON.parse(sessionStorage.getItem("User"));
+    setUserId(obj.userId)
+    //setUserName(obj.userName)
+    setUserFirstName(obj.firstName)
+    setUserLastName(obj.lastName)
+    
+    
+  }
+  useEffect(() => {
+    getUsersCharities();
+  }, [userId])
+  useEffect(() => {
+    GetDataFromSession();
+    getCategories()
+    GetAllCities()
+  }, [])
 
+
+  const NewCharity = { CharityName: charityName, CategoryId: categoryId, UserId: userId, CityId: cityNum, Neighborhood: neighborhood, CharityDesc: charityDesc, Phone: phone }
+ 
+  const saveCharity = async () => {
     try {
       await axios.post('https://localhost:44397/api/Charity', NewCharity)
         .then(res => {
           alert("רשמת גמח ממי" + res.name)
+          getUsersCharities()
         })
     }
     catch (error) {
@@ -106,21 +119,38 @@ export default function Manager() {
       )}
     </select>
 
+    const changeDetails= async()=>{
+      alert("ואז מה?")
+    }
+
 
   return (
+
     <tbody>
+
+
+<h1>נירו יאיר ויזרח ויציץ ויפרח {userFirstName} {userLastName } שלום למנהל הנכבד והמהולל כמר </h1>
+ <button onClick={changeDetails}>!נו באמת, בא לי לשנות ת'פרטים</button>
+      <DataTable value={charities} tableStyle={{ minWidth: '50rem' }}>
+        <Column field="charityName" header="name"></Column>
+        <Column field="charityDesc" header="description"></Column>
+        <Column field="phone" header="phone"></Column>
+        <Column field="neighborhood" header="neighborhood"></Column>
+        <Column field="userId" header="userId"></Column>
+      </DataTable>
+
+
       <h1>  מנהל מוסיף גמח</h1>
 
       {categoryComboBox}
-      <input className="input" type="text" placeholder='שם גמח' onChange={(e) => setName(e.target.value)}></input>
+      <input className="input" type="text" placeholder='שם גמח' onChange={(e) => setCharityName(e.target.value)}></input>
       {cityComboBox}
-      <input className="input" type="text" placeholder='שכונה' onChange={(e) => setNeigborhood(e.target.value)}></input>
-      <input className="input" type="text" placeholder='תאור' onChange={(e) => setDesc(e.target.value)}></input>
+      <input className="input" type="text" placeholder='שכונה' onChange={(e) => setNeighborhood(e.target.value)}></input>
+      <input className="input" type="text" placeholder='תאור' onChange={(e) => setCharityDesc(e.target.value)}></input>
       <input className="input" type="text" placeholder='טלפון' onChange={(e) => setPhone(e.target.value)}></input>
       <button onClick={saveCharity}>אני רוצה לרשום תגמ"ח הזה😴😴</button>
     </tbody>
   )
 
-
-
 }
+
