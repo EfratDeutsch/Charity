@@ -1,14 +1,14 @@
 import React from 'react'
 import {useState}  from 'react'
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 export default function Signin(){
 
     const [userName,setUserName]=useState("");
     const [password,setPassword]=useState("");
     const [firstName,setFirstName]=useState("");
     const [lastName,setLastName]=useState("");
-    
+    const navigate = useNavigate();
     const NewUser={UserName:userName,Password:password,FirstName:firstName,LastName:lastName};
 
     const PostUser=async()=>{
@@ -18,6 +18,7 @@ export default function Signin(){
             .then(response =>{
                 console.log(response.data.firstName);
               alert("הי ממי צדיק "+response.data.firstName+" אנחנו אפילו יודעים מה השם משפחה שלך"+response.data.lastName);  
+              navigate("/Login")
             })
         }
         catch(error){

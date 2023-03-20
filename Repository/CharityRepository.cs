@@ -28,6 +28,32 @@ namespace Repository
             return charities;
 
         }
+        //public async Task<IEnumerable<Charity>> GetCharityByUser(int userId)
+        //{
+
+        //    var query = _charityContext.Charities.Where(charity =>
+        //            (charity.UserId == userId)
+        //        );
+
+        //    IEnumerable<Charity> charities = await query.ToListAsync();
+        //    return charities;
+
+        //}
+        public async Task<Charity> addCharity(Charity charity)
+        {
+            await _charityContext.AddAsync(charity);
+            await _charityContext.SaveChangesAsync();
+            return charity;
+        }
+
+
+        public async Task updateCharity(int id, Charity charity)
+        {
+
+            _charityContext.Update(charity);
+            await _charityContext.SaveChangesAsync();
+
+        }
 
     }
 }

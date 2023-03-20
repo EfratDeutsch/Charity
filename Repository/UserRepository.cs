@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
@@ -16,10 +17,17 @@ namespace Repository
         }
         public async Task<User> getUser(string userName,string password)
         {
-            var list = (from user in _charityContext.Users
-                        where user.UserName == userName && user.Password == password
-                        select user).ToArray<User>();
-            return list.FirstOrDefault();
+            var user = await _charityContext.Users
+                .Where(u => u.UserName == userName
+                && u.Password == password)
+                .Include(u => u.Charities)               
+                .FirstOrDefaultAsync();
+            return user;
+                
+            //var list = (from user in _charityContext.Users
+            //            where user.UserName == userName && user.Password == password
+            //            select user).ToArray<User>();
+            //return list.FirstOrDefault();
 
         }
 

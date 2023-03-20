@@ -42,19 +42,47 @@ namespace CharityProject.Controllers
         }
 
 
-       // יהיה לנו כאן עוד פונקציה שמקבלת אידי של מנהל ומחזירה את כל הגמחים שלו סבבבי?
+        // יהיה לנו כאן עוד פונקציה שמקבלת אידי של מנהל ומחזירה את כל הגמחים שלו סבבבי?
+
+        //// GET api/<CharityController>/5
+        //[HttpGet("{userId}")]
+        //[Route("api/Charity/GetCharityByCategory/{userId}")]
+        //public async Task<IEnumerable<CharityDTO>> GetCharityByUser(int userId)
+        //{
+        //    IEnumerable<Charity> charity = await _charityService.GetCharityByUser(userId);
+        //    IEnumerable<CharityDTO> newCharityDTO = _mapper.Map<IEnumerable<CharityDTO>>(charity);
+
+
+        //    if (newCharityDTO != null)
+        //        return newCharityDTO;
+        //    return null;
+
+        //}
+
 
         // POST api/<CharityController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<CharityDTO>> Post([FromBody] CharityDTO charity)
         {
+            Charity newCharity = _mapper.Map<CharityDTO, Charity>(charity);
+            Charity myCharity = await _charityService.addCharity(newCharity);
+            CharityDTO newCharityDTO = _mapper.Map<Charity, CharityDTO>(myCharity);
+            /*if (newCharityDTO != null)
+                return Ok(newCharityDTO);
+            return NoContent() ;*/
+            return newCharityDTO != null ? Ok(newCharityDTO) : NoContent();
         }
+
+
 
         // PUT api/<CharityController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Task Put(int id, [FromBody] CharityDTO charity)
         {
+            Charity myCharity = _mapper.Map<CharityDTO, Charity>(charity);
+            return _charityService.updateCharity(id, myCharity);
         }
+
 
         // DELETE api/<CharityController>/5
         [HttpDelete("{id}")]
