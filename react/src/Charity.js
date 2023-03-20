@@ -24,7 +24,7 @@ const Charity = () => {
 
   const GetCharitiesById = async () => {
     try {
-      const res = await axios.get(`https://localhost:44397/api/Charity/${categoryId}`)
+      const res = await axios.get(`https://localhost:44397/api/Charity/byCategory/${categoryId}`)
       console.log("הגמחים" + res.data);
       setBaseArray(res.data);
       setArray(res.data);

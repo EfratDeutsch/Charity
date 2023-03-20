@@ -28,17 +28,18 @@ namespace Repository
             return charities;
 
         }
-        //public async Task<IEnumerable<Charity>> GetCharityByUser(int userId)
-        //{
+     
+        public async Task<IEnumerable<Charity>> GetCharityByUser(int userId)
+        {
 
-        //    var query = _charityContext.Charities.Where(charity =>
-        //            (charity.UserId == userId)
-        //        );
+            var query = _charityContext.Charities.Where(charity =>
+                    (charity.UserId == userId)
+                );
 
-        //    IEnumerable<Charity> charities = await query.ToListAsync();
-        //    return charities;
+            IEnumerable<Charity> charities = await query.ToListAsync();
+            return charities;
 
-        //}
+        }
         public async Task<Charity> addCharity(Charity charity)
         {
             await _charityContext.AddAsync(charity);

@@ -13,7 +13,7 @@ namespace CharityProject.Controllers
 
         private readonly IUserService _IUserService;
         private readonly IMapper _mapper;
-        public UserController(IUserService UserService,IMapper mapper)
+        public UserController(IUserService UserService, IMapper mapper)
         {
             _IUserService = UserService;
             _mapper = mapper;
@@ -21,11 +21,14 @@ namespace CharityProject.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public async Task <ActionResult<User>>  Get(string userName ,string password)
+        public async Task <ActionResult<UserDTO>>  Get(string userName ,string password)
         {
             User user = await _IUserService.getUser(userName, password);
-            if (user != null)
-                return Ok(user);
+            UserDTO userDto = _mapper.Map<UserDTO>(user);
+      
+
+            if (userDto != null)
+                return Ok(userDto);
             else return StatusCode(204);
 
 

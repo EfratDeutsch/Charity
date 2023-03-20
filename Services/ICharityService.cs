@@ -6,6 +6,7 @@ namespace Services
     {
         Task<Charity> addCharity(Charity charity);
         Task<IEnumerable<Charity>> GetCharityByCategory(int categoryId);
+        Task<IEnumerable<Charity>> GetCharityByUser(int userId);
         Task updateCharity(int id, Charity charity);
     }
 }

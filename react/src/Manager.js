@@ -2,7 +2,8 @@ import { isClickableInput } from '@testing-library/user-event/dist/utils';
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from "react"
-
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 export default function Manager() {
   const [categoriesArray, setCategoriesArray] = useState([]);
@@ -14,33 +15,51 @@ export default function Manager() {
   const [neigborhood, setNeigborhood] = useState("");
   const [phone, setPhone] = useState("");
   const [userId, setUserId] = useState(Number)
-  const[charities,setCharities]=useState([])
+  const [charities, setCharities] = useState([])
   useEffect(() => {
     getCategories()
     GetAllCities()
     GetDataFromSession()
+    getUsersCharities()
 
   }, [])
 
   const GetDataFromSession = () => {
-    const obj=JSON.parse(sessionStorage.getItem("User"));
-     setUserId(obj.userId)
-     setCharities(obj.charities)
-    console.log(charities+"מערך גמחים");
+    const obj = JSON.parse(sessionStorage.getItem("User"));
+    setUserId(obj.userId)
+
+
+  }
+
   
+
+  const getUsersCharities = async () => {
+    try {
+      await axios.get(`https://localhost:44397/api/Charity/${userId}`)
+      .then(res=>{
+   
+        console.log(res.data);
+        setCharities(res.data)
+      
+        console.log(charities);
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   const NewCharity = { CharityName: name, CategoryId: categoryId, UserId: userId, CityId: cityNum, Neighborhood: neigborhood, CharityDesc: desc, Phone: phone }
-
   const saveCharity = async () => {
 
     try {
       await axios.post('https://localhost:44397/api/Charity', NewCharity)
         .then(res => {
-          alert("צדקת")
+          alert("רשמת גמח ממי" + res.name)
         })
     }
     catch (error) {
+      console.log("error in save charity");
       console.log(error);
     }
   }

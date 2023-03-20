@@ -27,8 +27,7 @@ namespace CharityProject.Controllers
         }
 
         // GET api/<CharityController>/5
-        [HttpGet("{categoryId}")]
-        //[Route("api/Charity/GetCharityByCategory/{categoryId}")]
+        [HttpGet("byCategory/{categoryId}")]
         public async Task<IEnumerable<CharityDTO>> GetCharityByCategory(int categoryId)
         {
            IEnumerable <Charity> charity= await  _charityService.GetCharityByCategory(categoryId);
@@ -42,22 +41,22 @@ namespace CharityProject.Controllers
         }
 
 
-        // יהיה לנו כאן עוד פונקציה שמקבלת אידי של מנהל ומחזירה את כל הגמחים שלו סבבבי?
+  
 
-        //// GET api/<CharityController>/5
-        //[HttpGet("{userId}")]
-        //[Route("api/Charity/GetCharityByCategory/{userId}")]
-        //public async Task<IEnumerable<CharityDTO>> GetCharityByUser(int userId)
-        //{
-        //    IEnumerable<Charity> charity = await _charityService.GetCharityByUser(userId);
-        //    IEnumerable<CharityDTO> newCharityDTO = _mapper.Map<IEnumerable<CharityDTO>>(charity);
+        // GET api/<CharityController>/5
+        [HttpGet("{userId}")]
+   
+        public async Task<IEnumerable<CharityDTO>> GetCharityByUser(int userId)
+        {
+            IEnumerable<Charity> charity = await _charityService.GetCharityByUser(userId);
+            IEnumerable<CharityDTO> newCharityDTO = _mapper.Map<IEnumerable<CharityDTO>>(charity);
 
 
-        //    if (newCharityDTO != null)
-        //        return newCharityDTO;
-        //    return null;
+            if (newCharityDTO != null)
+                return newCharityDTO;
+            return null;
 
-        //}
+        }
 
 
         // POST api/<CharityController>

@@ -29,13 +29,13 @@ namespace Services
         }
 
 
-        //public async Task<IEnumerable<Charity>> GetCharityByUser(int userId)
-        //{
-        //    IEnumerable<Charity> list = await _charityRepository.GetCharityByUser(userId);
-        //    if (list != null)
-        //        return list;
-        //    else return null;
-        //}
+        public async Task<IEnumerable<Charity>> GetCharityByUser(int userId)
+        {
+            IEnumerable<Charity> list = await _charityRepository.GetCharityByUser(userId);
+            if (list != null)
+                return list;
+            else return null;
+        }
         public async Task<Charity> addCharity(Charity charity)
         {
             Charity newCharity = await _charityRepository.addCharity(charity);
