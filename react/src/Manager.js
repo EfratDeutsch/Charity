@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { useState } from "react"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-
+import { useNavigate } from "react-router-dom";
 export default function Manager() {
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [citiesArray, setCitiesArray] = useState([]);
@@ -18,16 +18,10 @@ export default function Manager() {
   const [charities, setCharities] = useState([])
   const [userFirstName, setUserFirstName] = useState("")
   const [userLastName, setUserLastName] = useState("")
+  const [charityId,setCharityId]=useState(Number)
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   GetDataFromSession()
-  // },[])
-  // // useEffect(() => {
-  // //   console.log("ddddddddddddddd",userId)
-  // //   getUsersCharities()
-  // //   // getCategories()
-  // //   // GetAllCities()
-  // // }, [userId])
+
   const getUsersCharities = async () => {
     try {
       if (userId == 0)
@@ -46,10 +40,11 @@ export default function Manager() {
     const obj = await JSON.parse(sessionStorage.getItem("User"));
     setUserId(obj.userId)
     //setUserName(obj.userName)
+    console.log(obj.firstName);
     setUserFirstName(obj.firstName)
     setUserLastName(obj.lastName)
-    
-    
+
+
   }
   useEffect(() => {
     getUsersCharities();
@@ -62,12 +57,11 @@ export default function Manager() {
 
 
   const NewCharity = { CharityName: charityName, CategoryId: categoryId, UserId: userId, CityId: cityNum, Neighborhood: neighborhood, CharityDesc: charityDesc, Phone: phone }
- 
+
   const saveCharity = async () => {
     try {
       await axios.post('https://localhost:44397/api/Charity', NewCharity)
         .then(res => {
-          alert("רשמת גמח ממי" + res.name)
           getUsersCharities()
         })
     }
@@ -119,24 +113,39 @@ export default function Manager() {
       )}
     </select>
 
-    const changeDetails= async()=>{
-      alert("ואז מה?")
-    }
-
-
+  const changeDetails = async () => {
+    alert("ואז מה?")
+  }
+const LoanManager=(rowData)=>{
+ 
+  setCharityId(rowData.charityId)
+  navigate(`/Loan/${rowData.charityId}`);
+  
+}
+  const butttonFunction = (rowData) => {
+     
+   return(
+    <>
+<button onClick={()=>LoanManager(rowData)} >ניהול הלוואות </button>
+    </>
+   )
+  }
   return (
 
     <tbody>
+{/* 
+{charityId?<>{charityId}</>:<></>} */}
 
-
-<h1>נירו יאיר ויזרח ויציץ ויפרח {userFirstName} {userLastName } שלום למנהל הנכבד והמהולל כמר </h1>
- <button onClick={changeDetails}>!נו באמת, בא לי לשנות ת'פרטים</button>
+      <h1>נירו יאיר ויזרח ויציץ ויפרח {userFirstName} {userLastName} שלום למנהל הנכבד והמהולל כמר </h1>
+      <button onClick={changeDetails}>!נו באמת, בא לי לשנות ת'פרטים</button>
       <DataTable value={charities} tableStyle={{ minWidth: '50rem' }}>
         <Column field="charityName" header="name"></Column>
         <Column field="charityDesc" header="description"></Column>
         <Column field="phone" header="phone"></Column>
         <Column field="neighborhood" header="neighborhood"></Column>
         <Column field="userId" header="userId"></Column>
+        <Column field="charityId" header="charity id"></Column>
+        <Column body={butttonFunction}></Column>
       </DataTable>
 
 

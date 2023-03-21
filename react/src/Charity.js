@@ -61,7 +61,6 @@ const Charity = () => {
           <th>cityId</th>
           <th>neighborhood</th>
           <th>charityDesc</th>
-
           <th>phone</th>
         </tr>
 
@@ -71,7 +70,7 @@ const Charity = () => {
           <td>{a.categoryId}</td>
           <td>{a.userId}</td>
           <td>{a.cityId}</td>
-          <td>{a.neighborhood}|</td>
+            <td>{a.neighborhood}|</td>
           <td>{a.charityDesc}</td>|
           <td>{a.phone}</td>
         </tr>
@@ -97,10 +96,7 @@ console.log(array);
 const newArr=baseArray.filter(a=> a.cityId==e)
 console.log("אררי ובתוכו גמחים מפולטרים");
 console.log(newArr);
-
 setArray(newArr)
-console.log("אררי הראשי(של כל הגמחים) ובתוכו גמחים מפולטרים");
-console.log(array);
 }
  
 
