@@ -6,6 +6,6 @@ namespace Services
     {
         Task<Loan> addLoan(Loan loan);
 
-        Task<List<Loan>> getNotReturnedItem();
+        Task<IEnumerable<Loan>> getNotReturnedItem(int charityId);
     }
 }

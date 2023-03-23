@@ -25,13 +25,13 @@ namespace Services
             else return null;
         }
 
-        public async Task <List<Loan>> getNotReturnedItem()
+        public async Task <IEnumerable<Loan>> getNotReturnedItem(int charityId)
         {
-            List<Loan> loans = await _loanRepository.getNotReturnedItem();
+            IEnumerable<Loan> loans = await _loanRepository.getNotReturnedItem(charityId);
             if (loans != null)
                 return loans;
             else return null;
-            
+        
         }
     }
 }

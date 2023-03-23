@@ -21,10 +21,10 @@ namespace CharityProject.Controllers
             _mapper = mapper;
         }
         // GET: api/<LoanController>
-        [HttpGet]
-        public async Task <ActionResult<List<LoanDTO>>> Get()
+        [HttpGet("{charityId}")]
+        public async Task <ActionResult<IEnumerable<LoanDTO>>> Get(int charityId)
         {
-            List<Loan> list = await _loanService.getNotReturnedItem();
+            IEnumerable<Loan> list = await _loanService.getNotReturnedItem(charityId);
             List<LoanDTO> mylist = _mapper.Map<List<LoanDTO>>(list);
             if (mylist != null)
                 return mylist;
@@ -32,11 +32,11 @@ namespace CharityProject.Controllers
         }
 
         // GET api/<LoanController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/<LoanController>
         [HttpPost]

@@ -26,14 +26,16 @@ namespace Repository
 
         }
 
-        public async  Task<List<Loan>> getNotReturnedItem()
+        public async  Task<IEnumerable<Loan>> getNotReturnedItem(int charityId)
         {
-            var query = await _charityContext.Loans
-                .Where(loan =>
-                (loan.ReturnDate == null)).ToListAsync();
 
-            List<Loan> list = query;
-            return list;
+            var list = _charityContext.Loans.Where(loan =>
+                  (loan.CharityId == charityId) &&
+                  (loan.ReturnDate == null));
+
+            IEnumerable<Loan> query = await list.ToListAsync();
+            return query;
+
         }
 
      //   var query = _charityContext.Categories.Where(category =>
