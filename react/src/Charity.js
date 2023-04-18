@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { parsePath, useParams } from "react-router-dom";
 import CategoryMenu from './CategoryMenu';
+import Menu from './Menu';
 
 const Charity = () => {
   const params = useParams();
@@ -107,7 +108,9 @@ useEffect(() => {
 
 
   return (
-    <tbody>
+  
+    <tbody>  
+      <Menu></Menu>
       {myarray}
 
       <h1>סינון לפי ערים </h1>

@@ -2,6 +2,8 @@ import React from 'react'
 import {useState}  from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Menu from './Menu';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 export default function Signin(){
 
     const [userName,setUserName]=useState("");
@@ -28,6 +30,7 @@ export default function Signin(){
     }
     return(
         <div>
+            <Menu></Menu>
             <h1> ברוכים הבאים לקומפוננטת סינינ</h1>
             <input className='input' type="text" placeholder='הכנס שם משתמש' onChange={(e)=>setUserName(e.target.value)}></input>
             <input className='input' type="password" placeholder='הכנס סיסמא' onChange={(e)=>setPassword(e.target.value)}></input>

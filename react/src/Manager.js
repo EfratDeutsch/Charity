@@ -5,6 +5,7 @@ import { useState } from "react"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useNavigate } from "react-router-dom";
+import Menu from './Menu';
 export default function Manager() {
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [citiesArray, setCitiesArray] = useState([]);
@@ -133,6 +134,7 @@ const LoanManager=(rowData)=>{
   return (
 
     <tbody>
+        <Menu></Menu>
 {/* 
 {charityId?<>{charityId}</>:<></>} */}
 

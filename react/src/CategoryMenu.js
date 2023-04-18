@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Charity from './Charity'
 import { useNavigate } from "react-router-dom";
-
+import Menu from './Menu';
 export default function ShowCategory() {
 
 
@@ -73,6 +73,7 @@ export default function ShowCategory() {
     return (
 
         <tbody>
+              <Menu></Menu>
             {myarray}
             <input className="input" type="text" placeholder=" כאן אפשר לחפש קטגוריה🔎" onChange={(e) => setFilterName(e.target.value)}></input>
             <button onClick={filter}>יאללה חפש לי👈</button>

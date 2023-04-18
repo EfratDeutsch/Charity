@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from "axios";
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Menu from './Menu';
 
 export default function Login() {
     const [userName, setUserName] = useState("");
@@ -35,6 +35,8 @@ export default function Login() {
     return (
 
         <div>
+
+            <Menu></Menu>
             <input className="input" type="text" placeholder="הכנס לנו כאן שם משתמש🧓" onChange={(e) => setUserName(e.target.value)} ></input>
             <input className="input" type="password" placeholder="אנחנו רוצים גם את הסיסמא שלך צדיק" onChange={(e) => setPassword(e.target.value)} ></input>
             <button onClick={GetUser}>אני כלכך רוצה להיכנס👩‍🦰🧓👩👨‍🦱</button>
