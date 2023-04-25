@@ -18,7 +18,7 @@ export default function Signin(){
             await axios.post(`https://localhost:44397/api/User`,NewUser)
            
             .then(response =>{
-                console.log(response.data.firstName);
+                console.log(response.data);
               alert("הי ממי צדיק "+response.data.firstName+" אנחנו אפילו יודעים מה השם משפחה שלך"+response.data.lastName);  
               navigate("/Login")
             })
