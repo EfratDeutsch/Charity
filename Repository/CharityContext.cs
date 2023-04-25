@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Repository
+namespace Entities
 {
     public partial class CharityContext : DbContext
     {
@@ -29,9 +28,7 @@ namespace Repository
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=SRV2\\PUPILS;Database=Charity;Trusted_Connection=True;");
-                //@"Data Source=SRV2\PUPILS;Initial Catalog=DataBaseIsEnoing;Integrated Security=True; TrustServerCertificate=True;";
-                //"Data Source=srv2\\pupils;Initial Catalog=DataBaseIsEnoing;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False"
+                optionsBuilder.UseSqlServer("Server=srv2\\pupils;Database=Charity;Trusted_Connection=True;");
             }
         }
 
@@ -88,7 +85,17 @@ namespace Repository
             {
                 entity.ToTable("LOAN");
 
-                entity.Property(e => e.LoanId).ValueGeneratedNever();
+                entity.Property(e => e.BorrowerEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("borrowerEmail");
+
+                entity.Property(e => e.BorrowerName)
+                    .HasMaxLength(50)
+                    .HasColumnName("borrowerName");
+
+                entity.Property(e => e.BorrowerPhone)
+                    .HasMaxLength(50)
+                    .HasColumnName("borrowerPhone");
 
                 entity.Property(e => e.ItemName).HasMaxLength(50);
 
@@ -96,17 +103,17 @@ namespace Repository
 
                 entity.Property(e => e.ReturnDate).HasColumnType("date");
 
-                //entity.HasOne(d => d.Charity)
-                //    .WithMany(p => p.Loans)
-                //    .HasForeignKey(d => d.CharityId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_LOAN_CHARITY");
+                entity.HasOne(d => d.Charity)
+                    .WithMany(p => p.Loans)
+                    .HasForeignKey(d => d.CharityId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LOAN_CHARITY");
 
-                //entity.HasOne(d => d.Status)
-                //    .WithMany(p => p.Loans)
-                //    .HasForeignKey(d => d.StatusId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_LOAN_STATUS");
+                entity.HasOne(d => d.Status)
+                    .WithMany(p => p.Loans)
+                    .HasForeignKey(d => d.StatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LOAN_STATUS");
             });
 
             modelBuilder.Entity<Status>(entity =>

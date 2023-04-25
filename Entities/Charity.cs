@@ -18,7 +18,7 @@ namespace Entities
         public string? Neighborhood { get; set; }
         public string? CharityDesc { get; set; }
         public string Phone { get; set; } = null!;
-        
+
         public virtual Category Category { get; set; } = null!;
         public virtual City City { get; set; } = null!;
         public virtual User User { get; set; } = null!;
