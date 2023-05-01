@@ -7,5 +7,6 @@ namespace Services
         Task<User> addUser(User user);
         Task<User> getUser(string userName, string password);
         Task updateUser(int id, User user);
+       
     }
 }

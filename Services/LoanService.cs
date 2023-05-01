@@ -33,5 +33,9 @@ namespace Services
             else return null;
         
         }
+        public async Task updateLoan(int id, Loan loan)
+        {
+            _loanRepository.updateLoan(id, loan);
+        }
     }
 }

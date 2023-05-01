@@ -55,8 +55,10 @@ namespace CharityProject.Controllers
 
         // PUT api/<LoanController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Task Put(int id, [FromBody] LoanDTO loanDTO)
         {
+            Loan myloan = _mapper.Map<LoanDTO, Loan>(loanDTO);
+            return _loanService.updateLoan(id, myloan);
         }
 
         // DELETE api/<LoanController>/5

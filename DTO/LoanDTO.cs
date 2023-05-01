@@ -8,6 +8,7 @@ namespace DTO
 {
     public class LoanDTO
     {
+           
      
         public int CharityId { get; set; }
         public DateTime? LoanDate { get; set; }
@@ -17,7 +18,7 @@ namespace DTO
         public string BorrowerPhone { get; set; } = null!;
         public string? BorrowerEmail { get; set; }
 
-       
+        public int LoanId { get; set; }
 
         public int StatusId { get; set; }
         public string ItemName { get; set; } = null!;

@@ -38,14 +38,22 @@ namespace Repository
 
         }
 
-     //   var query = _charityContext.Categories.Where(category =>
-     //   (name == null ? (true) : category.CategoryName.Contains(name))
 
-     //&& ((categoryIds.Length == 0) ? (true) : (categoryIds.Contains(category.CategoryId))))
-     //.OrderBy(Category => Category.CategoryId);
-     //   Console.WriteLine(query.ToQueryString());
-     //       List<Category> categories = await query.ToListAsync();
-     //       return categories;
+        public async Task updateLoan(int id, Loan loan)
+        {
+            _charityContext.Update(loan);
+            _charityContext.SaveChangesAsync();
+
+        }
+
+        //   var query = _charityContext.Categories.Where(category =>
+        //   (name == null ? (true) : category.CategoryName.Contains(name))
+
+        //&& ((categoryIds.Length == 0) ? (true) : (categoryIds.Contains(category.CategoryId))))
+        //.OrderBy(Category => Category.CategoryId);
+        //   Console.WriteLine(query.ToQueryString());
+        //       List<Category> categories = await query.ToListAsync();
+        //       return categories;
 
 
 
