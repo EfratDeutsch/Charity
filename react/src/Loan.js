@@ -1,17 +1,22 @@
-import axios from 'axios';
-import React, { useEffect } from 'react'
-import { parsePath, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useState } from "react"
-import { TabMenu } from 'primereact/tabmenu';
-import { InputSwitch } from 'primereact/inputswitch';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
+import { Dropdown } from 'primereact/dropdown';
+import { Tag } from 'primereact/tag';
+import axios from 'axios';
+
+import { parsePath, useParams } from "react-router-dom";
+import { TabMenu } from 'primereact/tabmenu';
+import { InputSwitch } from 'primereact/inputswitch';
+
 import { Button } from 'primereact/button';
 import Menu from './Menu';
 
-export default function LoanManager() {
+
+
+export default function RowEditingDemo() {
     const params = useParams();
     const charityId = params.id;
     const [loans, setLoans] = useState([]);
@@ -25,17 +30,15 @@ export default function LoanManager() {
     const [userPhone, setUserPhone] = useState("")
     const [userEmail, setUserEmail] = useState("")
     const [loanDate, setLoanDate] = useState(Date())
-    // const [returnDate, setReturnDate] = useState(Date())
-    //var date = new Date(this.props.date); 
-   // var elapsed = date.getTime();
+    const [statuses] = useState(['😃מצב טוב', '😏מצב פחות טוב', '😯מצב גרוע ', '😣  מצב זוועה']);
     const NewLoan = { CharityId: charityId, LoanDate: new Date(), ReturnDate: null, BorrowerName: userName, BorrowerPhone: userPhone, BorrowerEmail: userEmail, StatusId: 1, ItemName: itemName }
-
-
-
+   
     useEffect(() => {
         getLoans()
 
     }, [])
+
+
 
     const getLoans = async () => {
         try {
@@ -58,6 +61,7 @@ export default function LoanManager() {
         console.log(ui)
 
         ui.map((a) => {
+     
 
             if (a.statusId == 1) {
                 setStatusname("😃מצב טוב")
@@ -105,53 +109,85 @@ export default function LoanManager() {
         }
 
 
+    }
 
+    const onRowEditComplete = (e) => {
+        console.log("אני עורך עכשיו");
+        console.log(e);
+        console.log(e.newData.loanId)
+        console.log(e.newData.borrowerEmail); 
+        setNewLoan(e)
+        
+      let _loans = [...loans];
+        let { newData, index } = e;
 
+        _loans[index] = newData;
 
-
-
+        setLoans(_loans);
 
     }
-    const botton = (rowData) => {
-     
-        return(
-         <>
-     <button onClick={()=>setLoan(rowData)} > עריכה </button>
-         </>
-        )
-       }
 
-       const setLoan=async()=>{
+    const setNewLoan=async(e)=>{
+    try{
+        
+        await axios.put(`https://localhost:44397/api/Loan/?id=${e.newData.loanId}`, e.newData)
+        .then(res=>{
+         console.log(res+"התשובה שלנו מהפונקציה הזאתי:");
+        })
+ }
 
-   }
+  catch(error)
+    {
+    console.log(error);
+    }
 
+}
 
+    const textEditor = (options) => {
+        return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
+    };
+
+    const statusEditor = (options) => {
+        return (
+            <Dropdown
+                value={options.value}
+                options={statuses}
+                onChange={(e) => options.editorCallback(e.value)}
+                placeholder="Select a Status"
+                itemTemplate={(option) => {
+                    return <Tag value={option} severity={func(option)}>ןטוןטן</Tag>;
+                }}
+            />
+        );
+    };
 
 
     return (
+
         <tbody>
 
             <Menu></Menu>
+        <div className="card p-fluid">
+            <DataTable value={loans}  editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
+            <Column field="loanId" header="loan id"></Column>
+                <Column field="itemName" header="item name"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="statusId" header="Status Id"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="loanDate" header="Loan Date"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="returnDate" header="Return Date"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="charityId" header="charity id"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="borrowerPhone" header="טלפון "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="borrowerName" header="שם הלווה "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="borrowerEmail" header="אימייל  "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <Column field="statusname" header="מצב החזרה  "  body={statusname} editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
 
-            <DataTable value={loans} tableStyle={{ minWidth: '50rem' }}>
-                <Column field="loanId" header="loan id"></Column>
-                <Column field="itemName" header="item name"></Column>
-                <Column field="statusId" header="Status Id"></Column>
-                <Column field="loanDate" header="Loan Date"></Column>
-                <Column field="returnDate" header="Return Date"></Column>
-                <Column field="charityId" header="charity id"></Column>
-                <Column field="borrowerPhone" header="טלפון "></Column>
-                <Column field="borrowerName" header="שם הלווה "></Column>
-                <Column field="borrowerEmail" header="אימייל  "></Column>
-                <Column body={statusname} header="מצב החזרה"></Column>
-                <Column body={botton} header="עריכה"></Column> 
-                {/* <Column body={checked} header="האם הוחזר">
-                <div className="card flex justify-content-center">
-            <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /> </div></Column> */}
-
+             {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
+          
+               
+                <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
             </DataTable>
+        </div>
 
-            <h1>כאן מוסיפים עוד הלוואות</h1>
+        <h1>כאן מוסיפים עוד הלוואות</h1>
             <div style={{ width: "300px" }}>
 
                 <div className="card flex flex-column md:flex-row gap-3">
@@ -194,8 +230,7 @@ export default function LoanManager() {
             <div className="card flex flex-wrap justify-content-center gap-3">
                 <Button label="Submit" icon="pi pi-check" loading={loading} onClick={saveLoan} />
             </div>
-
         </tbody>
     )
 }
-
+        
