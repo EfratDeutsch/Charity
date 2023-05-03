@@ -20,7 +20,7 @@ export default function RowEditingDemo() {
     const params = useParams();
     const charityId = params.id;
     const [loans, setLoans] = useState([]);
-    const [statusname, setStatusname] = useState("")
+    
     const [items, setsetItemsLoans] = useState(["grtgr", "rwerwe"])
     const [my, setMy] = useState("")
     const [checked, setChecked] = useState(false);
@@ -30,11 +30,13 @@ export default function RowEditingDemo() {
     const [userPhone, setUserPhone] = useState("")
     const [userEmail, setUserEmail] = useState("")
     const [loanDate, setLoanDate] = useState(Date())
-    const [statuses] = useState(['😃מצב טוב', '😏מצב פחות טוב', '😯מצב גרוע ', '😣  מצב זוועה']);
+    const [statusId, setStatusId] = useState()
+    const statuses =["😃מצב טוב", '😏מצב פחות טוב', '😯מצב גרוע ', '😣  מצב זוועה']
     const NewLoan = { CharityId: charityId, LoanDate: new Date(), ReturnDate: null, BorrowerName: userName, BorrowerPhone: userPhone, BorrowerEmail: userEmail, StatusId: 1, ItemName: itemName }
-   
+    const [statusname, setStatusname] = useState('')
     useEffect(() => {
         getLoans()
+        console.log("r "+statusname);
 
     }, [])
 
@@ -44,9 +46,10 @@ export default function RowEditingDemo() {
         try {
             const res = await axios.get(`https://localhost:44397/api/Loan/${charityId}`)
             console.log(res.data);
-
             setLoans(res.data)
+
             func(res.data)
+          
             setMy("hihihi")
 
 
@@ -58,90 +61,107 @@ export default function RowEditingDemo() {
     }
 
     const func = async (ui) => {
-        console.log(ui)
+
+        console.log("מגיע מתוך func כשהסטטוס הוא:"+ui)
 
         ui.map((a) => {
-     
 
             if (a.statusId == 1) {
-                setStatusname("😃מצב טוב")
+                setStatusname(statuses[0])
                 console.log("הדפיס");
-                console.log("status name" + statusname)
+                console.log("status name")
+                console.log({statusname})
             }
             else if (a.statusId == 2) {
-                setStatusname("😏מצב פחות טוב")
+               let d=statuses[1];
+                setStatusname(d);
+                console.log("הדפיס");
+                console.log("status name" )
+                console.log({statusname});
             }
             else if (a.statusId == 3) {
-                setStatusname("😯מצב גרוע ")
+                setStatusname(statuses[2])
+                console.log("הדפיס");
+                console.log("status name" )
+                console.log(statusname);
             }
 
             else if (a.statusId == 4) {
-                setStatusname("😣  מצב זוועה")
+                setStatusname(statuses[3])
+                console.log("הדפיס");
+                console.log("status name" )
+                console.log(statusname);
             }
-
+           console.log(a.statusname)
 
             //a.statusId == 1 ? setStatusname("מצב טוב") : 2 ? setStatusname("מצב פחות טוב") : 3 ? setStatusname("מצב גרוע") : 4 ? setStatusname("מצב זוועה")
         }
         )
     }
 
-    const saveLoan = async () => {
+//     const retroFunc = async (e) => {
+// console.log(e);
+//         if (e == "😃מצב טוב") {
+//             setStatusId(1)
+//             console.log("הסטטוס הוא אחד")
+//         }
+//         else if (e="😏מצב פחות טוב") {
+//             setStatusId(2)
+//             console.log("הסטטוס הוא שתיים")
+//         }
+//     }
 
+    const saveLoan = async () => {
         try {
             await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
-                
-                 .then(res => {
-        
-               
-                   console.log((res.data));
-                    alert("הלוואתו של"+res.data.borrowerName+"נרשמה בהצלחה")
+
+                .then(res => {
+
+
+                    console.log((res.data));
+                    alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה")
                 })
             console.log("הצליח");
-
-
-
-
-
         }
 
         catch {
             alert("לא הצליח")
         }
-
-
     }
 
     const onRowEditComplete = (e) => {
         console.log("אני עורך עכשיו");
+        // retroFunc(e)
         console.log(e);
         console.log(e.newData.loanId)
-        console.log(e.newData.borrowerEmail); 
-        setNewLoan(e)
-        
-      let _loans = [...loans];
-        let { newData, index } = e;
-
-        _loans[index] = newData;
-
-        setLoans(_loans);
+        console.log(e.newData.borrowerEmail)
+        console.log(e.newData.loanDate)
+        console.log(e.newData.statusId)
+        setNewLoan(e.newData)
+        let _loans = [...loans]
+        let { newData, index } = e
+        _loans[index] = newData
+        setLoans(_loans)
 
     }
 
-    const setNewLoan=async(e)=>{
-    try{
-        
-        await axios.put(`https://localhost:44397/api/Loan/?id=${e.newData.loanId}`, e.newData)
-        .then(res=>{
-         console.log(res+"התשובה שלנו מהפונקציה הזאתי:");
-        })
- }
+    const setNewLoan = async (e) => {
+        try {
 
-  catch(error)
-    {
-    console.log(error);
+            console.log(e);
+            await axios.put(`https://localhost:44397/api/Loan/${e.loanId}`, e)
+                .then(res => {
+                    console.log("jjj");
+                    console.log(res + "התשובה שלנו מהפונקציה הזאתי:")
+
+                })
+        }
+
+        catch (error) {
+            console.log("כאן יש ארור" + error);
+        }
+
     }
-
-}
 
     const textEditor = (options) => {
         return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
@@ -153,9 +173,10 @@ export default function RowEditingDemo() {
                 value={options.value}
                 options={statuses}
                 onChange={(e) => options.editorCallback(e.value)}
+                
                 placeholder="Select a Status"
                 itemTemplate={(option) => {
-                    return <Tag value={option} severity={func(option)}>ןטוןטן</Tag>;
+                    return <Tag value={option} severity={func(option)}></Tag>;
                 }}
             />
         );
@@ -167,27 +188,27 @@ export default function RowEditingDemo() {
         <tbody>
 
             <Menu></Menu>
-        <div className="card p-fluid">
-            <DataTable value={loans}  editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
-            <Column field="loanId" header="loan id"></Column>
-                <Column field="itemName" header="item name"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="statusId" header="Status Id"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="loanDate" header="Loan Date"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="returnDate" header="Return Date"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="charityId" header="charity id"  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="borrowerPhone" header="טלפון "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="borrowerName" header="שם הלווה "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="borrowerEmail" header="אימייל  "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                <Column field="statusname" header="מצב החזרה  "  body={statusname} editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+            <div className="card p-fluid">
+                <DataTable value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
+                    <Column field="loanId" header="loan id"></Column>
+                    <Column field="itemName" header="item name" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="statusId" header="Status Id" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="loanDate" header="Loan Date" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="returnDate" header="Return Date" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="charityId" header="charity id" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="borrowerPhone" header="טלפון " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="borrowerName" header="שם הלווה " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="borrowerEmail" header="אימייל  " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column>
 
-             {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
-          
-               
-                <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
-            </DataTable>
-        </div>
+                    {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
 
-        <h1>כאן מוסיפים עוד הלוואות</h1>
+
+                    <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+                </DataTable>
+            </div>
+
+            <h1>כאן מוסיפים עוד הלוואות</h1>
             <div style={{ width: "300px" }}>
 
                 <div className="card flex flex-column md:flex-row gap-3">
@@ -220,7 +241,7 @@ export default function RowEditingDemo() {
                         </span>
                         <InputText placeholder="Email " onChange={(e) => setUserEmail(e.target.value)} />
                     </div>
-               
+
 
 
 
@@ -233,4 +254,3 @@ export default function RowEditingDemo() {
         </tbody>
     )
 }
-        

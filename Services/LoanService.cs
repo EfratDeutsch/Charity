@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities;
-using Repository;
 
+using Repository;
+using Entities;
 
 namespace Services
 {
@@ -33,9 +33,9 @@ namespace Services
             else return null;
         
         }
-        public async Task updateLoan(int id, Loan loan)
+        public async Task<Loan> updateLoan(int id, Loan loan)
         {
-            _loanRepository.updateLoan(id, loan);
+           return await _loanRepository.updateLoan(id, loan);
         }
     }
 }

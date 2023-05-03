@@ -4,6 +4,7 @@ using Services;
 using AutoMapper;
 using DTO;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CharityProject.Controllers
@@ -55,7 +56,7 @@ namespace CharityProject.Controllers
 
         // PUT api/<LoanController>/5
         [HttpPut("{id}")]
-        public Task Put(int id, [FromBody] LoanDTO loanDTO)
+        public Task<Loan> Put(int id, [FromBody] LoanDTO loanDTO)
         {
             Loan myloan = _mapper.Map<LoanDTO, Loan>(loanDTO);
             return _loanService.updateLoan(id, myloan);

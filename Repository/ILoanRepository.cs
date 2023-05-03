@@ -1,5 +1,6 @@
 ﻿using Entities;
 
+
 namespace Repository
 {
     public interface ILoanRepository
@@ -8,6 +9,6 @@ namespace Repository
 
         Task<IEnumerable<Loan>> getNotReturnedItem(int charityId);
 
-        Task updateLoan(int id, Loan loan);
+        Task<Loan> updateLoan(int id, Loan loan);
     }
 }

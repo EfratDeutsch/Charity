@@ -114,9 +114,16 @@ export default function Manager() {
       )}
     </select>
 
+
+
+
   const changeDetails = async () => {
     alert("ואז מה?")
   }
+
+
+
+
 const LoanManager=(rowData)=>{
  
   setCharityId(rowData.charityId)

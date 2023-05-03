@@ -17,7 +17,7 @@ namespace DTO
         public string BorrowerName { get; set; } = null!;
         public string BorrowerPhone { get; set; } = null!;
         public string? BorrowerEmail { get; set; }
-
+        public bool? IsReturned { get; set; }
         public int LoanId { get; set; }
 
         public int StatusId { get; set; }

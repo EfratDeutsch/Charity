@@ -1,5 +1,6 @@
 ﻿using Entities;
 
+
 namespace Repository
 {
     public interface ICityRepository

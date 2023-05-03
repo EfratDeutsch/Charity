@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Entities
+namespace Repository
 {
     public partial class CharityContext : DbContext
     {
@@ -96,6 +97,8 @@ namespace Entities
                 entity.Property(e => e.BorrowerPhone)
                     .HasMaxLength(50)
                     .HasColumnName("borrowerPhone");
+
+                entity.Property(e => e.IsReturned).HasColumnName("isReturned");
 
                 entity.Property(e => e.ItemName).HasMaxLength(50);
 
