@@ -138,12 +138,16 @@ const LoanManager=(rowData)=>{
     </>
    )
   }
+
+
   return (
 
     <tbody>
         <Menu></Menu>
 {/* 
 {charityId?<>{charityId}</>:<></>} */}
+
+
 
       <h1>נירו יאיר ויזרח ויציץ ויפרח {userFirstName} {userLastName} שלום למנהל הנכבד והמהולל כמר </h1>
       <button onClick={changeDetails}>!נו באמת, בא לי לשנות ת'פרטים</button>
@@ -154,7 +158,8 @@ const LoanManager=(rowData)=>{
         <Column field="neighborhood" header="neighborhood"></Column>
         <Column field="userId" header="userId"></Column>
         <Column field="charityId" header="charity id"></Column>
-        <Column body={butttonFunction}></Column>
+        <Column body={butttonFunction} ></Column>
+       
       </DataTable>
 
 
