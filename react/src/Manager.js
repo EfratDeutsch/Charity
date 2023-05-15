@@ -122,6 +122,29 @@ export default function Manager() {
   }
 
 
+  const deleteCharity= async(rowData)=> {
+   
+    try{
+      const res3 = await fetch(`https://localhost:44397/api/Charity/${rowData.charityId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!res3.ok) {
+        throw new Error("Failed to delete charity");
+      }
+
+      alert(`גמח בשם  ${rowData.charityName} נמחק בהצלחה`);
+      
+      getUsersCharities()  
+     }
+    catch(error){
+      console.error(error);
+      alert("An error occurred while deleting the charity");
+    }
+  }
 
 
 const LoanManager=(rowData)=>{
@@ -135,6 +158,7 @@ const LoanManager=(rowData)=>{
    return(
     <>
 <button onClick={()=>LoanManager(rowData)} >ניהול הלוואות </button>
+<button onClick={()=>deleteCharity(rowData)} > סגירת גמח ומחיקתו לאלתר </button>
     </>
    )
   }

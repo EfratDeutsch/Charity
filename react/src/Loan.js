@@ -12,7 +12,9 @@ import { InputSwitch } from 'primereact/inputswitch';
 import { Button } from 'primereact/button';
 import Menu from './Menu';
 import { TriStateCheckbox } from 'primereact/tristatecheckbox';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import { render, unstable_renderSubtreeIntoContainer } from 'react-dom';
+import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { classNames } from 'primereact/utils';
 
 
 
@@ -32,9 +34,15 @@ export default function RowEditingDemo() {
     const [statusId, setStatusId] = useState()
     const [bool, setBool] = useState(false)
     const [isReturned,setIsReturned]=useState("")
+    const [tmp,setTmp]=useState([])
+    const [renderBool,setRenderBool]=useState(false)
+    const [boolButton,setBoolButton]=useState(false)
+    const [notReturnedLoansArray,setNotReturnedLoansArray]=useState([])
     const statuses = ["😃מצב טוב", '😏מצב פחות טוב', '😯מצב גרוע ', '😣  מצב זוועה']
     const NewLoan = { CharityId: charityId, LoanDate: new Date(), ReturnDate: null, BorrowerName: userName, BorrowerPhone: userPhone, BorrowerEmail: userEmail, StatusId: 1, ItemName: itemName }
     const [statusname, setStatusname] = useState('')
+    const[anotherBool,setAnotherBool]=useState(false)
+    const[lala,setLala]=useState(false)
 
 
     useEffect(() => {
@@ -50,7 +58,7 @@ export default function RowEditingDemo() {
             const res = await axios.get(`https://localhost:44397/api/Loan/${charityId}`)
             console.log(res.data);
             setLoans(res.data)
-
+            setTmp(res.data)
             func(res.data)
 
             setMy("hihihi")
@@ -135,17 +143,21 @@ export default function RowEditingDemo() {
             await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
 
                 .then(res => {
-
-
-                    console.log((res.data));
-                    alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה")
+                  
+                    console.log((res.data)); 
+                    alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה");
+                  getLoans()
+                 
                 })
+        
             console.log("הצליח");
         }
 
         catch {
             alert("לא הצליח")
-        }
+        } 
+        
+        
     }
 
     const onRowEditComplete = (e) => {
@@ -174,6 +186,9 @@ export default function RowEditingDemo() {
                     console.log("jjj");
                     console.log(res + "התשובה שלנו מהפונקציה הזאתי:")
                     setIsReturned(!isReturned)
+                    setAnotherBool(!anotherBool)
+       
+            
                 })
         }
 
@@ -206,25 +221,27 @@ export default function RowEditingDemo() {
     };
     //  let isReturned={ value: null}
     const returndFunction = (rowData) => {
-        console.log({ rowData });
-
-
+  
         return (
             <div>
                 <div className="card">
                     <div className="p-field-checkbox p-m-0">
-                        {!rowData.isReturned && <Button label='❌ ' onClick={()=>{
+                        {!rowData.isReturned && <Button label='❌' onClick={()=>{
                             rowData.isReturned=true;
-                      
+                    
                             // console.log(isReturned);
                             // console.log(rowData+"rowData lalal");
                             console.log(rowData.isReturned+"rowdata is returnd");
                             setNewLoan(rowData)
+                            setAnotherBool(!anotherBool)
+                         
                             // put setIsReturned to true when id=rowData.id
                         }}/>}
-                        {rowData.isReturned && <Button label=' ✔ ' onClick={()=>{
+                        {rowData.isReturned && <Button label='✔' onClick={()=>{
                            alert("הלוואה זו הוחזרה. אין אפשרות לעדכן אותה☹")
                            console.log("שיהנ בשסת תענוג");
+                   
+                           
                             // put setIsReturned to true when id=rowData.id
                         }}/>}
                         {/* <TriStateCheckbox value={rowData.isReturned} />
@@ -241,28 +258,79 @@ const dateFormat=(rowData)=>{
     {new Date(rowData.loanDate).toLocaleDateString()}
     </>)
 }
+const notReturnedLoans=()=>{
+    (  setBool(!bool))
+if (!boolButton)
+
+return(
+<Button onClick={notReturnedButton}>הצג רק הלוואות שלא הוחזרו</Button>
+  
+
+)
+else if(boolButton)
+return(<Button onClick={retroNotReturnFunction}>הצג את כל ההלוואות</Button>)
+   
+}
+const retroNotReturnFunction=()=>{
+
+    setAnotherBool(!setAnotherBool)
+    setLoans(tmp) 
+    setBoolButton(false)
+
+  
+}
+const notReturnedButton=()=>{
+    
+    setAnotherBool(!anotherBool)
+    setBoolButton(true)
+    let _allLoans = [...loans]
+    setNotReturnedLoansArray([])
+    let _notReturnedLoans=[...notReturnedLoansArray]
+    let j=0;
+    for (let i=0;i< _allLoans.length;i++){
+        if(_allLoans[i].isReturned==false||_allLoans[i].isReturned==null){
+          _notReturnedLoans[j]=_allLoans[i];
+          j++
+        }
+     }
+     console.log("ppp");
+     console.log(_notReturnedLoans);
+        setNotReturnedLoansArray(_notReturnedLoans)
+        setLoans(_notReturnedLoans)
+        console.log("lll");
+        console.log(notReturnedLoansArray);
+  
+   
+}
+
     return (
 
         <tbody>
 
             <Menu></Menu>
             <div className="card p-fluid">
-                <DataTable value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
-                    <Column field="loanId" header="loan id"></Column>
-                    <Column field="itemName" header="item name" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="statusId" header="Status Id" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="loanDate" body={dateFormat} header="Loan Date" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="returnDate" header="Return Date" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="charityId" header="charity id" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="borrowerPhone" header="טלפון " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="borrowerName" header="שם הלווה " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="borrowerEmail" header="אימייל  " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                <DataTable   body={notReturnedLoans} value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
+                <Column 
+              className='text-right'
+              field="itemName"
+              header="שם פריט"
+            //  body={dateFormat}
+              filter sortable
+              filterPlaceholder="חיפוש על פי שם הפרטי"
+              editor={(options) => textEditor(options)} style={{ width: '20%' }}
+            />
+                    <Column field="loanDate" body={dateFormat} header="תאריך הלוואה " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="borrowerPhone" header="טלפון "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="borrowerName" header="שם הלווה " sortable  filterPlaceholder="Search by name" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
+                    <Column field="borrowerEmail" header="אימייל  "   editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
                     <Column field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column>
                     <Column field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר"></Column>
+                    <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+                    <Column   header={notReturnedLoans}></Column>
                     {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
 
 
-                    <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+                  
                 </DataTable>
             </div>
 
