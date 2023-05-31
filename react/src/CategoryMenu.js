@@ -5,6 +5,10 @@ import { useState } from "react";
 import Charity from './Charity'
 import { useNavigate } from "react-router-dom";
 import Menu from './Menu';
+import './CategoryMenu.css'
+
+import ButtonMenu from './ButtonMenu'
+
 export default function ShowCategory() {
 
 
@@ -18,6 +22,7 @@ export default function ShowCategory() {
 
 
     useEffect(() => {
+       
         console.log("a")
 
         try {
@@ -38,22 +43,23 @@ export default function ShowCategory() {
 
 
 
-    const myarray = array.map((a) =>
-        <>
-            <h1>{a.categoryId}</h1>
-            <button onClick={() => ab(a)}>{a.categoryName}</button>
-            <h1> {a.imageUrl}</h1>
-        </>
-    )
-    const ab = (a) => {
+    // const myarray = array.map((a) =>
+    //     <>
 
-        console.log(a.categoryId);
-        console.log(id);
-        navigate(`/Charity/${a.categoryId}`);
+    //         <button id="categoryButton" onClick={() => ab(a)}>{a.categoryName}</button>
 
-    
+    //     </>
+    // )
+
+    const ab = (categoryId) => {
+
+        console.log(categoryId);
+        // console.log(id);
+        navigate(`/Charity/${categoryId}`);
+
+
     }
-   
+
     const filter = async () => {
         try {
             await axios.get(`https://localhost:44397/api/Category/GetFilter?name=${filterName}`)
@@ -70,14 +76,19 @@ export default function ShowCategory() {
         }
     }
 
+
+
     return (
 
         <tbody>
-              <Menu></Menu>
-            {myarray}
+            <Menu></Menu>
+            <div id="categoryTitle">גמחים שתמצאו אצלינו</div>
+            {/* {myarray} */}
             <input className="input" type="text" placeholder=" כאן אפשר לחפש קטגוריה🔎" onChange={(e) => setFilterName(e.target.value)}></input>
             <button onClick={filter}>יאללה חפש לי👈</button>
-        
+            <ButtonMenu onCategoryClick={ab}></ButtonMenu>
+           
+
 
         </tbody>
 

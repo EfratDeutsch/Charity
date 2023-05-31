@@ -1,0 +1,350 @@
+#title {
+    position: absolute;
+    width: 551px;
+    height: 155px;
+
+  
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 116.5%;
+    /* or 58px */
+
+    text-align: right;
+
+    /* חום */
+
+    color: #321800;
+    left:1000px;
+    top:300px;
+}
+#title2{
+    position: absolute;
+    width: 551px;
+    height: 155px;
+
+    
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 116.5%;
+    /* or 58px */
+
+    text-align: right;
+
+    /* חום */
+
+    color: #321800;
+    left:1000px;
+    top:360px;
+}
+#miniTitle{
+    position: absolute;
+width: 551px;
+height: 155px;
+
+
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 116.5%;
+/* or 58px */
+
+text-align: right;
+
+/* חום */
+
+color: #321800;
+left:1000px;
+top:420px;
+}
+#button {
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+position: relative;
+width: 148px;
+height: 40px;
+
+  /* פתיחת גמח חדש */
+
+
+  width: 128px;
+  height: 20px;
+
+  /* font-family: 'Rubik'; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  /* or 24px */
+  
+  text-align: center;
+  
+  /* כתום */
+  
+  color: #FF7E06;
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  /* Frame 217 */
+  
+  
+  /* Auto layout */
+  
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+  
+  position: relative;
+  width: 148px;
+  height: 40px;
+  /* Group 264 */
+  
+  
+  position: absolute;
+  width: 187px;
+  height: 48px;
+  
+  filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+  /* Rectangle 24 */
+  
+  
+  box-sizing: border-box;
+  
+  position: absolute;
+  width: 187px;
+  height: 48px;
+  
+  background: #FFFBF5;
+  border: 2px solid #FF7E06;
+  border-radius: 10px;
+  left:260px;
+top:50px;
+}
+
+#Managebutton {
+    box-sizing: border-box;
+
+position: absolute;
+width: 187px;
+height: 48px;
+left: 69px;
+top: 55px;
+
+/* כתום */
+
+background: #FF7E06;
+border-radius: 10px;
+    width: 128px;
+    height: 20px;
+    
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    /* or 24px */
+    
+    text-align: center;
+    
+    /* בהיר */
+    
+    color: #FFFBF5;
+    
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    /* Frame 33 */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+position: relative;
+width: 148px;
+height: 40px;
+/* Group 263 */
+
+
+position: absolute;
+width: 187px;
+height: 48px;
+left: 69px;
+top: 55px;
+
+filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+/* לאזור ניהול גמח */
+
+
+width: 128px;
+height: 20px;
+
+/* font-family: 'Rubik'; */
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 150%;
+/* or 24px */
+
+text-align: center;
+
+/* בהיר */
+
+color: #FFFBF5;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+/* Group 263 */
+
+
+position: absolute;
+width: 187px;
+height: 48px;
+left: 69px;
+top: 55px;
+
+filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+box-sizing: border-box;
+
+position: absolute;
+width: 187px;
+height: 48px;
+left: 69px;
+top: 55px;
+
+/* כתום */
+
+background: #FF7E06;
+border-radius: 10px;
+position: absolute;
+width: 187px;
+height: 48px;
+left: 69px;
+top: 55px;
+
+filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+left:50px;
+top:50px;
+} 
+#homeLink{
+    position: absolute;
+width: 72px;
+height: 29px;
+
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 19.663px;
+line-height: 150%;
+/* or 29px */
+
+text-align: center;
+
+/* שחור */
+
+color: #000000;
+left:1400px;
+top:80px;
+}
+#charityLink{
+position: absolute;
+width: 72px;
+height: 29px;
+
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 19.663px;
+line-height: 150%;
+/* or 29px */
+
+text-align: center;
+
+/* שחור */
+
+color: #000000;
+left:1200px;
+top:80px;
+}
+#dropDown{
+    position: absolute;
+width: 235px;
+height: 55.73px;
+
+filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
+left:1320px;
+top:510px;
+}
+#cityDropDown{
+    position: absolute;
+width: 235px;
+height: 55.73px;
+
+filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
+left:1050px;
+top:510px;   
+}
+#searchButton{
+    
+position: absolute;
+width: 235px;
+height: 55.73px;
+
+filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
+/* Rectangle 25 */
+
+
+box-sizing: border-box;
+
+position: absolute;
+width: 235px;
+height: 55.73px;
+
+/* כתום */
+
+background: #FF7E06;
+border-radius: 10px;
+/* חיפוש */
+
+
+position: absolute;
+width: 235px;
+height: 55.73px;
+
+/* font-family: 'Rubik'; */
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+/* or 30px */
+
+text-align: center;
+
+/* בהיר */
+
+color: #FFFBF5;
+left:780px;
+top:510px;   
+}

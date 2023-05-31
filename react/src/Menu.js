@@ -8,6 +8,8 @@ const Menu=(props) =>{
     const [activeIndex, setActiveIndex] = useState(3);
     const items = [
         {label: ' יאללה בואו ניכנס לחשבון  ',  icon: 'pi pi-fw pi-user', command: () => {navigate('/Login') }},
+        {label: '    עריכת גמחים לבעל גמח  ',  icon: 'pi pi-fw pi-user', command: () => {navigate('/Manager') }},
+        {label: 'דף הבית',  icon: 'pi pi-fw pi-user', command: () => {navigate('/Home') }},
         {label: ' רוצה לדעת עלינו עוד פרטם מדהימים?  ',  icon: 'pi pi-heart-fill', command: () => {navigate('/AboutUs') }},
         {label: ' לרשימת הקטגוריות  ',  icon: 'pi pi-align-justify', command: () => {navigate('/CategoryMenu') }},
         {label: '  חשבון האינסטגרם שלנו  ',  icon: 'pi pi-instagram', command: () => {navigate('/Instegram') }},

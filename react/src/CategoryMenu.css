@@ -1,0 +1,62 @@
+#categoryButton {
+    position: 50px;
+    width: 72px;
+    height: 33px;
+}
+
+#categoryTitle {
+    position: sticky;
+    width: 551px;
+    height: 155px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 116.5%;
+
+    color: #4B2502;
+    text-align: right;
+    left: 45%;
+    top: 100px;
+}
+
+#buttonStyle {
+    margin-left: 3%;
+    margin-top: 6%;
+    background-color: rgb(255, 255, 255);
+    border-color: #ffffff;
+    color: aliceblue;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    left: 20%;
+    top: 500%;
+
+}
+#buttonStyle2 {
+    margin-left: 3%;
+    margin-top: 6%;
+    background-color: rgb(255, 255, 255);
+    border-color: #ffffff;
+    color: aliceblue;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    left: 35%;
+    top: 500%;
+
+}
+#describeTitle{
+margin-left: 20%;
+margin-top: 20%;
+position: absolute;
+width: 72px;
+height: 33px;
+left: 35%;
+top: 10%;
+
+}
+body{
+background: #FFFBF5;
+height: 100% imortant !important;
+width: 100p5 !important;
+}

@@ -109,7 +109,8 @@ export default function Manager() {
 
   const categoryComboBox =
     <select onChange={(e) => setCategoryId(e.target.value)}>
-      {categoriesArray.map((a, i) =>
+      {
+      categoriesArray.map((a, i) =>
         <option key={i} value={a.categoryId} >{a.categoryName}</option>
       )}
     </select>
