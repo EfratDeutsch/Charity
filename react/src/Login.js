@@ -3,6 +3,7 @@ import axios from "axios";
 import React from 'react';
 import Menu from './Menu';
 import { useNavigate } from "react-router-dom"
+import "./Login.css";
 
 export default function Login({ setUserId }) {
     const [clickedSignUp, setClickedSignUp] = useState(false)
@@ -57,16 +58,25 @@ export default function Login({ setUserId }) {
 
             {/* <Menu></Menu> */}
             {clickedSignUp ? <>
-                <h1> ברוכים הבאים לקומפוננטת סינינ</h1>
                 <input className='input' type="text" placeholder='הכנס שם משתמש' onChange={(e) => setUserName(e.target.value)}></input>
                 <input className='input' type="password" placeholder='הכנס סיסמא' onChange={(e) => setPassword(e.target.value)}></input>
                 <input className='input' type="text" placeholder='שם פרטי ' onChange={(e) => setFirstName(e.target.value)}></input>
                 <input className='input' type="text" placeholder='שם משפחה ' onChange={(e) => setLastName(e.target.value)}></input>
                 <button onClick={PostUser}>אני רוצה</button></> :
-                <><input className="input" type="text" placeholder="הכנס לנו כאן שם משתמש🧓" onChange={(e) => setUserName(e.target.value)} ></input>
-                    <input className="input" type="password" placeholder="אנחנו רוצים גם את הסיסמא שלך צדיק" onChange={(e) => setPassword(e.target.value)} ></input>
-                    <button onClick={GetUser}>אני כלכך רוצה להיכנס👩‍🦰🧓👩👨‍🦱</button>
-                    <button onClick={() => setClickedSignUp(true)}>אנירוצה להירשם לאתר שלכם</button></>}
+               
+                <> 
+                
+                <div id="page" ><div id="on"></div><div id="rightSide"> <div id="on2"></div></div>
+                <a id="charityManageCaption">הכנס ונהל את הגמח שלך</a>
+                <div id="line"></div>
+                <div id="orBox"> </div><div id="or">or</div>
+                
+                <input id="inputush1" type="text" placeholder="הכנס לנו כאן שם משתמש🧓" onChange={(e) => setUserName(e.target.value)} ></input>
+                    <input id="inputush2"  type="password" placeholder="אנחנו רוצים גם את הסיסמא שלך צדיק" onChange={(e) => setPassword(e.target.value)} ></input>
+                    <button id="entertothesite" onClick={GetUser}> <a id="entertositecaption">כניסה</a> </button>
+                    <button onClick={() => setClickedSignUp(true)}>אנירוצה להירשם לאתר שלכם</button>
+                    <div id="googleButton"></div>
+                    </div></>}
 
 
 

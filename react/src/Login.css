@@ -1,0 +1,156 @@
+#page {
+    position: absolute;
+    width: 99%;
+    height: 100%;
+
+}
+
+#rightSide {
+    position: absolute;
+    width: 50%;
+    height: 100.8%;
+    right: -15px;
+    top: -8px;
+    background: #F6EAFF;
+}
+
+#charityManageCaption {
+    position: absolute;
+    width: 75px;
+    height: 21px;
+    left: 315px;
+    top: 543px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#inputush1 {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 358px;
+    height: 43px;
+    left: 174px;
+    top: 406px;
+    border: 1px solid #C0B8FF;
+    border-radius: 4px;
+    position: absolute;
+    width: 358px;
+    height: 43px;
+    left: 174px;
+    top: 406px;
+}
+
+#inputush2 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 358px;
+    height: 43px;
+    left: 174px;
+    top: 480px;
+    border: 1px solid #C0B8FF;
+    border-radius: 4px;
+    position: absolute;
+    width: 358px;
+    height: 43px;
+    left: 174px;
+
+}
+
+#line {
+
+    position: absolute;
+    left: 12.08%;
+    right: 62.99%;
+    top: 60.35%;
+    bottom: 39.65%;
+
+    border: 1px solid rgba(30, 30, 30, 0.2);
+}
+
+#orBox {
+    position: absolute;
+    left: 23.06%;
+    right: 74.03%;
+    top: 59.57%;
+    bottom: 38.87%;
+
+    background: #FAFAFA;
+}
+
+#or {
+    position: absolute;
+    left: 24.03%;
+    right: 75%;
+    top: 59.47%;
+    bottom: 38.87%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: rgba(30, 30, 30, 0.4);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+#on {
+    position: absolute;
+    width: 1440px;
+    height: 69px;
+    left: 0px;
+    background: #12005B;
+}
+
+#on2 {
+    position: absolute;
+    width: 100%;
+    height: 77px;
+    left: 0px;
+    top: 0px;
+    background: #12005B;
+}
+
+#entertothesite {
+    box-sizing: border-box;
+    position: absolute;
+    width: 358px;
+    height: 43px;
+    left: 174px;
+    top: 532px;
+    background: #751BA0;
+    border-radius: 4px;
+}
+
+
+#entertositecaption {
+    position: absolute;
+    width: 75px;
+    height: 21px;
+    left: 315px;
+    top: 543px;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#googleButton {
+
+    position: absolute !important;
+    width: 358px;
+    height: 43px;
+    left: 174px;
+    top: 647px;
+}

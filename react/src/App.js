@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, renderMatches, Route, Routes } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-
 import Login from './Login';
 import Signin from './Signin';
 import CategoryMenu from './CategoryMenu';
@@ -11,7 +10,7 @@ import Charity from './Charity';
 import Manager from './Manager';
 import Loan from './Loan';
 import Menu from './Menu';
-import Instegram from './Instegram';
+import WhatWillUFindInUs from './WhatWillUFindInUs';
 import Home from './Home'
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
@@ -27,12 +26,13 @@ const App = () => {
       <Routes>
         {userId ? <><Route path="" element={<Menu />}></Route>
           <Route path="/Charity/:id" element={<Charity></Charity>}></Route>
+          <Route path="/Charity/:id/:city" element={<Charity></Charity>}></Route>
           <Route path="/Manager" element={<Manager />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route> 
           <Route path="/Home" element={<Home/>}></Route>
           <Route path="/Loan/:id" element={<Loan />}></Route>
           <Route path="/CategoryMenu" element={<CategoryMenu />}></Route>
-          <Route path="/Instegram" element={<Instegram />}></Route></> :
+          <Route path="/WhatWillUFindInUs" element={<WhatWillUFindInUs />}></Route></> :
           <>
           <Route path="/AboutUs" element={<AboutUs />}></Route> 
           <Route path="*" element={<Login setUserId={setUserId} />}></Route>

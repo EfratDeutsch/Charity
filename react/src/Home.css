@@ -1,350 +1,412 @@
 #title {
     position: absolute;
-    width: 551px;
-    height: 155px;
+    width: 45%;
+    height: 97px;
+    left: calc(50% - 760px/2 - 0.5px);
+    top: 218.7px;
 
-  
+    /* font-family: 'Rubik'; */
     font-style: normal;
     font-weight: 700;
     font-size: 50px;
     line-height: 116.5%;
     /* or 58px */
 
-    text-align: right;
+    text-align: center;
 
     /* חום */
 
-    color: #321800;
-    left:1000px;
-    top:300px;
-}
-#title2{
-    position: absolute;
+    color: #12005B;
+
+
+    /* position: absolute;
     width: 551px;
     height: 155px;
 
-    
+
     font-style: normal;
     font-weight: 700;
     font-size: 50px;
     line-height: 116.5%;
     /* or 58px */
 
-    text-align: right;
+    /* text-align: right;
 
     /* חום */
 
-    color: #321800;
-    left:1000px;
-    top:360px;
+    /* color: #321800;
+    left: 1000px;
+    top: 300px;  */
 }
-#miniTitle{
+
+#miniTitle {
+
     position: absolute;
-width: 551px;
-height: 155px;
+    width: 760px;
+    height: 97px;
+    left: calc(50% - 760px/2 - 0.5px);
+    top: 68%;
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 200%;
+    line-height: 110%;
+    /* or 22px */
+    text-align: center;
+    color: #12005B;
 
 
-font-style: normal;
-font-weight: 700;
-font-size: 25px;
-line-height: 116.5%;
-/* or 58px */
 
-text-align: right;
 
-/* חום */
+    /* position: absolute;
+    width: 551px;
+    height: 155px;
 
-color: #321800;
-left:1000px;
-top:420px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 116.5%;
+    /* or 58px */
+
+    /* text-align: right;
+
+    /* חום */
+
+    /* color: #321800;
+    left: 1000px;
+    top: 420px; */
 }
+
 #button {
     display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 10px;
-gap: 10px;
-
-position: relative;
-width: 148px;
-height: 40px;
-
-  /* פתיחת גמח חדש */
-
-
-  width: 128px;
-  height: 20px;
-
-  /* font-family: 'Rubik'; */
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
-  /* or 24px */
-  
-  text-align: center;
-  
-  /* כתום */
-  
-  color: #FF7E06;
-  
-  
-  /* Inside auto layout */
-  
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  /* Frame 217 */
-  
-  
-  /* Auto layout */
-  
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 10px;
-  gap: 10px;
-  
-  position: relative;
-  width: 148px;
-  height: 40px;
-  /* Group 264 */
-  
-  
-  position: absolute;
-  width: 187px;
-  height: 48px;
-  
-  filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
-  /* Rectangle 24 */
-  
-  
-  box-sizing: border-box;
-  
-  position: absolute;
-  width: 187px;
-  height: 48px;
-  
-  background: #FFFBF5;
-  border: 2px solid #FF7E06;
-  border-radius: 10px;
-  left:260px;
-top:50px;
-}
-
-#Managebutton {
-    box-sizing: border-box;
-
-position: absolute;
-width: 187px;
-height: 48px;
-left: 69px;
-top: 55px;
-
-/* כתום */
-
-background: #FF7E06;
-border-radius: 10px;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+    position: relative;
+    width: 148px;
+    height: 40px;
     width: 128px;
     height: 20px;
-    
     /* font-family: 'Rubik'; */
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    /* or 24px */
-    
     text-align: center;
-    
-    /* בהיר */
-    
-    color: #FFFBF5;
-    
-    
-    /* Inside auto layout */
-    
+    color: rgba(92, 11, 131, 0.9);
     flex: none;
     order: 0;
     flex-grow: 0;
-    /* Frame 33 */
-
-
-/* Auto layout */
-
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 10px;
-gap: 10px;
-
-position: relative;
-width: 148px;
-height: 40px;
-/* Group 263 */
-
-
-position: absolute;
-width: 187px;
-height: 48px;
-left: 69px;
-top: 55px;
-
-filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
-/* לאזור ניהול גמח */
-
-
-width: 128px;
-height: 20px;
-
-/* font-family: 'Rubik'; */
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 150%;
-/* or 24px */
-
-text-align: center;
-
-/* בהיר */
-
-color: #FFFBF5;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-/* Group 263 */
-
-
-position: absolute;
-width: 187px;
-height: 48px;
-left: 69px;
-top: 55px;
-
-filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
-box-sizing: border-box;
-
-position: absolute;
-width: 187px;
-height: 48px;
-left: 69px;
-top: 55px;
-
-/* כתום */
-
-background: #FF7E06;
-border-radius: 10px;
-position: absolute;
-width: 187px;
-height: 48px;
-left: 69px;
-top: 55px;
-
-filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
-left:50px;
-top:50px;
-} 
-#homeLink{
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+    position: relative;
+    width: 148px;
+    height: 40px;
     position: absolute;
-width: 72px;
-height: 29px;
-
-/* font-family: 'Inter'; */
-font-style: normal;
-font-weight: 400;
-font-size: 19.663px;
-line-height: 150%;
-/* or 29px */
-
-text-align: center;
-
-/* שחור */
-
-color: #000000;
-left:1400px;
-top:80px;
-}
-#charityLink{
-position: absolute;
-width: 72px;
-height: 29px;
-
-/* font-family: 'Inter'; */
-font-style: normal;
-font-weight: 400;
-font-size: 19.663px;
-line-height: 150%;
-/* or 29px */
-
-text-align: center;
-
-/* שחור */
-
-color: #000000;
-left:1200px;
-top:80px;
-}
-#dropDown{
+    width: 187px;
+    height: 48px;
+    filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+    box-sizing: border-box;
     position: absolute;
-width: 235px;
-height: 55.73px;
-
-filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
-left:1320px;
-top:510px;
+    width: 187px;
+    height: 48px;
+    background: #FFFBF5;
+    border: 2px solid rgba(92, 11, 131, 0.9);
+    border-radius: 10px;
+    left: 260px;
+    top: 50px;
 }
-#cityDropDown{
+
+#Managebutton {
+    box-sizing: border-box;
     position: absolute;
-width: 235px;
-height: 55.73px;
-
-filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
-left:1050px;
-top:510px;   
+    width: 187px;
+    height: 48px;
+    left: 69px;
+    top: 55px;
+    background: rgba(92, 11, 131, 0.9);
+    border-radius: 10px;
+    width: 128px;
+    height: 20px;
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFBF5;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+    position: relative;
+    width: 148px;
+    height: 40px;
+    position: absolute;
+    width: 187px;
+    height: 48px;
+    left: 69px;
+    top: 55px;
+    filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+    width: 128px;
+    height: 20px;
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: #EDFCFF;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    position: absolute;
+    width: 187px;
+    height: 48px;
+    left: 69px;
+    top: 55px;
+    filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+    box-sizing: border-box;
+    position: absolute;
+    width: 187px;
+    height: 48px;
+    left: 69px;
+    top: 55px;
+    background: rgba(92, 11, 131, 0.9);
+    border-radius: 10px;
+    position: absolute;
+    width: 187px;
+    height: 48px;
+    left: 69px;
+    top: 55px;
+    filter: drop-shadow(0px 4px 25px rgba(0, 0, 0, 0.25));
+    left: 50px;
+    top: 50px;
 }
-#searchButton{
+
+#homeLink {
+    position: absolute;
+    width: 72px;
+    height: 29px;
+
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19.663px;
+    line-height: 150%;
+    /* or 29px */
+
+    text-align: center;
+
+    /* שחור */
+
+    color: #000000;
+    left: 1400px;
+    top: 80px;
+}
+
+#charityLink {
+    position: absolute;
+    width: 72px;
+    height: 29px;
+
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19.663px;
+    line-height: 150%;
+    /* or 29px */
+
+    text-align: center;
+
+    /* שחור */
+
+    color: #000000;
+    left: 1200px;
+    top: 80px;
+}
+
+#dropDown {
+    position: absolute;
+    width: 235px;
+    height: 55.73px;
+
+    filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
+    left: 57%;
+    top: 95%;
+}
+
+#cityDropDown {
+    position: absolute;
+    width: 235px;
+    height: 55.73px;
+
+    filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
+    left: 43%;
+    top: 95%;
+}
+
+#searchButton {
+
+    position: absolute;
+    width: 235px;
+    height: 55.73px;
+
+    filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
+    /* Rectangle 25 */
+
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 235px;
+    height: 55.73px;
+
+    /* כתום */
+
+    background: #751BA0;
+    border-radius: 10px;
+    /* חיפוש */
+
+
+    position: absolute;
+    width: 235px;
+    height: 55.73px;
+
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    /* or 30px */
+
+    text-align: center;
+
+    /* בהיר */
+
+    color: #EDFCFF;
+    left: 29%;
+    top: 95%;
+}
+
+#backGround {
+
+    position: fixed;
+    width: 100%;
+    height: 45%;
+    left: 0%;
+    top: 0%;
+    background: #F8F0FF;
+}
+
+#papularCharities {
+
+    position: absolute;
+    width: 500px;
+    height: 60px;
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 150%;
+    /* identical to box height, or 60px */
+
+    text-align: right;
+
+    /* חום */
+
+    color: #12005B;
+    top: 600%;
+    left: 50%;
+}
+
+#downLine {
+    position:absolute  ;
+    width: 100%;
+    height: 30%;
+    left: 0%;
+    top: 3471px;
+    background: #12005B;
+}
+
+#conectWith {
     
-position: absolute;
-width: 235px;
-height: 55.73px;
+    width: 126px;
+    height: 24px;
+    left: 200px;
+    top: 200%;
+    /* font-family: 'Mulish'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    color: #EDFCFF;
+}
 
-filter: drop-shadow(2px 2px 7px rgba(0, 0, 0, 0.25));
-/* Rectangle 25 */
+#twitter {
+ 
+    width: 32.86px;
+    height: 32.86px;
+    left: 1050px;
+    top: 3655px;
 
+}
 
-box-sizing: border-box;
+#facebook {
 
-position: absolute;
-width: 235px;
-height: 55.73px;
+    width: 32.86px;
+    height: 32.86px;
+    left: 1050px;
+    top: 3655px;
 
-/* כתום */
+}
 
-background: #FF7E06;
-border-radius: 10px;
-/* חיפוש */
+#linkdin {
 
+    width: 32.86px;
+    height: 32.86px;
+    left: 1050px;
+    top: 3655px;
 
-position: absolute;
-width: 235px;
-height: 55.73px;
+}
 
-/* font-family: 'Rubik'; */
+#instegram {
+
+    width: 32.86px;
+    height: 32.86px;
+    left: 1050px;
+    top: 3655px;
+
+}
+#menu{
+
+flex-direction: column;
+align-items: flex-end;
+padding: 0px;
+gap: 35px;
+width: 36px;
+height: 133px;
+left: 846px;
+top: 3607px;
+width: 34px;
+height: 21px;
+/* font-family: 'Inter'; */
 font-style: normal;
-font-weight: 600;
-font-size: 20px;
+font-weight: 400;
+font-size: 14px;
 line-height: 150%;
-/* or 30px */
-
-text-align: center;
-
-/* בהיר */
-
-color: #FFFBF5;
-left:780px;
-top:510px;   
+display: flex;
+align-items: center;
+color: #EDFCFF;
+flex: none;
+order: 1;
+flex-grow: 0;
 }

@@ -3,29 +3,38 @@ import React, { useEffect, useState } from "react";
 import { parsePath, useParams } from "react-router-dom";
 import CategoryMenu from './CategoryMenu';
 import Menu from './Menu';
-import "./Charity.css"
 import { ReactComponent as Table } from "./table.svg"
 import { ReactComponent as Medicine } from "./Medicine.svg"
 import { ReactComponent as Tools } from "./tools.svg"
+import "./Charity.css"
+
 
 const Charity = () => {
-  const params = useParams();
+   const params = useParams();
   const categoryId = params.id;
+  const cityId=params.city
   const [array, setArray] = useState([]);
   const [citiesArray, setCitiesArray] = useState([]);
-
   const[mapNewCharityArray,setMapNewCharityArray]=useState([])
-
   const[baseArray,setBaseArray]=useState([])
 
 
   useEffect(() => {
-    console.log(params.id);
+ console.log(categoryId);
     console.log("אני בצאריטי");
-    GetCharitiesById();
+    checkFromWhereTheyCame();
     GetAllCities();
+ 
 
   }, [])
+
+  const checkFromWhereTheyCame=async()=>{
+  if(cityId==null)
+  GetCharitiesById()
+  else 
+  GetCharitiesByCategoriesAndCities()
+}
+
 
 const GetCharitiesById = async () => {
   try {
@@ -33,14 +42,29 @@ const GetCharitiesById = async () => {
     console.log("הגמחים" + res.data);
     setBaseArray(res.data);
     setArray(res.data);
-    console.log(baseArray);
-
-
+   
   }
+
     catch (error) {
       console.log(error);
     }
   }
+  
+  const GetCharitiesByCategoriesAndCities = async() =>{
+  
+    try{
+      const res = await axios.get(`https://localhost:44397/api/Charity/getFilter?categoryId=${categoryId}&cityId=${cityId}`)
+      setBaseArray(res.data);
+    setArray(res.data);
+    }
+  
+   
+    catch(err) {
+     
+      console.log(err);
+    
+    }
+      }
   const GetAllCities = async () => {
     try {
       const res2 = await axios.get(`https://localhost:44397/api/City`)
