@@ -8,9 +8,9 @@ using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string homeConnectionString = "Data Source=DESKTOP-IO6UM71;Initial Catalog=Charity;Integrated Security=True;TrustServerCertificate=True;";
+string EfratHomeConnectionString = "Data Source=DESKTOP-IO6UM71;Initial Catalog=Charity;Integrated Security=True;TrustServerCertificate=True;";
 string schoolConnectionString = "Data Source=srv2\\pupils;Initial Catalog=Charity;Integrated Security=True;TrustServerCertificate=True;";
-
+string estysconnectionString = "Data Source=DESKTOP-TTNF4F0\\MSSQLSERVER2;Initial Catalog=Charity;Integrated Security=True;TrustServerCertificate=True;";
 // Add services to the container
 
 builder.Services.AddScoped<IUserService, UserService>();

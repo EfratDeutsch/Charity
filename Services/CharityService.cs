@@ -20,8 +20,23 @@ namespace Services
             _charityRepository = charityRepository;
 
         }
+        public async Task<IEnumerable<Charity>> GetAllCharities(){
+        
+            IEnumerable<Charity> list = await _charityRepository.GetAllCharities();
+            if (list != null)
+                return list;
+            else return null;
+        }
 
-        public async Task<IEnumerable<Charity>> GetCharityByCategory(int categoryId)
+        public async Task<IEnumerable<Charity>> GetFilter(int? categoryId,int? cityId)
+        {
+            IEnumerable<Charity> list = await _charityRepository.GetFilter(categoryId, cityId);
+            if (list != null)
+                return list;
+            else return null;
+        }
+        
+            public async Task<IEnumerable<Charity>> GetCharityByCategory(int categoryId)
         {
             IEnumerable<Charity> list = await _charityRepository.GetCharityByCategory(categoryId);
             if (list != null)
@@ -49,6 +64,10 @@ namespace Services
         {
             _charityRepository.updateCharity(id, charity);
 
+        }
+        public async Task DeleteCharity(int id)
+        {
+            await _charityRepository.DeleteCharity(id);
         }
     }
 }

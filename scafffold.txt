@@ -1,1 +1,1 @@
-Scaffold-DbContext "Server=srv2/pupils;Database=Charity;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBModels -Force -StartUpProject Entities
+Scaffold-DbContext "Data Source=DESKTOP-IO6UM71; Initial Catalog = Hadasim; Integrated Security = True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBModels -Force -StartUpProject Entities

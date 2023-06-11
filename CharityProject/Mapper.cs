@@ -13,9 +13,9 @@ namespace CharityProject
        
         CreateMap<Category,CategoryDTO>().ReverseMap();
            
-            CreateMap<Charity, CharityDTO>().ReverseMap();
+           CreateMap<Charity, CharityDTO>().ReverseMap();
 
-            CreateMap<City,CityDTO>().ReverseMap(); 
+           CreateMap<City,CityDTO>().ReverseMap(); 
        
         CreateMap<Status,StatusDTO>().ReverseMap();  
        

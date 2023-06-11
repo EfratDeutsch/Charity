@@ -21,9 +21,24 @@ namespace CharityProject.Controllers
         }
         // GET: api/<CharityController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task < IEnumerable<CharityDTO>> Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<Charity> charity = await _charityService.GetAllCharities();
+            IEnumerable<CharityDTO> newCharityDTO = _mapper.Map<IEnumerable<CharityDTO>>(charity);
+            if (newCharityDTO != null)
+                return newCharityDTO;
+            return null;
+        }
+        // GET: api/<CharityController>
+        [HttpGet("getFilter")]
+        public async Task<IEnumerable<CharityDTO>> GetFilter(int? categoryId ,int? cityId)
+        {
+            IEnumerable<Charity> charities = await _charityService.GetFilter(categoryId, cityId);
+            IEnumerable<CharityDTO> newCharityDTO = _mapper.Map<IEnumerable<CharityDTO>>(charities);
+            if (newCharityDTO != null)
+                return newCharityDTO;
+            return null;
+
         }
 
         // GET api/<CharityController>/5
@@ -83,10 +98,12 @@ namespace CharityProject.Controllers
         }
 
 
-        // DELETE api/<CharityController>/5
+        // DELETE api/<LoanController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _charityService.DeleteCharity(id);
+            return Ok("Charity deleted successfully");
         }
     }
 }
