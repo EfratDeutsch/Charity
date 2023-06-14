@@ -7,6 +7,8 @@ import { ReactComponent as Ill6 } from "./illustration6.svg"
 import { ReactComponent as Ill7 } from "./illustration7.svg"
 import { ReactComponent as Ill8 } from "./illustration8.svg"
 import { ReactComponent as Ill9 } from "./illustration9.svg"
+import { ReactComponent as Google } from "./google.svg"
+import { ReactComponent as Logo } from "./logoIll.svg"
 import "./Login.css";
 
 export default function Login({ setUserId }) {
@@ -71,21 +73,24 @@ export default function Login({ setUserId }) {
 
                 <>
 
-                    <div id="page" ><div id="on"></div><div id="rightSide">
+                    <div id="page" ><div id="rightSide">
                         <Ill6 id="ill6"></Ill6>
                         <Ill7 id="ill7"></Ill7>
                         <Ill8 id="ill8"></Ill8>
                         <Ill9 id="ill9"></Ill9> 
-                        <div id="on2"></div></div>
+                        </div>
+                        <Logo></Logo>
                         <a id="charityManageCaption">הכנס ונהל את הגמח שלך</a>
+                       
                         <div id="line"></div>
-                        <div id="orBox"> </div><div id="or">or</div>
-
-                        <input id="inputush1" type="text" placeholder="הכנס לנו כאן שם משתמש🧓" onChange={(e) => setUserName(e.target.value)} ></input>
-                        <input id="inputush2" type="password" placeholder="אנחנו רוצים גם את הסיסמא שלך צדיק" onChange={(e) => setPassword(e.target.value)} ></input>
+                        <div id="orBox"></div> <div id="or">או</div>
+                        <input id="inputush1" type="text" placeholder ="                                                                                   אימייל" onChange={(e) => setUserName(e.target.value)} ></input>
+                        <input id="inputush2" type="password" placeholder="                                                                                 סיסמא" onChange={(e) => setPassword(e.target.value)} ></input>
                         <button id="entertothesite" onClick={GetUser}> <a id="entertositecaption">כניסה</a> </button>
-                        <button onClick={() => setClickedSignUp(true)}>אנירוצה להירשם לאתר שלכם</button>
-                        <div id="googleButton"></div>
+                        <button id="googleButton"><Google id="google"></Google><a id="googlecaption">continue with google</a> </button>
+                    
+                       <a id="newCharityManagment">?מנהל גמח חדש</a>  
+                    <button  id="signinbutton" onClick={() => setClickedSignUp(true)}><a id="captionJoin">...הצטרף אלינו</a></button>
                     </div></>}
 
 

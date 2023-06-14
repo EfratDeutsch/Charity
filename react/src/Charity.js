@@ -7,9 +7,11 @@ import { ReactComponent as Table } from "./table.svg"
 import { ReactComponent as Medicine } from "./Medicine.svg"
 import { ReactComponent as Tools } from "./tools.svg"
 import { ReactComponent as Errow } from "./errow.svg"
+import { ReactComponent as X } from "./x.svg"
 import "./Charity.css"
 import Home from "./Home"
-
+import { render } from "@testing-library/react";
+import { Dialog } from 'primereact/dialog';
 
 
 const Charity = (props) => {
@@ -23,6 +25,10 @@ const Charity = (props) => {
   const [baseArray,setBaseArray]=useState([])
   const [userName,setUserName]=useState("")
 const [cityName,setCityName]=useState("")
+const[x,setX]=useState(true)
+const[bool,setBool]=useState(false)
+const [visible, setVisible] = useState(false);
+const [a,setA]=useState("")
 
   useEffect(() => {
      console.log(categoryId);
@@ -163,6 +169,16 @@ else if(categoryId==3)
   return(<a id="ImgForCharity"><Table></Table></a>) } 
 }
 
+const showProducts=(e)=>{
+
+console.log(e);
+
+
+}
+const func=(a)=>{
+  setVisible(true)
+setA(a)
+}
 
 const myarray = array.map((a) =>
 
@@ -170,13 +186,13 @@ const myarray = array.map((a) =>
   <div id="card">
   <br></br><br></br>
   <a id="imagecaption">{letImgForCharity(a.categoryId)}</a>
-<div id='squre'></div>
-  {/* <a>{getuserName(a.userId)}</a>
-  <a id="caption1" >יוזר ניים{getuserName(a.userId)}</a><br></br><br></br> */}
+  <div id='squre'></div>
   <a id="caption1" >משפחת לוי</a><br></br><br></br>
   <a id="caption3">{a.neighborhood}</a><br></br><br></br><br></br><br></br>
   <a id="caption4">{a.phone}</a><br></br>
-  <button id="showProductsButton">להצגת המוצרים</button>
+  {/* <button label="Show" onClick={() => showProducts(a.charityId)} id="showProductsButton">להצגת המוצרים</button> */}
+  <button label="Show" id="showProductsButton" icon="pi pi-external-link" onClick={() => func(a.charityDesc)}  >פרוט המוצרים </button>
+          
 </div>
 
       {/* <table>
@@ -238,7 +254,14 @@ useEffect(() => {
      <a id='searchCharity'>חיפוש גמח</a>
      <Errow id="errow"></Errow>
        <a id='categoryName'>{categoryName}</a>
-         <div>< Errow id="errow2"></Errow>   
+       {cityId?  < Errow id="errow2"></Errow>:
+      <>
+      <h1>סינון לפי ערים </h1>
+      {Answer}
+      {mapNewCharityArray}
+      </> }
+       <div>
+         
         
        <a id='cityName'>{cityName}</a></div>
       
@@ -246,11 +269,14 @@ useEffect(() => {
       
       {/* <a id="imagecaption">{letcategoryname(categoryId)}</a> */}
       {myarray}
-      <h1>סינון לפי ערים </h1>
-      {Answer}
-      {mapNewCharityArray}</div> 
+      
    
-
+{visible&&  <Dialog header="?מה תמצאו בגמח שלנו" visible={visible} style={{ width: '20vw' }} onHide={() => setVisible(false)}>
+<p className="m-0">
+  {a}
+</p>
+</Dialog>}
+</div> 
   )
   }
 
