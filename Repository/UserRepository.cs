@@ -31,6 +31,18 @@ namespace Repository
             //return list.FirstOrDefault();
 
         }
+        public async Task<string> GetNameById(int id)
+        {
+            User user = await _charityContext.Users
+                .Where(u => u.UserId == id).FirstOrDefaultAsync();
+            string firstName = user.FirstName;
+            string lastName = user.LastName;
+
+            string name = firstName +" " +lastName;
+            if (name != null)
+                return name;
+            return null;
+        }
 
         public async Task<User> addUser(User user)
         {

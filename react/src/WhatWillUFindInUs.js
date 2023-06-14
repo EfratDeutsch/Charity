@@ -2,9 +2,11 @@ import React from 'react'
 import Menu from './Menu';
 import './WhatWill.css'
 import { ReactComponent as V } from "./V.svg"
+import { ReactComponent as Illustration5 } from "./illustration5.svg"
 export default function Walla(){
 return(
 <div id="backGroundWhat">
+    <Illustration5 id="illustration5"></Illustration5>
     <a id="whatTitle">כל מה שתמצאו אצלינו</a>
     <a id="V1"><V/></a>
     <a id="V2"><V/></a>

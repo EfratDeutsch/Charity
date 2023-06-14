@@ -28,6 +28,14 @@ namespace Services
             else return null;
         }
 
+        public async Task<string> GetNameById(int id)
+        {
+            string name = await _IUserRepository.GetNameById(id);
+            if (name != null)
+                return name;
+            else return null;
+        }
+
         public async Task<User> addUser(User user)
         {
             User newUser = await _IUserRepository.addUser(user);

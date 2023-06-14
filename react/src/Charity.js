@@ -6,33 +6,57 @@ import Menu from './Menu';
 import { ReactComponent as Table } from "./table.svg"
 import { ReactComponent as Medicine } from "./Medicine.svg"
 import { ReactComponent as Tools } from "./tools.svg"
+import { ReactComponent as Errow } from "./errow.svg"
 import "./Charity.css"
+import Home from "./Home"
 
 
-const Charity = () => {
-   const params = useParams();
+
+const Charity = (props) => {
+  const params = useParams();
   const categoryId = params.id;
-  const cityId=params.city
+  const cityId=params.city;
+  const [categoryName,setCategoryName]=useState("")
   const [array, setArray] = useState([]);
   const [citiesArray, setCitiesArray] = useState([]);
-  const[mapNewCharityArray,setMapNewCharityArray]=useState([])
-  const[baseArray,setBaseArray]=useState([])
-
+  const [mapNewCharityArray,setMapNewCharityArray]=useState([])
+  const [baseArray,setBaseArray]=useState([])
+  const [userName,setUserName]=useState("")
+const [cityName,setCityName]=useState("")
 
   useEffect(() => {
- console.log(categoryId);
+     console.log(categoryId);
     console.log("אני בצאריטי");
     checkFromWhereTheyCame();
     GetAllCities();
- 
-
+    letcategoryname()
   }, [])
+
+
+  const getuserName =async(u)=>{
+    
+    try{
+     const res=await axios.get(`https://localhost:44397/api/User/${u}`) 
+     console.log(res.data)
+      setUserName(res.data)
+      setUserName(res.data)
+   return(<a>{userName}</a>)
+    }
+    catch(error){
+      console.log(error);
+    }
+   
+  }
 
   const checkFromWhereTheyCame=async()=>{
   if(cityId==null)
   GetCharitiesById()
-  else 
-  GetCharitiesByCategoriesAndCities()
+  else {
+      letCityName()
+      GetCharitiesByCategoriesAndCities()
+   
+    }
+
 }
 
 
@@ -76,29 +100,83 @@ const GetCharitiesById = async () => {
       console.log(error);
     }
   }
-
-const letImgForCharity=(categoryId)=>{
+const letcategoryname=()=>{
 if(categoryId==1)
-{return(<a id="ImgForCharity"><Tools></Tools></a>) }
+setCategoryName("אוכל")
 else if(categoryId==2)
-{return(<a id="ImgForCharity"><Medicine></Medicine></a>) } 
-
+setCategoryName("תרופות")
 else if(categoryId==3)
-{return(<a id="ImgForCharity" title="a.charityDesc"><Table></Table></a>) }
- else {return(<a id="ImgForCharity"><Table></Table></a>) } 
+setCategoryName("שולחנות")
+else 
+setCategoryName("כלי עבודה")
+}
+const letCityName=()=>{
+if(cityId==1)
+setCityName("ירושלים")
+else if(cityId==2)
+setCityName("בני ברק")
+else if(cityId==3)
+setCityName(" חיפה")
+else if(cityId==4)
+setCityName("יפו")
+else if(cityId==5)
+setCityName("נתניה")
+else if(cityId==6)
+setCityName("עכו")
+else if(cityId==7)
+setCityName("לוד")
+else if(cityId==8)
+setCityName(" אחיסמך")
+else if(cityId==9)
+setCityName(" גנין")
+else if(cityId==10)
+setCityName("טלז סטון")
+else if(cityId==11)
+setCityName("בית  שמש")
+else if(cityId==12)
+setCityName(" מירון")
+else if(cityId==13)
+setCityName(" כפר ורדים")
+else if(cityId==14)
+setCityName("חמד")
+
 }
 
-  
+const letImgForCharity=(categoryId)=>{
+
+if(categoryId==1)
+{
+ 
+  return(<a id="ImgForCharity"><Tools></Tools></a>) 
+  }
+else if(categoryId==2)
+{
+
+  return(<a id="ImgForCharity"><Medicine></Medicine></a>) } 
+
+else if(categoryId==3)
+{
+
+  return(<a id="ImgForCharity" title="a.charityDesc"><Table></Table></a>) }
+ else {
+
+  return(<a id="ImgForCharity"><Table></Table></a>) } 
+}
+
+
 const myarray = array.map((a) =>
 
 <>
   <div id="card">
   <br></br><br></br>
-  <a>{letImgForCharity(a.categoryId)}</a>
-  <a id="caption1" >{a.charityName}</a><br></br><br></br>
+  <a id="imagecaption">{letImgForCharity(a.categoryId)}</a>
+<div id='squre'></div>
+  {/* <a>{getuserName(a.userId)}</a>
+  <a id="caption1" >יוזר ניים{getuserName(a.userId)}</a><br></br><br></br> */}
+  <a id="caption1" >משפחת לוי</a><br></br><br></br>
   <a id="caption3">{a.neighborhood}</a><br></br><br></br><br></br><br></br>
-  <a id="caption3">{a.phone}</a><br></br>
-  <title>"fjgh"</title>
+  <a id="caption4">{a.phone}</a><br></br>
+  <button id="showProductsButton">להצגת המוצרים</button>
 </div>
 
       {/* <table>
@@ -124,7 +202,7 @@ const myarray = array.map((a) =>
           <td>{a.phone}</td>
         </tr>
 
-      </table> */}
+      </table>  */}
 
 
     </>
@@ -154,19 +232,24 @@ useEffect(() => {
   }, [Answer])
 
 
-
   return (
-
-    
-    <tbody> 
-      <div id="charityBackGround">
-      <Menu></Menu>
+     <div id="charityBackGround">
+     <a id="searchResults">תוצאות חיפוש</a>
+     <a id='searchCharity'>חיפוש גמח</a>
+     <Errow id="errow"></Errow>
+       <a id='categoryName'>{categoryName}</a>
+         <div>< Errow id="errow2"></Errow>   
+        
+       <a id='cityName'>{cityName}</a></div>
+      
+       
+      
+      {/* <a id="imagecaption">{letcategoryname(categoryId)}</a> */}
       {myarray}
-
       <h1>סינון לפי ערים </h1>
       {Answer}
       {mapNewCharityArray}</div> 
-    </tbody>
+   
 
   )
   }

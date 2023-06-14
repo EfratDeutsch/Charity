@@ -6,6 +6,8 @@ import Charity from './Charity'
 import { useNavigate } from "react-router-dom";
 import Menu from './Menu';
 import './CategoryMenu.css'
+import { ReactComponent as Illustaration3 } from "./illustration3.svg"
+import { ReactComponent as Illustaration4 } from "./illustration4.svg"
 
 import ButtonMenu from './ButtonMenu'
 
@@ -54,8 +56,8 @@ export default function ShowCategory() {
     const ab = (categoryId) => {
 
         console.log(categoryId);
-        // console.log(id);
         navigate(`/Charity/${categoryId}`);
+        // <Charity categoryName={categoryName}></Charity>
 
 
     }
@@ -81,13 +83,15 @@ export default function ShowCategory() {
     return (
 
         <tbody>
-            <Menu></Menu>
+            <div id="categoryMenuBackGround">
+                <Illustaration3></Illustaration3>
+                <Illustaration4 id="illustration4"></Illustaration4>
             <div id="categoryTitle">גמחים שתמצאו אצלינו</div>
             {/* {myarray} */}
-            <input className="input" type="text" placeholder=" כאן אפשר לחפש קטגוריה🔎" onChange={(e) => setFilterName(e.target.value)}></input>
-            <button onClick={filter}>יאללה חפש לי👈</button>
+            {/* <input className="input" type="text" placeholder=" כאן אפשר לחפש קטגוריה🔎" onChange={(e) => setFilterName(e.target.value)}></input>
+            <button onClick={filter}>יאללה חפש לי👈</button> */}
             <ButtonMenu onCategoryClick={ab}></ButtonMenu>
-           
+           </div>
 
 
         </tbody>

@@ -10,9 +10,9 @@ import { ReactComponent as Linkdin } from "./linkdin.svg"
 import { ReactComponent as Twitter } from "./twitter.svg"
 import { ReactComponent as Insegram } from "./instegram.svg"
 import { ReactComponent as Facebook } from "./facebook.svg"
-
-
-
+import { ReactComponent as Illustartion1 } from "./illustration1.svg"
+import { ReactComponent as Illustartion2 } from "./illustration2.svg"
+import { ReactComponent as Logoill } from "./logoIll.svg"
 export default function Home() {
 
     const [charities, setCharities] = useState([])
@@ -133,21 +133,24 @@ export default function Home() {
                 <button id="searchButton" onClick={serchFnction}>חיפוש</button>
                 <Dropdown id="dropDown" value={category} options={categories} optionLabel="categoryName" optionValue="categoryId" onChange={(e) => setCategory(e.value)} editable placeholder="גמח" className="w-full md:w-14rem " />
                 <Dropdown id="cityDropDown" value={city} options={cities} optionLabel="cityName" optionValue="cityId" onChange={(e) => setCity(e.value)} placeholder="עיר " />
+                <Illustartion1 id="Illustartion1"></Illustartion1>
+                <Illustartion2 id="Illustartion2"></Illustartion2>
+                <Logoill id="logoIll"></Logoill>
             </div>
             {/* <Walla id="walla"></Walla> */}
             <div id="downLine">
-           < a id="conectWith">Connect With Us</a>
-           <a id="linkdin"><Linkdin/></a>
-           <a id="twitter"><Twitter/></a>
-           <a id="facebook"><Facebook/></a>
-           <a id="instegram"><Insegram/></a>
-           <a id="menu">חיפוש</a>
-           <a id="menu">ניהול</a>
-           <a id="menu">יציאה</a>
-           <a id="menu">בית</a>
-           <a id="menu">אודות</a>
-           <a id="menu">התחברות</a>
-            </div> 
+                < a id="conectWith">Connect With Us</a>
+                <a id="linkdin"><Linkdin /></a>
+                <a id="twitter"><Twitter /></a>
+                <a id="facebook"><Facebook /></a>
+                <a id="instegram"><Insegram /></a>
+                <a id="menu">חיפוש</a>
+                <a id="menu">ניהול</a>
+                <a id="menu">יציאה</a>
+                <a id="menu">בית</a>
+                <a id="menu">אודות</a>
+                <a id="menu">התחברות</a>
+            </div>
         </>
 
     )

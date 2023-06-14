@@ -21,17 +21,26 @@ namespace CharityProject.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public async Task <ActionResult<UserDTO>>  Get(string userName ,string password)
+        public async Task<ActionResult<UserDTO>> Get(string userName, string password)
         {
             User user = await _IUserService.getUser(userName, password);
             UserDTO userDto = _mapper.Map<UserDTO>(user);
-      
+
 
             if (userDto != null)
                 return Ok(userDto);
             else return StatusCode(204);
 
 
+        }
+        // GET: api/<UserController>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<string>> GetNameById(int id)
+        {
+            string name = await _IUserService.GetNameById(id);
+            if (User != null)
+                return name;
+            else return StatusCode(204);
         }
 
     /*    // GET api/<UserController>/5

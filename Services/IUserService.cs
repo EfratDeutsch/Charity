@@ -8,6 +8,7 @@ namespace Services
     {
         Task<User> addUser(User user);
         Task<User> getUser(string userName, string password);
+        Task <string> GetNameById(int id);
         Task updateUser(int id, User user);
        
     }
