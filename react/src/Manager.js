@@ -9,6 +9,15 @@ import Menu from './Menu';
 import "./Manager.css"
 import { ReactComponent as Prof } from "./profile.svg"
 import { ReactComponent as ProfUser } from "./profUSer.svg"
+import { Dropdown } from 'primereact/dropdown';
+import { ReactComponent as Ill10 } from "./illustration10.svg"
+import { ReactComponent as Ill11 } from "./illustration11.svg"
+import { ReactComponent as Lista } from "./lista.svg"
+import { ReactComponent as Setting } from "./setting.svg"
+import { ReactComponent as MenuPic } from "./menuPic.svg"
+import "./Loan.css";
+
+
 export default function Manager() {
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [citiesArray, setCitiesArray] = useState([]);
@@ -24,7 +33,9 @@ export default function Manager() {
   const [userLastName, setUserLastName] = useState("")
   const [userEmail, setUserEmail] = useState("")
   const [charityId, setCharityId] = useState(Number)
+  const [charity,setCharity]=useState("")
   const navigate = useNavigate();
+  //const { firstName, lastName, charities } = state;
 
 
   const getUsersCharities = async () => {
@@ -157,12 +168,13 @@ export default function Manager() {
 
   const LoanManager = (rowData) => {
 
-    setCharityId(rowData.charityId)
-    navigate(`/Loan/${rowData.charityId}`, { state: { firstName: userFirstName, lastName: userLastName, charities: charities } });
+    setCharityId(rowData.value)
+    navigate(`/Loan/${rowData.value}`, { state: { firstName: userFirstName, lastName: userLastName, charities: charities } });
 
     //navigate(`/EditBook`, { state: { bookDTO: bookDTO, book: props.book, author: props.author, category: props.category, edition: props.edition, shulId: bookDTO.shulId }
 
   }
+ 
   const butttonFunction = (rowData) => {
 
     return (
@@ -177,6 +189,19 @@ export default function Manager() {
   return (
 
     <tbody>
+                  <div id="loanerCorner">
+                <Prof id="prof"><ProfUser></ProfUser></Prof>
+                <div id="liner"></div>
+                <div id="managerName">{userFirstName}   {userLastName}</div>
+
+                <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => LoanManager(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
+                <div id="actions">פעולות</div>
+                <Lista id="lista"></Lista>
+                <Setting id="setting"></Setting>
+                <MenuPic id="menupic"></MenuPic>
+                <Ill10 id="ill10"></Ill10>
+                <Ill11 id="ill11"></Ill11>
+            </div>
       <div id="divSagol">
         <a id="sagolcap">הגדרות איזור אישי</a>
 
@@ -190,7 +215,7 @@ export default function Manager() {
 
      
       <button onClick={changeDetails}>!נו באמת, בא לי לשנות ת'פרטים</button>
-      <DataTable value={charities} tableStyle={{ minWidth: '50rem' }} paginator rows={4}>
+      {/* <DataTable value={charities} tableStyle={{ minWidth: '50rem' }} paginator rows={4}>
         <Column field="charityName" header="name"></Column>
         <Column field="charityDesc" header="description"></Column>
         <Column field="phone" header="phone"></Column>
@@ -199,7 +224,7 @@ export default function Manager() {
         <Column field="charityId" header="charity id"></Column>
         <Column body={butttonFunction} ></Column>
 
-      </DataTable>
+      </DataTable> */}
 
 
       <a id='addCharityCaption'>מוסיפים גמח:)</a>

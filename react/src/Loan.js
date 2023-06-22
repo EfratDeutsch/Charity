@@ -86,7 +86,7 @@ export default function RowEditingDemo() {
     }
 
     useEffect(() => {
-        getLoans()
+ getLoans()
         console.log("r " + statusname);
         console.log(firstName + "יאללה לעבודה");
         console.log(lastName + "יאללה לעבודה");
@@ -393,23 +393,24 @@ export default function RowEditingDemo() {
         console.log("הכל לטובה");
 
         return (
-            <tbody>
-
-            </tbody>
+           
+                <h1>jhgdhgkjdfhgkjdgutyrueinm,gnfdjkghkj</h1>
+           
         )
 
     }
     const some = () => {
-        console.log(some);
-        return (
-            <><div id="oo">akuo</div>
-                <h1>היוש</h1></>
+
+        console.log("some");
+        return (<div>
+            <div id="oo">akuo</div>
+                <h1>היוש</h1></div>
         )
     }
     return (
 
         <tbody>
-             <button  onclick={addLoan}>להוספת הלוואה</button>
+            <button id="ui" onClick={addLoan}>להוספת הלוואה</button>
             <button id="some" onClick={some}>some</button>
             <div className="card flex justify-content-center">
 
@@ -419,7 +420,7 @@ export default function RowEditingDemo() {
             <div id="loanerCorner">
                 <Prof id="prof"><ProfUser></ProfUser></Prof>
                 <div id="liner"></div>
-                <div id="managerName">{firstName},{lastName}</div>
+                <div id="managerName">{firstName}   {lastName}</div>
 
                 <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => selectedCharity(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
                 <div id="actions">פעולות</div>
@@ -484,7 +485,7 @@ export default function RowEditingDemo() {
                     <Button label="שמור" icon="pi pi-check" loading={loading} onClick={saveLoan} />   <br></br><br></br>
                 </div>
             </div>
-           
+
 
         </tbody>
     )

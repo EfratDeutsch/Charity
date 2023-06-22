@@ -115,7 +115,7 @@ export default function Home() {
 
     }
     const managCharity = () => {
-        navigate(`/Manager`);
+        navigate(`/Loan/1`);
 
     }
 

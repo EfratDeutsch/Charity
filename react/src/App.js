@@ -31,6 +31,7 @@ const App = () => {
           <Route path="/Manager" element={<Manager />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route> 
           <Route path="/Home" element={<Home/>}></Route>
+          <Route path="/Loan" element={<Loan />}></Route>
           <Route path="/Loan/:id" element={<Loan />}></Route>
           <Route path="/CategoryMenu" element={<CategoryMenu />}></Route>
           <Route path="/WhatWillUFindInUs" element={<WhatWillUFindInUs />}></Route>
