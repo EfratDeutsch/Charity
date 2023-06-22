@@ -1,0 +1,389 @@
+#addCharityCaption {
+    position: absolute;
+    width: 50%;
+    height: 45px;
+    left: 50%;
+    top: 13%;
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 150%;
+    text-align: center;
+    color: #12005B;
+}
+#anothercaptionLetsGo{
+    position: absolute;
+    width: 50%;
+    height: 30px;
+    left: 49.5%;
+    top: 20%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    text-align: center;
+    color: #12005B;
+    
+}
+#adcharityNameinput{
+    box-sizing: border-box;
+position: absolute;
+width: 260px;
+height: 42px;
+left: 67%;
+top: 35%;
+border: 1px solid rgba(170, 164, 217, 0.5);
+
+
+border-radius: 4px;
+}
+#adNeigborhoodNameinput{
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 50%;
+top: 45%;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+
+
+border-radius: 4px;
+}
+#adddescriptionNameinput{
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 50%;
+top: 55%;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+
+
+border-radius: 4px;
+}
+#addphoneNameinput{
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 67%;
+top: 55%;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+
+
+border-radius: 4px;
+}
+#cap1{
+    position: absolute;
+    width: 30%;
+    height: 18px;
+    left: 64%;
+    top: 32%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#cap2{
+    position: absolute;
+    width: 30%;
+    height: 18px;
+    left: 40%;
+    top: 15%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#cap3{
+    position: absolute;
+    width: 50px;
+    height: 18px;
+    left: 78.6%;
+    top: 42%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#cap4{
+    position: absolute;
+    width: 50px;
+    height: 18px;
+    left: 78.5%;
+    top: 52%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#cityComboBox{
+    position: absolute;
+    left: 23%;
+    top: 4%;  
+}
+#cap5{
+    position: absolute;
+    width: 100px;
+    height: 18px;
+    left: 59%;
+    top: 42%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#cap6{
+    position: absolute;
+    width: 50px;
+    height: 18px;
+    left: 1054px;
+    top: 283px;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#cap6{
+    position: absolute;
+    width: 30%;
+    height: 18px;
+    left: 47%;
+    top: 32%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+
+}
+#categorycom{
+
+    position: absolute;
+    left: 6%;
+    top: -6.09%; 
+
+}
+#cap7{
+    position: absolute;
+    width: 30%;
+    height: 18px;
+    left: 45%;
+    top: 52%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#optionCategory{
+    position: absolute;
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 844px;
+top: 395px;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+border-radius: 4px;
+}
+#selectCategory{
+    position: absolute;
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 844px;
+top: 395px;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+border-radius: 4px;
+}
+#optionCity{
+    position: absolute;
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 844px;
+top: 395px;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+border-radius: 4px;
+}
+#selectCity{
+    position: absolute;
+    box-sizing: border-box;
+
+position: absolute;
+width: 260px;
+height: 42px;
+left: 844px;
+top: 395px;
+
+/* #AAA4D9 */
+
+border: 1px solid rgba(170, 164, 217, 0.5);
+border-radius: 4px;
+}
+#charitySave{
+    box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 20px;
+gap: 10px;
+
+position: absolute;
+width: 67px;
+height: 40px;
+left: 50%;
+top: 70%;
+
+background: #6C2290;
+border: 1px solid #6C2290;
+border-radius: 4px;
+}
+#charitySaveCaption{
+    width: 27px;
+height: 18px;
+
+/* h5 */
+
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 150%;
+/* identical to box height, or 18px */
+
+text-align: center;
+
+color: rgba(255, 255, 255, 0.87);
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+#divSagol{
+    
+position: absolute;
+width: 414px;
+height: 709px;
+left: 10%;
+top: 20%;
+background: #FCF9FF;
+border-radius: 4px;
+}
+#sagolcap{
+position: absolute;
+width: 50%;
+height: 30px;
+left: 40%;
+top:11%;
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 150%;
+text-align: center;
+color: #12005B;
+}
+#sagolsqorel{  
+position: absolute;
+width: 200%;
+height: 200%;
+left: 205px;
+top: 293px;
+
+box-sizing: border-box;
+
+position: absolute;
+width: 146px;
+height: 149px;
+left: 30%;
+top: 20%;
+
+background: #ffffff;
+/* סגול שדות */
+
+border: 1px solid #AAA4D9;
+border-radius: 4px;
+}
+#pro{
+    position: absolute;
+    border: 1px solid rgba(170, 164, 217, 0.5);
+left:30%;
+top:30%;
+}
+#capit{
+    position: absolute;
+    color:#AAA4D9;
+    top:75%;
+    left:20%
+}
+#prof {
+    position: absolute;
+    width: 53px;
+    height: 56px;
+    border-radius: 500px;
+    /* background-color: #12005B; */
+    border: 2px solid #12005B;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    top: 17%;
+    left: 29.99%;
+}

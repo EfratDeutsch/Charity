@@ -15,12 +15,24 @@ import { TriStateCheckbox } from 'primereact/tristatecheckbox';
 import { render, unstable_renderSubtreeIntoContainer } from 'react-dom';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { classNames } from 'primereact/utils';
+import "./Loan.css";
+import { ReactComponent as Prof } from "./profile.svg"
+import { ReactComponent as ProfUser } from "./profUSer.svg"
+import { ReactComponent as Lista } from "./lista.svg"
+import { ReactComponent as Setting } from "./setting.svg"
+import { ReactComponent as MenuPic } from "./menuPic.svg"
+import { ReactComponent as Ill10 } from "./illustration10.svg"
+import { ReactComponent as Ill11 } from "./illustration11.svg"
+import { useLocation } from 'react-router-dom';
+import { ReactComponent as SearchInput } from "./searchInput.svg"
 
+// node_modules/primeflex/primeflex.css
 
 
 export default function RowEditingDemo() {
     const params = useParams();
-    const charityId = params.id;
+    // const charityId = params.id;
+    const [charityId, setCharityId] = useState(params.id);
     const [loans, setLoans] = useState([]);
     const [items, setsetItemsLoans] = useState(["grtgr", "rwerwe"])
     const [my, setMy] = useState("")
@@ -33,30 +45,80 @@ export default function RowEditingDemo() {
     const [loanDate, setLoanDate] = useState(Date())
     const [statusId, setStatusId] = useState()
     const [bool, setBool] = useState(false)
-    const [isReturned,setIsReturned]=useState("")
-    const [tmp,setTmp]=useState([])
-    const [renderBool,setRenderBool]=useState(false)
-    const [boolButton,setBoolButton]=useState(false)
-    const [notReturnedLoansArray,setNotReturnedLoansArray]=useState([])
-    const statuses = ["😃מצב טוב", '😏מצב פחות טוב', '😯מצב גרוע ', '😣  מצב זוועה']
+    const [isReturned, setIsReturned] = useState("")
+    const [tmp, setTmp] = useState([])
+    const [renderBool, setRenderBool] = useState(false)
+    const [boolButton, setBoolButton] = useState(false)
+    const [notReturnedLoansArray, setNotReturnedLoansArray] = useState([])
+    const statuses = ["עוד לא הוחזר", "הוחזר במצב פגום", "הוחזר חלקית", "אחר"]
     const NewLoan = { CharityId: charityId, LoanDate: new Date(), ReturnDate: null, BorrowerName: userName, BorrowerPhone: userPhone, BorrowerEmail: userEmail, StatusId: 1, ItemName: itemName }
     const [statusname, setStatusname] = useState('')
-    const[anotherBool,setAnotherBool]=useState(false)
-    const[lala,setLala]=useState(false)
+    const [anotherBool, setAnotherBool] = useState(false)
+    const [lala, setLala] = useState(false)
+    const { state } = useLocation();
+    const [charity, setCharity] = useState("")
+    const [ba, setba] = useState(false)
+    const [value, setValue] = useState("")
+    const { firstName, lastName, charities } = state;
+    const [filters, setFilters] = useState({
+        itemName: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        userPhone: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        borrowerName: { value: null, matchMode: FilterMatchMode.CONTAINS },
 
+    });
+    const [globalFilterValue, setGlobalFilterValue] = useState('');
+    const tableCustomStyles = {
+        headRow: {
+            style: {
+                color: '#223336',
+                backgroundColor: '#e7eef0'
+            },
+        },
+        rows: {
+            style: {
+                color: "#e7eeff",
+                backgroundColor: "#e7eef0"
+            },
+            stripedStyle: {
+                backgroundColor: "#e7eeff"
+            }
+        }
+    }
 
     useEffect(() => {
         getLoans()
         console.log("r " + statusname);
-
+        console.log(firstName + "יאללה לעבודה");
+        console.log(lastName + "יאללה לעבודה");
+        console.log(charities[1].charityId + "עכשיו מראים");
     }, [])
 
+    const onGlobalFilterChange = (e) => {
+        const value = e.target.value;
+        let _filters = { ...filters };
 
+        _filters['global'].value = value;
+
+        setFilters(_filters);
+        setGlobalFilterValue(value);
+    };
+    const renderHeader = () => {
+        return (
+            <div className="flex justify-content-end">
+                <span className="p-input-icon-left">
+                    <i className="pi pi-search" />
+                    <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+                </span>
+            </div>
+        );
+    };
 
     const getLoans = async () => {
         try {
+            console.log(charityId);
             const res = await axios.get(`https://localhost:44397/api/Loan/${charityId}`)
-            console.log(res.data);
+            console.log(charityId, "charityId");
+            console.log(res.data, "data");
             setLoans(res.data)
             setTmp(res.data)
             func(res.data)
@@ -69,7 +131,7 @@ export default function RowEditingDemo() {
             console.log(error);
         }
 
-    }  
+    }
 
     const func = async (ui) => {
 
@@ -78,14 +140,14 @@ export default function RowEditingDemo() {
         ui.map((a) => {
 
             if (a.statusId == 1) {
-                a.statusname=statuses[0]
+                a.statusname = statuses[0]
                 //setStatusname(statuses[0])
                 console.log("הדפיס");
                 console.log("status name")
                 console.log({ statusname })
             }
             else if (a.statusId == 2) {
-                a.statusname=statuses[1]
+                a.statusname = statuses[1]
                 let d = statuses[1];
                 //setStatusname(d);
                 console.log("הדפיס");
@@ -93,7 +155,7 @@ export default function RowEditingDemo() {
                 console.log({ statusname });
             }
             else if (a.statusId == 3) {
-                a.statusname=statuses[2]
+                a.statusname = statuses[2]
                 //setStatusname(statuses[2])
                 console.log("הדפיס");
                 console.log("status name")
@@ -101,7 +163,7 @@ export default function RowEditingDemo() {
             }
 
             else if (a.statusId == 4) {
-                a.statusname=statuses[3]
+                a.statusname = statuses[3]
                 //setStatusname(statuses[3])
                 console.log("הדפיס");
                 console.log("status name")
@@ -114,50 +176,54 @@ export default function RowEditingDemo() {
         )
     }
 
-        const retroFunc = async (e) => {
-    console.log(e);
-            if (e.statusname == "😃מצב טוב") {
-                e.statusId=1
-                setStatusId(1)
-                console.log("הסטטוס הוא אחד")
-            }
-            else if (e.statusname=="😏מצב פחות טוב") {
-                e.statusId=2
-                setStatusId(2)
-                console.log("הסטטוס הוא שתיים")
-            }
-            else if (e.statusname=='😯מצב גרוע ') {
-                e.statusId=3
-                setStatusId(3)
-                console.log("הסטטוס הוא שלש")
-            }
-            else if (e.statusname=='😣  מצב זוועה') {
-                e.statusId=4
-                setStatusId(4)
-                console.log("הסטטוס הוא ארבע")
-            }
+    const retroFunc = async (e) => {
+        console.log(e);
+        if (e.statusname == "עוד לא הוחזר") {
+            e.statusId = 1
+            setStatusId(1)
+            console.log("הוחזר במצב טוב")
         }
+        else if (e.statusname == "הוחזר במצב פגום") {
+            e.statusId = 2
+            setStatusId(2)
+            console.log("הוחזר במצב פגום ")
+        }
+        else if (e.statusname == "הוחזר חלקית") {
+            e.statusId = 3
+            setStatusId(3)
+            console.log("הוחזר חלקית")
+        }
+        else if (e.statusname == "אחר") {
+            e.statusId = 3
+            setStatusId(4)
+            console.log(" אחר ")
+        }
+
+    }
 
     const saveLoan = async () => {
         try {
             await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
 
                 .then(res => {
-                  
-                    console.log((res.data)); 
+
+                    console.log((res.data));
                     alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה");
-                  getLoans()
-                 
+                    getLoans()
+
                 })
-        
+
             console.log("הצליח");
         }
 
         catch {
             alert("לא הצליח")
-        } 
-        
-        
+        }
+        return (<>
+            <div id="hj"></div>
+            <h1>שלום דיני</h1></>
+        )
+
     }
 
     const onRowEditComplete = (e) => {
@@ -178,17 +244,17 @@ export default function RowEditingDemo() {
 
     const setNewLoan = async (e) => {
         try {
-            
+
             console.log(e)
-            console.log(e.isReturned+"מלכי יפרח")
+            console.log(e.isReturned + "מלכי יפרח")
             await axios.put(`https://localhost:44397/api/Loan/${e.loanId}`, e)
                 .then(res => {
                     console.log("jjj");
                     console.log(res + "התשובה שלנו מהפונקציה הזאתי:")
                     setIsReturned(!isReturned)
                     setAnotherBool(!anotherBool)
-       
-            
+
+
                 })
         }
 
@@ -213,7 +279,7 @@ export default function RowEditingDemo() {
 
                 placeholder="Select a Status"
                 itemTemplate=
-                {(option) => { 
+                {(option) => {
                     return <Tag value={option} severity={func(option)}></Tag>;
                 }}
             />
@@ -221,162 +287,205 @@ export default function RowEditingDemo() {
     };
     //  let isReturned={ value: null}
     const returndFunction = (rowData) => {
-  
+
         return (
-            <div>
-                <div className="card">
-                    <div className="p-field-checkbox p-m-0">
-                        {!rowData.isReturned && <Button label='❌' onClick={()=>{
-                            rowData.isReturned=true;
-                    
-                            // console.log(isReturned);
-                            // console.log(rowData+"rowData lalal");
-                            console.log(rowData.isReturned+"rowdata is returnd");
-                            setNewLoan(rowData)
-                            setAnotherBool(!anotherBool)
-                         
-                            // put setIsReturned to true when id=rowData.id
-                        }}/>}
-                        {rowData.isReturned && <Button label='✔' onClick={()=>{
-                           alert("הלוואה זו הוחזרה. אין אפשרות לעדכן אותה☹")
-                           console.log("שיהנ בשסת תענוג");
-                   
-                           
-                            // put setIsReturned to true when id=rowData.id
-                        }}/>}
-                        {/* <TriStateCheckbox value={rowData.isReturned} />
+
+            <div className="card">
+                <div className="p-field-checkbox p-m-0">
+                    {!rowData.isReturned && <Button label='❌' onClick={() => {
+                        rowData.isReturned = true;
+
+                        // console.log(isReturned);
+                        // console.log(rowData+"rowData lalal");
+                        console.log(rowData.isReturned + "rowdata is returnd");
+                        setNewLoan(rowData)
+                        setAnotherBool(!anotherBool)
+
+                        // put setIsReturned to true when id=rowData.id
+                    }} />}
+                    {rowData.isReturned && <Button label='✔' onClick={() => {
+                        alert("הלוואה זו הוחזרה. אין אפשרות לעדכן אותה☹")
+                        console.log("שיהנ בשסת תענוג");
+
+
+                        // put setIsReturned to true when id=rowData.id
+                    }} />}
+                    {/* <TriStateCheckbox value={rowData.isReturned} />
                         <label>{String(rowData.isReturned)}</label> */}
-                    </div>
                 </div>
             </div>
 
+
         )
     }
-const dateFormat=(rowData)=>{
-    return(
-    <>
-    {new Date(rowData.loanDate).toLocaleDateString()}
-    </>)
-}
-const notReturnedLoans=()=>{
-    (  setBool(!bool))
-if (!boolButton)
+    const dateFormat = (rowData) => {
+        return (
+            <>
+                {new Date(rowData.loanDate).toLocaleDateString()}
+            </>)
+    }
+    const notReturnedLoans = () => {
+        // (setBool(!bool))
+        // if (!boolButton)
 
-return(
-<Button onClick={notReturnedButton}>הצג רק הלוואות שלא הוחזרו</Button>
-  
+        //     return (
+        //         <Button onClick={notReturnedButton}>הצג רק הלוואות שלא הוחזרו</Button>
 
-)
-else if(boolButton)
-return(<Button onClick={retroNotReturnFunction}>הצג את כל ההלוואות</Button>)
-   
-}
-const retroNotReturnFunction=()=>{
 
-    setAnotherBool(!setAnotherBool)
-    setLoans(tmp) 
-    setBoolButton(false)
+        //     )
+        // else if (boolButton)
+        //     return (<Button onClick={retroNotReturnFunction}>הצג את כל ההלוואות</Button>)
 
-  
-}
-const notReturnedButton=()=>{
-    
-    setAnotherBool(!anotherBool)
-    setBoolButton(true)
-    let _allLoans = [...loans]
-    setNotReturnedLoansArray([])
-    let _notReturnedLoans=[...notReturnedLoansArray]
-    let j=0;
-    for (let i=0;i< _allLoans.length;i++){
-        if(_allLoans[i].isReturned==false||_allLoans[i].isReturned==null){
-          _notReturnedLoans[j]=_allLoans[i];
-          j++
+    }
+    const retroNotReturnFunction = () => {
+
+        setAnotherBool(!setAnotherBool)
+        setLoans(tmp)
+        setBoolButton(false)
+
+
+    }
+    const notReturnedButton = () => {
+
+        setAnotherBool(!anotherBool)
+        setBoolButton(true)
+        let _allLoans = [...loans]
+        setNotReturnedLoansArray([])
+        let _notReturnedLoans = [...notReturnedLoansArray]
+        let j = 0;
+        for (let i = 0; i < _allLoans.length; i++) {
+            if (_allLoans[i].isReturned == false || _allLoans[i].isReturned == null) {
+                _notReturnedLoans[j] = _allLoans[i];
+                j++
+            }
         }
-     }
-     console.log("ppp");
-     console.log(_notReturnedLoans);
+        console.log("ppp");
+        console.log(_notReturnedLoans);
         setNotReturnedLoansArray(_notReturnedLoans)
         setLoans(_notReturnedLoans)
         console.log("lll");
         console.log(notReturnedLoansArray);
-  
-   
-}
 
+
+    }
+    const selectedCharity = async (e) => {
+        console.log(e.value + "selected");
+        await (setCharity(e.value))
+        console.log(charity);
+        another(e)
+
+    }
+
+
+    const another = async (e) => {
+        console.log(charity);
+        await (setCharityId(e.value))
+        another3(e)
+    }
+    const another3 = (e) => {
+        console.log(charity, "another3 in selectedCharity");
+
+        getLoans();
+    }
+
+    const addLoan = () => {
+        console.log("uuuuuuuuuuuuuuuuu ");
+        console.log("הכל לטובה");
+
+        return (
+            <tbody>
+
+            </tbody>
+        )
+
+    }
+    const some = () => {
+        console.log(some);
+        return (
+            <><div id="oo">akuo</div>
+                <h1>היוש</h1></>
+        )
+    }
     return (
 
         <tbody>
+             <button  onclick={addLoan}>להוספת הלוואה</button>
+            <button id="some" onClick={some}>some</button>
+            <div className="card flex justify-content-center">
 
-            <Menu></Menu>
-            <div className="card p-fluid">
-                <DataTable   body={notReturnedLoans} value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
-                <Column 
-              className='text-right'
-              field="itemName"
-              header="שם פריט"
-            //  body={dateFormat}
-              filter sortable
-              filterPlaceholder="חיפוש על פי שם הפרטי"
-              editor={(options) => textEditor(options)} style={{ width: '20%' }}
-            />
-                    <Column field="loanDate" body={dateFormat} header="תאריך הלוואה " editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="borrowerPhone" header="טלפון "  editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="borrowerName" header="שם הלווה " sortable  filterPlaceholder="Search by name" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="borrowerEmail" header="אימייל  "   editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column>
-                    <Column field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר"></Column>
-                    <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
-                    <Column   header={notReturnedLoans}></Column>
-                    {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
+                <InputText value="                             חיפוש" id="searchInput"  ></InputText>
 
-
-                  
-                </DataTable>
             </div>
+            <div id="loanerCorner">
+                <Prof id="prof"><ProfUser></ProfUser></Prof>
+                <div id="liner"></div>
+                <div id="managerName">{firstName},{lastName}</div>
 
-            <h1>כאן מוסיפים עוד הלוואות</h1>
-            <div style={{ width: "300px" }}>
+                <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => selectedCharity(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
+                <div id="actions">פעולות</div>
+                <Lista id="lista"></Lista>
+                <Setting id="setting"></Setting>
+                <MenuPic id="menupic"></MenuPic>
+                <Ill10 id="ill10"></Ill10>
+                <Ill11 id="ill11"></Ill11>
+            </div>
+            <a id="dairyCaption">יומן הלוואות</a>
+            <div id="loansTabls">
+                <div className="card p-fluid">
+                    <DataTable className='loansTableDataTable' body={notReturnedLoans} value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={6}>
+                        <Column className='text-right' rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
-                <div className="card flex flex-column md:flex-row gap-3">
-                    <div className="p-inputgroup flex-1">
-                        <span className="p-inputgroup-addon">
-                            <i className="pi pi-user"></i>
-                        </span>
-                        <InputText placeholder="item name" onChange={(e) => setItemName(e.target.value)} />
-                    </div>
-
-
-
-
-
-                    <div className="p-inputgroup flex-1">
-                        <span className="p-inputgroup-addon">
-                            <i className="pi pi-user"></i>
-                        </span>
-                        <InputText placeholder="Username" onChange={(e) => setUserName(e.target.value)} />
-                    </div>
-                    <div className="p-inputgroup flex-1">
-                        <span className="p-inputgroup-addon">
-                            <i className="pi pi-user"></i>
-                        </span>
-                        <InputText placeholder="Phone" onChange={(e) => setUserPhone(e.target.value)} />
-                    </div>
-                    <div className="p-inputgroup flex-1">
-                        <span className="p-inputgroup-addon">
-                            <i className="pi pi-user"></i>
-                        </span>
-                        <InputText placeholder="Email " onChange={(e) => setUserEmail(e.target.value)} />
-                    </div>
+                        <Column className='text-right' field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר" style={{ width: '20%', color: "#12005B" }}></Column>
+                        <Column className='text-right' field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
+                        <Column className='text-right' field="borrowerPhone" header="טלפון " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
+                        <Column className='text-right' field="borrowerEmail" header="אימייל  " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
+                        <Column className='text-right' field="loanDate" body={dateFormat} filter filterPlaceholder="Search by name" header="תאריך הלוואה " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
+                        <Column className='text-right' field="borrowerName" header="שם הלווה " sortable filterPlaceholder="Search by name" editor={(options) => textEditor(options)} style={{ width: '80%', color: "#12005B" }}></Column>
+                        <Column className='text-right' field="itemName" header="שם פריט" filter sortable filterPlaceholder="חיפוש על פי שם הפרטי" editor={(options) => textEditor(options)} style={{ width: '30%', color: "#12005B" }} />
+                        <Column header={notReturnedLoans}></Column>
+                        {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
 
 
 
-
+                    </DataTable>
 
                 </div>
+
             </div>
-            <div className="card flex flex-wrap justify-content-center gap-3">
-                <Button label="Submit" icon="pi pi-check" loading={loading} onClick={saveLoan} />
+            <div id="addLoanDiv">
+                <h1 id="addLoancaapt">כאן מוסיפים עוד הלוואות</h1>
+                <div style={{ width: "300px" }}>
+                    <div className="card flex flex-column md:flex-row gap-3">
+                        <br></br><br></br>
+                        <div className="p-inputgroup flex-1">
+                            <br></br><br></br>
+                            <InputText placeholder="שם מוצר" onChange={(e) => setItemName(e.target.value)} />   <br></br><br></br>
+
+                        </div>
+                        <br></br><br></br>
+                        <div className="p-inputgroup flex-1">   <br></br><br></br>
+                            <br></br><br></br>
+                            <InputText placeholder="שם הלווה" onChange={(e) => setUserName(e.target.value)} />   <br></br><br></br>
+
+                        </div>
+
+                        <div className="p-inputgroup flex-1">   <br></br><br></br>
+                            <br></br><br></br>
+                            <InputText placeholder="טלפון" onChange={(e) => setUserPhone(e.target.value)} />
+                        </div>
+
+                        <div className="p-inputgroup flex-1">
+                            <br></br><br></br>
+                            <InputText placeholder="אימייל " onChange={(e) => setUserEmail(e.target.value)} />
+                        </div>
+                    </div>
+                </div>   <br></br><br></br>    <br></br><br></br>    <br></br><br></br>    <br></br><br></br>
+                <div className="card flex flex-wrap justify-content-center gap-3">   <br></br><br></br>
+                    <Button label="שמור" icon="pi pi-check" loading={loading} onClick={saveLoan} />   <br></br><br></br>
+                </div>
             </div>
+           
+
         </tbody>
     )
 }

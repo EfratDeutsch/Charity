@@ -11,7 +11,8 @@ import Manager from './Manager';
 import Loan from './Loan';
 import Menu from './Menu';
 import WhatWillUFindInUs from './WhatWillUFindInUs';
-import Home from './Home'
+import Home from './Home';
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";
@@ -32,7 +33,10 @@ const App = () => {
           <Route path="/Home" element={<Home/>}></Route>
           <Route path="/Loan/:id" element={<Loan />}></Route>
           <Route path="/CategoryMenu" element={<CategoryMenu />}></Route>
-          <Route path="/WhatWillUFindInUs" element={<WhatWillUFindInUs />}></Route></> :
+          <Route path="/WhatWillUFindInUs" element={<WhatWillUFindInUs />}></Route>
+         </> 
+          
+          :
           <>
           <Route path="/AboutUs" element={<AboutUs />}></Route> 
           <Route path="*" element={<Login setUserId={setUserId} />}></Route>

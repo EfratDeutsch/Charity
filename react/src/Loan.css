@@ -1,0 +1,303 @@
+#loansTabls {
+    position: absolute;
+    width: 70%;
+    height: 50%;
+    left: 15%;
+    top: 25%;
+    color: #12005B;
+}
+
+.text-right {
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: right;
+    color: #12005B;
+}
+
+.card p-fluid {
+    color: rebeccapurple;
+    background-color: #12005B;
+}
+
+.p-button-p-component {
+    background-color: cyan !important;
+}
+
+#dairyCaption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 1px;
+    position: absolute;
+    width: 90%;
+    height: 45px;
+    left: -20%;
+    top: 10%;
+    height: 45px;
+    /* font-family: 'Rubik'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 150%;
+    text-align: right;
+    color: #12005B;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.p-datatable-p-component-p-datatable-responsive-scroll-p-datatable-striped-loansTableDataTable {
+    color: #12005B;
+    background-color: rgb(177, 31, 94) !important;
+}
+
+#p-field-checkbox-p-m-0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 10px;
+
+    position: absolute;
+    left: 15.01%;
+    right: 80.07%;
+    top: 24.59%;
+    bottom: 24.59%;
+
+    background: #EBF9F1;
+    border-radius: 22px;
+}
+
+#loanerCorner {
+
+    position: absolute;
+    width: 260px;
+    height: 100.2%;
+    left: 86.48%;
+    top: -2px;
+    background: #12005B;
+    border-radius: 4px;
+}
+
+#prof {
+    position: absolute;
+    width: 53px;
+    height: 56px;
+    border-radius: 500px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    top: 20%;
+    left: 40%;
+}
+
+#liner {
+    position: absolute;
+    width: 260px;
+    height: 0px;
+    left: 0%;
+    top: 102px;
+
+    border: 1px solid rgba(255, 255, 255, 0.29);
+
+}
+
+#managerName {
+
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    width: 50%;
+    height: 30px;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+#dropDownInLoan {
+
+    position: absolute;
+    width: 201.15px;
+    height: 49.97px;
+    left: 18%;
+    top: 40%;
+    background: #AAA4D9;
+    border-radius: 4px;
+}
+
+#actions {
+    position: absolute;
+    width: 43.34px;
+    height: 21px;
+    left: 74%;
+    top: 50%;
+
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
+
+    text-align: center;
+
+    color: rgba(255, 255, 255, 0.51);
+}
+
+#menupic {
+    position: absolute;
+    left: 61%;
+    top: 65%;
+}
+
+#setting {
+    position: absolute;
+    left: 61%;
+    top: 60%;
+}
+
+#lista {
+    position: absolute;
+    left: 39%;
+    top: 55%;
+}
+
+#ill10 {
+    position: absolute;
+    left: -9%;
+    right: 10.85%;
+    top: 80%;
+    bottom: -12.32%;
+    transform: rotate(-15.4deg);
+}
+
+#ill11 {
+    position: absolute;
+    left: 43%;
+    right: 10.85%;
+    top: 85%;
+    bottom: 2.05%;
+    transform: rotate(0.65deg);
+}
+
+#searchInput {
+    position: absolute;
+    top: 17%;
+    left: 60%;
+    border: 1px solid rgba(170, 164, 217, 0.5);
+    border-radius: 4px;
+}
+
+#newLoanButton {
+
+    position: absolute;
+    width: 947px;
+    height: 1024px;
+    left: 493px;
+    top: -3px;
+
+    background: rgba(187, 19, 19, 0.5);
+}
+
+#hj {
+    background-color: #12005B;
+    width: 80%;
+    height: 80%;
+}
+
+#addLoanDiv {
+    position: absolute;
+    width: 21%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+
+    background: #FCF9FF;
+}
+
+.p-inputgroup flex-1 {
+    position: absolute !important;
+    width: 260px;
+    height: 42px;
+    left: 116px;
+    top: 199px;
+}
+
+.p-inputtext {
+    color: #12005B !important;
+    font-weight: 50%;
+}
+
+
+.p-inputgroup>.p-component,
+.p-inputgroup>.p-inputwrapper>.p-inputtext,
+.p-inputgroup>.p-float-label>.p-component {
+    position: absolute !important;
+    margin-top: 35% !important;
+    margin-left: -15% !important;
+    border-radius: 0;
+    margin: 0;
+    box-sizing: border-box;
+    left: 30%;
+    width: 70% !important;
+    border: 1px solid rgba(170, 164, 217, 0.5);
+    border-radius: 4px;
+    background: #FCF9FF !important;
+
+}
+
+.p-button {
+    color: #ffffff;
+    background: #6C2290 !important;
+    border: 1px solid #6C2290 !important;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    background:  #6C2290 !important;
+    border-radius: 6px;
+    left: 15% !important;
+}
+#addLoancaapt{
+    position: absolute;
+width: 70%;
+height: 30px;
+left: 23%;
+top: 10%;
+
+/* h4 */
+
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 150%;
+/* identical to box height, or 30px */
+
+text-align: center;
+
+/* כחול */
+
+color: #12005B;
+}
+#some{
+    position: absolute;
+    left:50%;
+    width: 50%;
+    height: 50%;
+}
+#oo{
+    width: 100%;
+    height: 100%;
+    background-color: #12005B;
+}
