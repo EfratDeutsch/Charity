@@ -14,9 +14,9 @@ import { ReactComponent as Ill10 } from "./illustration10.svg"
 import { ReactComponent as Ill11 } from "./illustration11.svg"
 import { ReactComponent as Lista } from "./lista.svg"
 import { ReactComponent as Setting } from "./setting.svg"
+// import {TextField} from "@mui/material";
 import { ReactComponent as MenuPic } from "./menuPic.svg"
 import "./Loan.css";
-
 
 export default function Manager() {
   const [categoriesArray, setCategoriesArray] = useState([]);
@@ -35,6 +35,7 @@ export default function Manager() {
   const [charityId, setCharityId] = useState(Number)
   const [charity,setCharity]=useState("")
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
   //const { firstName, lastName, charities } = state;
 
 
@@ -174,7 +175,16 @@ export default function Manager() {
     //navigate(`/EditBook`, { state: { bookDTO: bookDTO, book: props.book, author: props.author, category: props.category, edition: props.edition, shulId: bookDTO.shulId }
 
   }
- 
+  const validateCharityName = () => {
+    if (!charity.charityName) {
+      return setErrors({ ...errors, charityName: "charityName  is required." });
+    }
+    if (charity.charityName.length === 1)
+      return setErrors({ ...errors, charityName: "charityName is invalid." });
+    if (/[!0-9@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/.test(charity.charityName))
+      return setErrors({ ...errors, charityName: "charityName is invalid." });
+    setErrors({ ...errors, charityName: "" });
+  };
   const butttonFunction = (rowData) => {
 
     return (
@@ -237,7 +247,16 @@ export default function Manager() {
       <a id="cap7">מה אפשר למצוא בגמח שלך </a>
       <a id="cap6">קטגוריה</a>
       <div id="categorycom"> {categoryComboBox}</div>
-      <input id="adcharityNameinput" className="input" type="text" placeholder='שם גמח' onChange={(e) => setCharityName(e.target.value)}></input>
+      
+      {/* <TextField id="adcharityNameinput" 
+      className="input"
+      type="text"
+      placeholder='שם גמח'  
+      onBlur={validateCharityName} 
+      error={!!errors.charityName}
+      helperText={errors.charityName}
+      onChange={(e) => setCharityName(e.target.value)}
+       ></TextField> */}
       <div id="cityComboBox">{cityComboBox}</div>
       <input id="adNeigborhoodNameinput" className="input" type="text" placeholder='לדוג טללים 23/8' onChange={(e) => setNeighborhood(e.target.value)}></input>
       <input id="adddescriptionNameinput" className="input" type="text" placeholder='לדוג מוצצים בקבוקי תינוק עריסות' onChange={(e) => setCharityDesc(e.target.value)}></input>
@@ -246,5 +265,5 @@ export default function Manager() {
     </tbody>
   )
 
-}
+    }
 

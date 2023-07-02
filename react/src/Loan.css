@@ -300,15 +300,70 @@
 }
 
 #oo {
-    width: 100%;
+    width: 300%;
     height: 100%;
-    background-color: #12005B;
+    background-color: #e72727;
 }
 
 #ui {
-    position: absolute;
-    left: 30%;
-    top: 8;
-    width: 20%;
-    height: 10%;
+  /* Buttons */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 10px 12px;
+gap: 10px;
+
+position: absolute;
+width: 100px;
+height: 50px;
+left: 230px;
+top: 167px;
+
+background: #6C2290;
+border: 1px solid #6C2290;
+border-radius: 4px;
+
+
+/* Button Text */
+
+width: 150px;
+height: 50px;
+
+/* h5 */
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 150%;
+/* identical to box height, or 18px */
+text-align: center;
+
+color: rgba(255, 255, 255, 0.87);
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+.p-button {
+    color: #ffffff;
+    background: #a0560a !important;
+    border: 1px solid #6C2290 !important;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    background: #e4c7ee !important;
+    border-radius: 6px;
+    left: 15% !important;
+}
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd{
+    background-color: #FCF9FF !important;
+}
+.p-datatable .p-datatable-thead > tr > th{
+    background-color: #FCF9FF !important;
 }

@@ -25,24 +25,27 @@ const App = () => {
 
     <BrowserRouter>
       <Routes>
-        {userId ? <><Route path="" element={<Menu />}></Route>
-          <Route path="/Charity/:id" element={<Charity></Charity>}></Route>
-          <Route path="/Charity/:id/:city" element={<Charity></Charity>}></Route>
+        {userId ? <><Route path="" element={<Home />}></Route>
+
           <Route path="/Manager" element={<Manager />}></Route>
-          <Route path="/AboutUs" element={<AboutUs />}></Route> 
-          <Route path="/Home" element={<Home/>}></Route>
+
           <Route path="/Loan" element={<Loan />}></Route>
           <Route path="/Loan/:id" element={<Loan />}></Route>
-          <Route path="/CategoryMenu" element={<CategoryMenu />}></Route>
+
           <Route path="/WhatWillUFindInUs" element={<WhatWillUFindInUs />}></Route>
-         </> 
-          
-          :
-          <>
-          <Route path="/AboutUs" element={<AboutUs />}></Route> 
-          <Route path="*" element={<Login setUserId={setUserId} />}></Route>
+        </>
+
+          : <>
+            <Route path="/AboutUs" element={<AboutUs />}></Route>
+            <Route path="*" element={<Login setUserId={setUserId} />}></Route>
           </>
         }
+        <Route path="/CategoryMenu" element={<CategoryMenu />}></Route>
+        <Route path="/Charity/:id" element={<Charity></Charity>}></Route>
+        <Route path="/Charity/:id/:city" element={<Charity></Charity>}></Route>
+        <Route path="/AboutUs" element={<AboutUs />}></Route>
+        <Route path="/Home" element={<Home />}></Route>
+        <Route path="" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>
   </>

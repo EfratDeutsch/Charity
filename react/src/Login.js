@@ -64,13 +64,21 @@ export default function Login({ setUserId }) {
 
             {/* <Menu></Menu> */}
             {clickedSignUp ? <>
-
-                <input className='input' type="text" placeholder='הכנס שם משתמש' onChange={(e) => setUserName(e.target.value)}></input>
-                <input className='input' type="password" placeholder='הכנס סיסמא' onChange={(e) => setPassword(e.target.value)}></input>
-                <input className='input' type="text" placeholder='שם פרטי ' onChange={(e) => setFirstName(e.target.value)}></input>
-                <input className='input' type="text" placeholder='שם משפחה ' onChange={(e) => setLastName(e.target.value)}></input>
-                <button onClick={PostUser}>אני רוצה</button></> :
-
+            
+                <div id="page"><div id="rightSide">
+                <Ill6 id="ill6"></Ill6>
+                        <Ill7 id="ill7"></Ill7>
+                        <Ill8 id="ill8"></Ill8>
+                        <Ill9 id="ill9"></Ill9> </div>
+                        <Logo></Logo>
+                        <a id="charityManageCaption">הרשמה</a>
+                <input id='inputush1' type="text" placeholder='הכנס שם משתמש' onChange={(e) => setUserName(e.target.value)}></input>
+                <input id='inputush2' type="password" placeholder='הכנס סיסמא' onChange={(e) => setPassword(e.target.value)}></input>
+                <input id='inputush3' type="text" placeholder='שם פרטי ' onChange={(e) => setFirstName(e.target.value)}></input>
+                <input id='inputush4' type="text" placeholder='שם משפחה ' onChange={(e) => setLastName(e.target.value)}></input>
+               
+                <button id="entertothesite2" onClick={PostUser}> <a id="entertositecaption">שלב הבא</a> </button>
+                </div></>:
                 <>
 
                     <div id="page" ><div id="rightSide">

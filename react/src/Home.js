@@ -24,8 +24,10 @@ export default function Home() {
     const [categories, setCategories] = useState([])
     const [category, setCategory] = useState("")
     const [resultArray, setResultArray] = useState([])
-
-
+    const [userCharities, setUserCharities] = useState([])
+    const [userFirstName, setUserFirstName] = useState("")
+    const [userLastName, setUserLastName] = useState("")
+    const[userId,setUserId]=useState(Number)
     useEffect(() => {
         getAllCharties();
         getAllCities();
@@ -114,8 +116,17 @@ export default function Home() {
         navigate(`/Manager`);
 
     }
-    const managCharity = () => {
-        navigate(`/Loan/1`);
+    const managCharity = async() => {
+     
+        
+        const obj = await JSON.parse(sessionStorage.getItem("User"));
+        console.log(obj);
+        setUserId(obj.userId)
+        console.log(obj.firstName);
+        setUserFirstName(obj.firstName)
+        setUserLastName(obj.lastName)
+        setUserCharities(obj.charities)
+        navigate(`/Loan/1`, { state: { firstName: userFirstName, lastName: userLastName, charities: userCharities } });
 
     }
 

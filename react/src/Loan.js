@@ -25,7 +25,9 @@ import { ReactComponent as Ill10 } from "./illustration10.svg"
 import { ReactComponent as Ill11 } from "./illustration11.svg"
 import { useLocation } from 'react-router-dom';
 import { ReactComponent as SearchInput } from "./searchInput.svg"
-
+import { ReactComponent as Return } from "./return.svg"
+import { ReactComponent as IsLoaned } from "./isLoaned.svg"
+import { Tooltip } from 'primereact/tooltip';
 // node_modules/primeflex/primeflex.css
 
 
@@ -57,9 +59,13 @@ export default function RowEditingDemo() {
     const [lala, setLala] = useState(false)
     const { state } = useLocation();
     const [charity, setCharity] = useState("")
+    const [isAddLaon, setIsAddLaon] = useState(false)
     const [ba, setba] = useState(false)
     const [value, setValue] = useState("")
     const { firstName, lastName, charities } = state;
+    const [h, setH] = useState(<Return></Return>)
+    const[o,setO]=useState("dasdsdas")
+    const [errors, setErrors] = useState({});
     const [filters, setFilters] = useState({
         itemName: { value: null, matchMode: FilterMatchMode.CONTAINS },
         userPhone: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -86,7 +92,7 @@ export default function RowEditingDemo() {
     }
 
     useEffect(() => {
- getLoans()
+        getLoans()
         console.log("r " + statusname);
         console.log(firstName + "יאללה לעבודה");
         console.log(lastName + "יאללה לעבודה");
@@ -114,6 +120,7 @@ export default function RowEditingDemo() {
     };
 
     const getLoans = async () => {
+
         try {
             console.log(charityId);
             const res = await axios.get(`https://localhost:44397/api/Loan/${charityId}`)
@@ -202,27 +209,22 @@ export default function RowEditingDemo() {
     }
 
     const saveLoan = async () => {
-        try {
-            await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
 
-                .then(res => {
 
-                    console.log((res.data));
-                    alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה");
-                    getLoans()
+        await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
 
-                })
+            .then(res => {
 
-            console.log("הצליח");
-        }
+                console.log((res.data));
+                alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה");
+                getLoans()
+                console.log("הצליח");
+            }).catch(() => {
+                alert("לא הצליח")
+            }).finally(() => {
+                setIsAddLaon(false)
+            })
 
-        catch {
-            alert("לא הצליח")
-        }
-        return (<>
-            <div id="hj"></div>
-            <h1>שלום דיני</h1></>
-        )
 
     }
 
@@ -292,7 +294,7 @@ export default function RowEditingDemo() {
 
             <div className="card">
                 <div className="p-field-checkbox p-m-0">
-                    {!rowData.isReturned && <Button label='❌' onClick={() => {
+                    {!rowData.isReturned && <IsLoaned  onClick={() => {
                         rowData.isReturned = true;
 
                         // console.log(isReturned);
@@ -302,8 +304,8 @@ export default function RowEditingDemo() {
                         setAnotherBool(!anotherBool)
 
                         // put setIsReturned to true when id=rowData.id
-                    }} />}
-                    {rowData.isReturned && <Button label='✔' onClick={() => {
+                    }} tooltip="Enter your username" tooltipOptions={{ position: 'bottom' }} />}
+                    {rowData.isReturned && <Return onClick={() => {
                         alert("הלוואה זו הוחזרה. אין אפשרות לעדכן אותה☹")
                         console.log("שיהנ בשסת תענוג");
 
@@ -325,16 +327,17 @@ export default function RowEditingDemo() {
             </>)
     }
     const notReturnedLoans = () => {
-        // (setBool(!bool))
-        // if (!boolButton)
+        (setBool(!bool))
+        if (!boolButton)
 
-        //     return (
-        //         <Button onClick={notReturnedButton}>הצג רק הלוואות שלא הוחזרו</Button>
+            return (<>
+                <Button onClick={notReturnedButton}>הצג רק הלוואות שלא הוחזרו</Button>
+                <h1>שלום שלום</h1></>
 
 
-        //     )
-        // else if (boolButton)
-        //     return (<Button onClick={retroNotReturnFunction}>הצג את כל ההלוואות</Button>)
+            )
+        else if (boolButton)
+            return (<Button onClick={retroNotReturnFunction}>הצג את כל ההלוואות</Button>)
 
     }
     const retroNotReturnFunction = () => {
@@ -370,51 +373,26 @@ export default function RowEditingDemo() {
     }
     const selectedCharity = async (e) => {
         console.log(e.value + "selected");
-        await (setCharity(e.value))
-        console.log(charity);
-        another(e)
-
+        setCharity(e.value)
+        setCharityId(e.value)
     }
-
-
-    const another = async (e) => {
-        console.log(charity);
-        await (setCharityId(e.value))
-        another3(e)
-    }
-    const another3 = (e) => {
-        console.log(charity, "another3 in selectedCharity");
-
+    useEffect(() => {
         getLoans();
-    }
+    }, [charity])
 
     const addLoan = () => {
-        console.log("uuuuuuuuuuuuuuuuu ");
-        console.log("הכל לטובה");
-
-        return (
-           
-                <h1>jhgdhgkjdfhgkjdgutyrueinm,gnfdjkghkj</h1>
-           
-        )
+        setIsAddLaon(true)
 
     }
-    const some = () => {
 
-        console.log("some");
-        return (<div>
-            <div id="oo">akuo</div>
-                <h1>היוש</h1></div>
-        )
-    }
     return (
 
         <tbody>
-            <button id="ui" onClick={addLoan}>להוספת הלוואה</button>
-            <button id="some" onClick={some}>some</button>
+            <button id="ui" tooltip="למה אתה לא כותב ךי תטולטיפ" tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} onClick={addLoan}>הלוואה חדשה</button>
+
             <div className="card flex justify-content-center">
 
-                <InputText value="                             חיפוש" id="searchInput"  ></InputText>
+                <InputText value=" חיפוש" id="searchInput" ></InputText>
 
             </div>
             <div id="loanerCorner">
@@ -433,9 +411,10 @@ export default function RowEditingDemo() {
             <a id="dairyCaption">יומן הלוואות</a>
             <div id="loansTabls">
                 <div className="card p-fluid">
-                    <DataTable className='loansTableDataTable' body={notReturnedLoans} value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={6}>
+<div header={notReturnedLoans}>{notReturnedLoans}</div>
+                    <DataTable className='loansTableDataTable'  value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={6}>
+                        <Column id="oo" header={notReturnedLoans}></Column> 
                         <Column className='text-right' rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
-
                         <Column className='text-right' field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר" style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="borrowerPhone" header="טלפון " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
@@ -443,7 +422,7 @@ export default function RowEditingDemo() {
                         <Column className='text-right' field="loanDate" body={dateFormat} filter filterPlaceholder="Search by name" header="תאריך הלוואה " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="borrowerName" header="שם הלווה " sortable filterPlaceholder="Search by name" editor={(options) => textEditor(options)} style={{ width: '80%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="itemName" header="שם פריט" filter sortable filterPlaceholder="חיפוש על פי שם הפרטי" editor={(options) => textEditor(options)} style={{ width: '30%', color: "#12005B" }} />
-                        <Column header={notReturnedLoans}></Column>
+
                         {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
 
 
@@ -453,7 +432,7 @@ export default function RowEditingDemo() {
                 </div>
 
             </div>
-            <div id="addLoanDiv">
+            {isAddLaon && <div id="addLoanDiv">
                 <h1 id="addLoancaapt">כאן מוסיפים עוד הלוואות</h1>
                 <div style={{ width: "300px" }}>
                     <div className="card flex flex-column md:flex-row gap-3">
@@ -484,7 +463,7 @@ export default function RowEditingDemo() {
                 <div className="card flex flex-wrap justify-content-center gap-3">   <br></br><br></br>
                     <Button label="שמור" icon="pi pi-check" loading={loading} onClick={saveLoan} />   <br></br><br></br>
                 </div>
-            </div>
+            </div>}
 
 
         </tbody>
