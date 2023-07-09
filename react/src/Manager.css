@@ -387,3 +387,183 @@ top:30%;
     top: 17%;
     left: 29.99%;
 }
+#setEmailAdress{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 260px;
+    height: 42px;
+    left:-30%;
+    top: 150%;
+    
+    /* #AAA4D9 */
+    
+    border: 1px solid rgba(170, 164, 217, 0.5);
+    
+    
+    border-radius: 4px;
+}
+#setCap1{
+    position: absolute;
+    width: 50px;
+    height: 18px;
+    left: 123%;
+    top: 135%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#setCityCombo{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 260px;
+    height: 42px;
+    left:-615%;
+    top: 2%;
+    
+    /* #AAA4D9 */
+    
+    border: 1px solid rgba(170, 164, 217, 0.5);
+    
+    
+    border-radius: 4px;
+}
+#setNeigborhood{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 260px;
+    height: 42px;
+    left:-30%;
+    top: 210%;
+    
+    /* #AAA4D9 */
+    
+    border: 1px solid rgba(170, 164, 217, 0.5);
+    
+    
+    border-radius: 4px;
+}
+#setCap2{
+    position: absolute;
+    width: 50px;
+    height: 18px;
+    left: 123%;
+    top: 195%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#setCap3{
+    position: absolute;
+    width: 50px;
+    height: 18px;
+    left: 123%;
+    top: 255%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #AAA4D9;
+}
+#saveDetailsChanges{
+    box-sizing: border-box;
+
+    /* Auto layout */
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 10px;
+    
+    position: absolute;
+    width: 67px;
+    height: 40px;
+    left: -25%;
+    top: 320%;
+    
+    background: #6C2290;
+    border: 1px solid #6C2290;
+    border-radius: 4px;
+}
+#charitySaveCaption2{
+    width: 27px;
+    height: 18px;
+    
+    /* h5 */
+    
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 18px */
+    
+    text-align: center;
+    
+    color: rgba(255, 255, 255, 0.87);
+    
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;   
+}
+#validNotWriiten{
+    position: absolute;
+    width: 100px;
+    height: 180px;
+    left:-30%;
+    top: 300%;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 150%;
+    text-align: center;
+    color: #12005B; 
+
+}
+#smallNeig{
+    position: absolute;
+    color: #12005B; 
+    left: 59.5%;
+    top: 50%;
+}
+#smallPhone{
+    position: absolute;
+    color: #12005B; 
+    left: 59.5%;
+    top: 50%;
+}
+#smallPhoneToShort{
+    position: absolute;
+    color: #12005B; 
+    left: 73.5%;
+    top: 60%;
+}
+#smallDesc{
+    position: absolute;
+    color: #12005B; 
+    left: 59.5%;
+    top: 60%;
+}
+#smallName{
+    position: absolute;
+    color: #12005B; 
+    left: 76.5%;
+    top: 40%;
+}

@@ -1,4 +1,5 @@
 import './Home.css'
+import './CategoryMenu.css'
 import Menu from './Menu';
 import Walla from './WhatWillUFindInUs';
 import { Dropdown } from 'primereact/dropdown';
@@ -13,6 +14,8 @@ import { ReactComponent as Facebook } from "./facebook.svg"
 import { ReactComponent as Illustartion1 } from "./illustration1.svg"
 import { ReactComponent as Illustartion2 } from "./illustration2.svg"
 import { ReactComponent as Logoill } from "./logoIll.svg"
+import CategoryMenu from './CategoryMenu.js'
+import WhatWillUFindInUs from './WhatWillUFindInUs'
 export default function Home() {
 
     const [charities, setCharities] = useState([])
@@ -27,7 +30,7 @@ export default function Home() {
     const [userCharities, setUserCharities] = useState([])
     const [userFirstName, setUserFirstName] = useState("")
     const [userLastName, setUserLastName] = useState("")
-    const[userId,setUserId]=useState(Number)
+    const [userId, setUserId] = useState(Number)
     useEffect(() => {
         getAllCharties();
         getAllCities();
@@ -116,9 +119,9 @@ export default function Home() {
         navigate(`/Manager`);
 
     }
-    const managCharity = async() => {
-     
-        
+    const managCharity = async () => {
+
+
         const obj = await JSON.parse(sessionStorage.getItem("User"));
         console.log(obj);
         setUserId(obj.userId)
@@ -132,6 +135,11 @@ export default function Home() {
 
     return (
         <>
+  
+<CategoryMenu id="lla"></CategoryMenu>
+   
+
+            <div id="renderWhatWillU"><WhatWillUFindInUs ></WhatWillUFindInUs></div>
 
             <div id="backGround">
                 <div id="title"> מרכז הגמחים הדיגיטלי הגדול בעולם  </div>
@@ -148,6 +156,7 @@ export default function Home() {
                 <Illustartion2 id="Illustartion2"></Illustartion2>
                 <Logoill id="logoIll"></Logoill>
             </div>
+
             {/* <Walla id="walla"></Walla> */}
             <div id="downLine">
                 < a id="conectWith">Connect With Us</a>

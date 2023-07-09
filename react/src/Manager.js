@@ -17,6 +17,7 @@ import { ReactComponent as Setting } from "./setting.svg"
 // import {TextField} from "@mui/material";
 import { ReactComponent as MenuPic } from "./menuPic.svg"
 import "./Loan.css";
+import { InputText } from 'primereact/inputtext';
 
 export default function Manager() {
   const [categoriesArray, setCategoriesArray] = useState([]);
@@ -29,13 +30,25 @@ export default function Manager() {
   const [phone, setPhone] = useState("");
   const [userId, setUserId] = useState(0)
   const [charities, setCharities] = useState([])
+  const [userPassword, setUserPassword] = useState("")
   const [userFirstName, setUserFirstName] = useState("")
   const [userLastName, setUserLastName] = useState("")
   const [userEmail, setUserEmail] = useState("")
   const [charityId, setCharityId] = useState(Number)
-  const [charity,setCharity]=useState("")
+  const [charity, setCharity] = useState("")
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [flag, setFlag] = useState(false)
+  const [phoneFlag, setPhoneFlag] = useState(false)
+  const [isInputTextNameNeig, setIsInputTextNameNeig] = useState(false)
+  const [isPhoneValidate, setIsPhoneValidate] = useState(false)
+  const [isPhoneLengthOk, setIsPhoneLengthOk] = useState(false)
+  const [isValidEmail, setIsVAlidEmail] = useState(false)
+  const [isInputTextNameDesc, setIsInputTextNameDesc] = useState(false)
+  const [isInputTextName, setIsInputTextName] = useState(false)
+  const [cityNumPut, setCityNumPut] = useState(Number);
+  const [passwordPut, setPasswordPut] = useState("");
+  const [userEmailPut, setUserEmailPut] = useState("");
   //const { firstName, lastName, charities } = state;
 
 
@@ -79,11 +92,14 @@ export default function Manager() {
 
   const saveCharity = async () => {
     try {
-      await axios.post('https://localhost:44397/api/Charity', NewCharity)
-        .then(res => {
-          alert("תודה" + " " + userFirstName + ", " + "הגמח נרשם בהצלחה")
-          getUsersCharities()
-        })
+      if (!isInputTextNameNeig && !isPhoneLengthOk && !isInputTextNameDesc && !isInputTextName) {
+        await axios.post('https://localhost:44397/api/Charity', NewCharity)
+          .then(res => {
+            alert("תודה" + " " + userFirstName + ", " + "הגמח נרשם בהצלחה")
+            getUsersCharities()
+          })
+      }
+      else (alert("שים לב שהפרטים שהזנת תקינים"))
     }
     catch (error) {
       console.log("error in save charity");
@@ -125,7 +141,14 @@ export default function Manager() {
         )
 
       }</select>
+  const cityComboBoxPut =
+    <select id="selectCity" onChange={(e) => setCityNumPut(e.target.value)}>
+      {
+        citiesArray.map((a, i) =>
+          <option id="optionCity" key={i} value={a.cityId} >{a.cityName}</option>
+        )
 
+      }</select>
   const categoryComboBox =
     <select id="selectCategory" onChange={(e) => setCategoryId(e.target.value)}>
       {
@@ -138,7 +161,16 @@ export default function Manager() {
 
 
   const changeDetails = async () => {
-    alert("ואז מה?")
+    try {
+      const NewUser = { UserName: userEmailPut, Password: userPassword, FirstName: userFirstName, LastName: userLastName};
+      await axios.put(`https://localhost:44397/api/User/${userId}`, NewUser)
+     .then( alert('פרטים שונו בהצלחה'))
+
+
+    }
+    catch (err) {
+      console.log(err);
+    }
   }
 
 
@@ -175,16 +207,12 @@ export default function Manager() {
     //navigate(`/EditBook`, { state: { bookDTO: bookDTO, book: props.book, author: props.author, category: props.category, edition: props.edition, shulId: bookDTO.shulId }
 
   }
-  const validateCharityName = () => {
-    if (!charity.charityName) {
-      return setErrors({ ...errors, charityName: "charityName  is required." });
+  const validateCharityName = (inputContex) => {
+    if (!inputContex) {
+      setIsInputTextName(true)
     }
-    if (charity.charityName.length === 1)
-      return setErrors({ ...errors, charityName: "charityName is invalid." });
-    if (/[!0-9@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/.test(charity.charityName))
-      return setErrors({ ...errors, charityName: "charityName is invalid." });
-    setErrors({ ...errors, charityName: "" });
-  };
+    else setIsInputTextName(false)
+  }
   const butttonFunction = (rowData) => {
 
     return (
@@ -195,27 +223,81 @@ export default function Manager() {
     )
   }
 
+  const validationFunctionNeigborhood = (inputContex) => {
 
+
+
+    if (!inputContex) {
+      setIsInputTextNameNeig(true)
+
+    }
+    else (setIsInputTextNameNeig(false))
+
+
+  }
+  const validationFunctionPhone = (inputContex) => {
+
+    // const cond = /^[0-9]+$/;
+    // // if (cond.test(InputText)) {
+    // //   setIsPhoneValidate(true)
+    // // }
+    if (inputContex < 10) {
+      setIsPhoneLengthOk(true)
+    }
+    else (setIsPhoneLengthOk(false))
+
+
+  }
+  const validationFunctionDesc = (inputContex) => {
+
+    if (!inputContex) {
+      setIsInputTextNameDesc(true)
+
+    }
+    else (setIsInputTextNameDesc(false))
+  }
+  const validationFunctionEmail = (inputContex) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputContex))
+      setIsVAlidEmail(true)
+    else (setIsVAlidEmail(false))
+  }
   return (
 
-    <tbody>
-                  <div id="loanerCorner">
-                <Prof id="prof"><ProfUser></ProfUser></Prof>
-                <div id="liner"></div>
-                <div id="managerName">{userFirstName}   {userLastName}</div>
+    <tbody><div>
+      {
+        isInputTextNameNeig ? (<small id="smallNeig">זהו שדה חובה</small>) :
+          // isPhoneValidate ? (<small id="smallPhone">מספר הטלפון אינו תקין</small>) :
+          isPhoneLengthOk ? (<small id="smallPhoneToShort">מספר הטלפון קצר מידי</small>) :
+            isInputTextNameDesc ? (<small id="smallDesc">זהו שדה חובה</small>) :
+              isInputTextName ? (<small id="smallName">זהו שדה חובה</small>) :
+                <></>
 
-                <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => LoanManager(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
-                <div id="actions">פעולות</div>
-                <Lista id="lista"></Lista>
-                <Setting id="setting"></Setting>
-                <MenuPic id="menupic"></MenuPic>
-                <Ill10 id="ill10"></Ill10>
-                <Ill11 id="ill11"></Ill11>
-            </div>
+      }</div>
+
+
+      <div id="loanerCorner">
+        <Prof id="prof"><ProfUser></ProfUser></Prof>
+        <div id="liner"></div>
+        <div id="managerName">{userFirstName}   {userLastName}</div>
+
+        <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => LoanManager(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
+        <div id="actions">פעולות</div>
+        <Lista id="lista"></Lista>
+        <Setting id="setting"></Setting>
+        <MenuPic id="menupic"></MenuPic>
+        <Ill10 id="ill10"></Ill10>
+        <Ill11 id="ill11"></Ill11>
+      </div>
       <div id="divSagol">
         <a id="sagolcap">הגדרות איזור אישי</a>
-
         <div id="sagolsqorel"><a id="capit">{userFirstName}  {userLastName}</a><Prof id="prof" ><ProfUser ></ProfUser></Prof>
+          <a id="setCap1">אימייל</a>
+          <input id="setEmailAdress" className="input" type="text" placeholder={userEmail} onChange={(e) => setUserEmailPut(e.target.value)}></input>
+          <a id="setCap2">סיסמא</a>
+          <input id="setNeigborhood" className="input" type="text" placeholder=' ' onChange={(e) => setPasswordPut(e.target.value)}></input>
+          {/* <a id="setCap3">עיר</a> */}
+        
+          <button id="saveDetailsChanges" onClick={changeDetails}><a id="charitySaveCaption2">שמור</a> </button>
         </div>
       </div>
       {/* 
@@ -223,8 +305,8 @@ export default function Manager() {
 
 
 
-     
-      <button onClick={changeDetails}>!נו באמת, בא לי לשנות ת'פרטים</button>
+
+
       {/* <DataTable value={charities} tableStyle={{ minWidth: '50rem' }} paginator rows={4}>
         <Column field="charityName" header="name"></Column>
         <Column field="charityDesc" header="description"></Column>
@@ -247,23 +329,21 @@ export default function Manager() {
       <a id="cap7">מה אפשר למצוא בגמח שלך </a>
       <a id="cap6">קטגוריה</a>
       <div id="categorycom"> {categoryComboBox}</div>
-      
-      {/* <TextField id="adcharityNameinput" 
-      className="input"
-      type="text"
-      placeholder='שם גמח'  
-      onBlur={validateCharityName} 
-      error={!!errors.charityName}
-      helperText={errors.charityName}
-      onChange={(e) => setCharityName(e.target.value)}
-       ></TextField> */}
+
+      <input id="adcharityNameinput"
+        className="input"
+        type="text"
+        placeholder='שם גמח'
+        onBlur={(e) => validateCharityName(e.target.value, "string")}
+        onChange={(e) => setCharityName(e.target.value)}
+      ></input>
       <div id="cityComboBox">{cityComboBox}</div>
-      <input id="adNeigborhoodNameinput" className="input" type="text" placeholder='לדוג טללים 23/8' onChange={(e) => setNeighborhood(e.target.value)}></input>
-      <input id="adddescriptionNameinput" className="input" type="text" placeholder='לדוג מוצצים בקבוקי תינוק עריסות' onChange={(e) => setCharityDesc(e.target.value)}></input>
-      <input id="addphoneNameinput" className="input" type="text" placeholder='טלפון' onChange={(e) => setPhone(e.target.value)}></input>
+      <input id="adNeigborhoodNameinput" className="input" type="text" placeholder='לדוג טללים 23/8' onBlur={(e) => validationFunctionNeigborhood(e.target.value, "string")} onChange={(e) => setNeighborhood(e.target.value)}></input>
+      <input id="adddescriptionNameinput" className="input" type="text" placeholder='לדוג מוצצים בקבוקי תינוק עריסות' onBlur={(e) => validationFunctionDesc(e.target.value, "string")} onChange={(e) => setCharityDesc(e.target.value)}></input>
+      <input id="addphoneNameinput" className="input" type="text" placeholder='טלפון' onBlur={(e) => validationFunctionPhone(e.target.value, "phone")} onChange={(e) => setPhone(e.target.value)}></input>
       <button id="charitySave" onClick={saveCharity}><a id="charitySaveCaption">שמור</a></button>
-    </tbody>
+    </tbody >
   )
 
-    }
+}
 

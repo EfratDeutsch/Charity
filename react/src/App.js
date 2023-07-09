@@ -36,10 +36,11 @@ const App = () => {
         </>
 
           : <>
-            <Route path="/AboutUs" element={<AboutUs />}></Route>
+
             <Route path="*" element={<Login setUserId={setUserId} />}></Route>
           </>
         }
+        <Route path="/AboutUs" element={<AboutUs />}></Route>
         <Route path="/CategoryMenu" element={<CategoryMenu />}></Route>
         <Route path="/Charity/:id" element={<Charity></Charity>}></Route>
         <Route path="/Charity/:id/:city" element={<Charity></Charity>}></Route>

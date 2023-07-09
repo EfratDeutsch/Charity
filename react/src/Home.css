@@ -437,4 +437,31 @@ left: 90%;
 top: 25px;
 
 background: #FFC107;
+ }
+#categoryMenuBackGround {
+    position:absolute !important;
+    width: 100%;
+    height: 100%;
+    background: #F6EAFF;
+    top:150% ;
+
 }
+#renderWhatWillU{
+    position:absolute;
+    top:100% !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+#renderCCategoryMenu{
+position:absolute !important;
+    top:-9% !important;
+    width: 100%;
+}
+#lla{
+    
+    top:40% ;
+    margin-top: 60%;
+}
+
+
+

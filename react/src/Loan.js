@@ -27,7 +27,7 @@ import { useLocation } from 'react-router-dom';
 import { ReactComponent as SearchInput } from "./searchInput.svg"
 import { ReactComponent as Return } from "./return.svg"
 import { ReactComponent as IsLoaned } from "./isLoaned.svg"
-import { Tooltip } from 'primereact/tooltip';
+
 // node_modules/primeflex/primeflex.css
 
 
@@ -64,8 +64,10 @@ export default function RowEditingDemo() {
     const [value, setValue] = useState("")
     const { firstName, lastName, charities } = state;
     const [h, setH] = useState(<Return></Return>)
-    const[o,setO]=useState("dasdsdas")
+    const [o, setO] = useState("dasdsdas")
     const [errors, setErrors] = useState({});
+    const [showMessage, setShowMessage] = useState(false);
+    const [formData, setFormData] = useState({});
     const [filters, setFilters] = useState({
         itemName: { value: null, matchMode: FilterMatchMode.CONTAINS },
         userPhone: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -97,6 +99,7 @@ export default function RowEditingDemo() {
         console.log(firstName + "יאללה לעבודה");
         console.log(lastName + "יאללה לעבודה");
         console.log(charities[1].charityId + "עכשיו מראים");
+        hey();
     }, [])
 
     const onGlobalFilterChange = (e) => {
@@ -268,10 +271,9 @@ export default function RowEditingDemo() {
 
     const textEditor = (options) => {
 
-        return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
+        return <InputText type="text" value={options.value}  onChange={(e) => options.editorCallback(e.target.value)} />;
     }
-
-
+   
     const statusEditor = (options) => {
         return (
             <Dropdown
@@ -294,7 +296,7 @@ export default function RowEditingDemo() {
 
             <div className="card">
                 <div className="p-field-checkbox p-m-0">
-                    {!rowData.isReturned && <IsLoaned  onClick={() => {
+                    {!rowData.isReturned && <IsLoaned onClick={() => {
                         rowData.isReturned = true;
 
                         // console.log(isReturned);
@@ -327,14 +329,13 @@ export default function RowEditingDemo() {
             </>)
     }
     const notReturnedLoans = () => {
+
         (setBool(!bool))
         if (!boolButton)
 
             return (<>
                 <Button onClick={notReturnedButton}>הצג רק הלוואות שלא הוחזרו</Button>
-                <h1>שלום שלום</h1></>
-
-
+            </>
             )
         else if (boolButton)
             return (<Button onClick={retroNotReturnFunction}>הצג את כל ההלוואות</Button>)
@@ -385,9 +386,14 @@ export default function RowEditingDemo() {
 
     }
 
+    const hey = () => {
+        return (<h1>akuo</h1>)
+    }
     return (
 
         <tbody>
+
+
             <button id="ui" tooltip="למה אתה לא כותב ךי תטולטיפ" tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} onClick={addLoan}>הלוואה חדשה</button>
 
             <div className="card flex justify-content-center">
@@ -411,9 +417,9 @@ export default function RowEditingDemo() {
             <a id="dairyCaption">יומן הלוואות</a>
             <div id="loansTabls">
                 <div className="card p-fluid">
-<div header={notReturnedLoans}>{notReturnedLoans}</div>
-                    <DataTable className='loansTableDataTable'  value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={6}>
-                        <Column id="oo" header={notReturnedLoans}></Column> 
+                    <div header={notReturnedLoans}>{notReturnedLoans}</div>
+                    <DataTable className='loansTableDataTable' value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={6}>
+                        <Column id="oo" header={notReturnedLoans}></Column>
                         <Column className='text-right' rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
                         <Column className='text-right' field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר" style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
@@ -439,6 +445,7 @@ export default function RowEditingDemo() {
                         <br></br><br></br>
                         <div className="p-inputgroup flex-1">
                             <br></br><br></br>
+
                             <InputText placeholder="שם מוצר" onChange={(e) => setItemName(e.target.value)} />   <br></br><br></br>
 
                         </div>
