@@ -298,12 +298,13 @@
 
 #backGround {
 
-    position:absolute;
+    position: absolute;
     width: 100%;
     height: 45%;
     left: 0%;
     top: 0%;
     background: #F8F0FF;
+    z-index: 2;
 }
 
 #papularCharities {
@@ -317,27 +318,24 @@
     font-size: 40px;
     line-height: 150%;
     /* identical to box height, or 60px */
-
     text-align: right;
-
     /* חום */
-
     color: #12005B;
     top: 600%;
     left: 50%;
 }
 
 #downLine {
-    position:absolute  ;
+    /* position:absolute  ;
     width: 100%;
     height: 30%;
     left: 0%;
     top: 3471px;
-    background: #12005B;
+    background: #12005B; */
 }
 
 #conectWith {
-    
+
     width: 126px;
     height: 24px;
     left: 200px;
@@ -352,7 +350,7 @@
 }
 
 #twitter {
- 
+
     width: 32.86px;
     height: 32.86px;
     left: 1050px;
@@ -386,82 +384,89 @@
     top: 3655px;
 
 }
-#menu{
 
-flex-direction: column;
-align-items: flex-end;
-padding: 0px;
-gap: 35px;
-width: 36px;
-height: 133px;
-left: 846px;
-top: 3607px;
-width: 34px;
-height: 21px;
-/* font-family: 'Inter'; */
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 150%;
-display: flex;
-align-items: center;
-color: #EDFCFF;
-flex: none;
-order: 1;
-flex-grow: 0;
+#menu {
+
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 35px;
+    width: 36px;
+    height: 133px;
+    left: 846px;
+    top: 3607px;
+    width: 34px;
+    height: 21px;
+    /* font-family: 'Inter'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: #EDFCFF;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
-#Illustartion1{
-position:relative;
-left: 91%;
-right: -15.02%;
-top: 60%;
-bottom: 83.09%;
 
-transform: rotate(360deg);
+#Illustartion1 {
+    position: relative;
+    left: 91%;
+    right: -15.02%;
+    top: 60%;
+    bottom: 83.09%;
 
+    transform: rotate(360deg);
 
-}
-#Illustartion2{
-position: absolute;
-left: 0%;
-right: 86.21%;
-top: 50%;
-bottom: 86.37%;
 
 }
-#logoIll{
+
+#Illustartion2 {
     position: absolute;
-width: 160px;
-height: 113px;
-left: 90%;
-top: 25px;
+    left: 0%;
+    right: 86.21%;
+    top: 50%;
+    bottom: 86.37%;
 
-background: #FFC107;
- }
+}
+
+#logoIll {
+    position: absolute;
+    width: 160px;
+    height: 113px;
+    left: 90%;
+    top: 25px;
+
+    background: #FFC107;
+}
+
 #categoryMenuBackGround {
-    position:absolute !important;
+    /* position:absolute !important; */
     width: 100%;
     height: 100%;
     background: #F6EAFF;
-    top:150% ;
+    z-index: 1;
+
 
 }
-#renderWhatWillU{
-    position:absolute;
-    top:100% !important;
+
+#renderWhatWillU {
+    position: absolute;
+    top: 140% !important;
     width: 100% !important;
     height: 100% !important;
 }
-#renderCCategoryMenu{
-position:absolute !important;
-    top:-9% !important;
+
+#renderCCategoryMenu {
+    position: absolute;
+    top: -9% !important;
     width: 100%;
-}
-#lla{
     
-    top:40% ;
-    margin-top: 60%;
 }
 
+#lla {
 
+    margin-top: 18%;
 
+}

@@ -567,3 +567,16 @@ top:30%;
     left: 76.5%;
     top: 40%;
 }
+#smallEmail{
+    position: absolute;
+    color: #12005B; 
+    left: 56.5%;
+    top: 57.5%;
+}
+#smallPassword{
+    position: absolute;
+    color: #12005B; 
+    left: 27%;
+    top: 70.5%;
+    width: 80%;
+}

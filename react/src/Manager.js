@@ -43,9 +43,10 @@ export default function Manager() {
   const [isInputTextNameNeig, setIsInputTextNameNeig] = useState(false)
   const [isPhoneValidate, setIsPhoneValidate] = useState(false)
   const [isPhoneLengthOk, setIsPhoneLengthOk] = useState(false)
-  const [isValidEmail, setIsVAlidEmail] = useState(false)
+  const [isValidEmail, setIsValidEmail] = useState(false)
   const [isInputTextNameDesc, setIsInputTextNameDesc] = useState(false)
   const [isInputTextName, setIsInputTextName] = useState(false)
+  const [isValidPassword, setIsValidPassword] = useState(false)
   const [cityNumPut, setCityNumPut] = useState(Number);
   const [passwordPut, setPasswordPut] = useState("");
   const [userEmailPut, setUserEmailPut] = useState("");
@@ -92,7 +93,7 @@ export default function Manager() {
 
   const saveCharity = async () => {
     try {
-      if (!isInputTextNameNeig && !isPhoneLengthOk && !isInputTextNameDesc && !isInputTextName) {
+      if (!isInputTextNameNeig && !isInputTextName && !isInputTextNameDesc && !isPhoneLengthOk) {
         await axios.post('https://localhost:44397/api/Charity', NewCharity)
           .then(res => {
             alert("תודה" + " " + userFirstName + ", " + "הגמח נרשם בהצלחה")
@@ -161,10 +162,12 @@ export default function Manager() {
 
 
   const changeDetails = async () => {
+    const NewUser = { UserId:userId, UserName: userEmailPut, Password: passwordPut, FirstName: userFirstName, LastName: userLastName };
+
     try {
-      const NewUser = { UserName: userEmailPut, Password: userPassword, FirstName: userFirstName, LastName: userLastName};
       await axios.put(`https://localhost:44397/api/User/${userId}`, NewUser)
-     .then( alert('פרטים שונו בהצלחה'))
+
+        .then(alert('פרטים שונו בהצלחה'))
 
 
     }
@@ -237,14 +240,17 @@ export default function Manager() {
   }
   const validationFunctionPhone = (inputContex) => {
 
-    // const cond = /^[0-9]+$/;
-    // // if (cond.test(InputText)) {
-    // //   setIsPhoneValidate(true)
-    // // }
-    if (inputContex < 10) {
+    const cond = /^[0-9]+$/;
+    if (!cond.test(inputContex)) {
+      setIsPhoneValidate(true)
+    }
+    else if (inputContex.length < 10) {
       setIsPhoneLengthOk(true)
     }
-    else (setIsPhoneLengthOk(false))
+    else {
+      setIsPhoneValidate(false)
+      setIsPhoneLengthOk(false)
+    }
 
 
   }
@@ -257,23 +263,37 @@ export default function Manager() {
     else (setIsInputTextNameDesc(false))
   }
   const validationFunctionEmail = (inputContex) => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputContex))
-      setIsVAlidEmail(true)
-    else (setIsVAlidEmail(false))
+    debugger
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputContex))
+      setIsValidEmail(true)
+    else {
+      debugger
+      setIsValidEmail(false)
+    }
   }
+
+  const validationFuntionPassword = (inputContex) => {
+    // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputContex))
+    if (inputContex < 8)
+      setIsValidPassword(true)
+    else (setIsValidPassword(false))
+  }
+
+  const backHome = () => {
+    navigate(`/Home`)
+  }
+  const AddLoanPage = () => {
+
+  }
+
   return (
 
-    <tbody><div>
-      {
-        isInputTextNameNeig ? (<small id="smallNeig">זהו שדה חובה</small>) :
-          // isPhoneValidate ? (<small id="smallPhone">מספר הטלפון אינו תקין</small>) :
-          isPhoneLengthOk ? (<small id="smallPhoneToShort">מספר הטלפון קצר מידי</small>) :
-            isInputTextNameDesc ? (<small id="smallDesc">זהו שדה חובה</small>) :
-              isInputTextName ? (<small id="smallName">זהו שדה חובה</small>) :
-                <></>
-
-      }</div>
-
+    <tbody>
+      <div>{isInputTextNameNeig ? (<small id="smallNeig">זהו שדה חובה</small>) : <></>}</div>
+      <div>{isInputTextName ? (<small id="smallName">זהו שדה חובה</small>) : <></>}</div>
+      <div>{isInputTextNameDesc ? (<small id="smallDesc">זהו שדה חובה</small>) : <></>}</div>
+      <div>{isPhoneLengthOk ? (<small id="smallPhoneToShort">מספר הטלפון קצר מידי</small>) : <></>}</div>
+      <div>{isPhoneValidate ? (<small id="smallPhone">מספר הטלפון אינו תקין</small>) : <></>}</div>
 
       <div id="loanerCorner">
         <Prof id="prof"><ProfUser></ProfUser></Prof>
@@ -283,20 +303,21 @@ export default function Manager() {
         <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => LoanManager(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
         <div id="actions">פעולות</div>
         <Lista id="lista"></Lista>
-        <Setting id="setting"></Setting>
-        <MenuPic id="menupic"></MenuPic>
+        <Setting id="setting" onClick={AddLoanPage} ></Setting>
+        <MenuPic id="menupic" onClick={backHome}></MenuPic>
         <Ill10 id="ill10"></Ill10>
         <Ill11 id="ill11"></Ill11>
       </div>
       <div id="divSagol">
         <a id="sagolcap">הגדרות איזור אישי</a>
+        {isValidEmail ? <small id="smallEmail">המייל הזה לא תקין</small> : ""}{isValidPassword ? (<small id="smallPassword">סיסמא צריכה להכיל לפחות שמונה תווים</small>) : <></>}
         <div id="sagolsqorel"><a id="capit">{userFirstName}  {userLastName}</a><Prof id="prof" ><ProfUser ></ProfUser></Prof>
           <a id="setCap1">אימייל</a>
-          <input id="setEmailAdress" className="input" type="text" placeholder={userEmail} onChange={(e) => setUserEmailPut(e.target.value)}></input>
+          <input id="setEmailAdress" className="input" type="text" placeholder={userEmail} onBlur={(e) => validationFunctionEmail(e.target.value)} onChange={(e) => setUserEmailPut(e.target.value)}></input>
           <a id="setCap2">סיסמא</a>
-          <input id="setNeigborhood" className="input" type="text" placeholder=' ' onChange={(e) => setPasswordPut(e.target.value)}></input>
+          <input id="setNeigborhood" className="input" type="text" placeholder=' ' onBlur={(e) => validationFuntionPassword(e.target.value)} onChange={(e) => setPasswordPut(e.target.value)}></input>
           {/* <a id="setCap3">עיר</a> */}
-        
+
           <button id="saveDetailsChanges" onClick={changeDetails}><a id="charitySaveCaption2">שמור</a> </button>
         </div>
       </div>

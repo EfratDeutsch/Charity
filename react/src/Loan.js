@@ -27,7 +27,7 @@ import { useLocation } from 'react-router-dom';
 import { ReactComponent as SearchInput } from "./searchInput.svg"
 import { ReactComponent as Return } from "./return.svg"
 import { ReactComponent as IsLoaned } from "./isLoaned.svg"
-
+import { useNavigate } from "react-router-dom";
 // node_modules/primeflex/primeflex.css
 
 
@@ -68,6 +68,7 @@ export default function RowEditingDemo() {
     const [errors, setErrors] = useState({});
     const [showMessage, setShowMessage] = useState(false);
     const [formData, setFormData] = useState({});
+    const navigate = useNavigate();
     const [filters, setFilters] = useState({
         itemName: { value: null, matchMode: FilterMatchMode.CONTAINS },
         userPhone: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -389,6 +390,12 @@ export default function RowEditingDemo() {
     const hey = () => {
         return (<h1>akuo</h1>)
     }
+    const passToManger=()=>{
+        navigate(`/Manager`)
+      }
+      const backHome=()=>{
+        navigate(`/Home`)
+      }
     return (
 
         <tbody>
@@ -409,8 +416,8 @@ export default function RowEditingDemo() {
                 <Dropdown id="dropDownInLoan" value={charity} options={charities} optionLabel="charityName" optionValue="charityId" onChange={(e) => selectedCharity(e)} editable placeholder="בחר גמח" className="w-full md:w-14rem " />
                 <div id="actions">פעולות</div>
                 <Lista id="lista"></Lista>
-                <Setting id="setting"></Setting>
-                <MenuPic id="menupic"></MenuPic>
+                <Setting id="setting" onClick={passToManger}></Setting>
+                <MenuPic id="menupic" onClick={backHome}></MenuPic>
                 <Ill10 id="ill10"></Ill10>
                 <Ill11 id="ill11"></Ill11>
             </div>
@@ -418,7 +425,7 @@ export default function RowEditingDemo() {
             <div id="loansTabls">
                 <div className="card p-fluid">
                     <div header={notReturnedLoans}>{notReturnedLoans}</div>
-                    <DataTable className='loansTableDataTable' value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={6}>
+                    <DataTable className='loansTableDataTable' value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={7}>
                         <Column id="oo" header={notReturnedLoans}></Column>
                         <Column className='text-right' rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
                         <Column className='text-right' field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר" style={{ width: '20%', color: "#12005B" }}></Column>
@@ -427,7 +434,7 @@ export default function RowEditingDemo() {
                         <Column className='text-right' field="borrowerEmail" header="אימייל  " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="loanDate" body={dateFormat} filter filterPlaceholder="Search by name" header="תאריך הלוואה " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="borrowerName" header="שם הלווה " sortable filterPlaceholder="Search by name" editor={(options) => textEditor(options)} style={{ width: '80%', color: "#12005B" }}></Column>
-                        <Column className='text-right' field="itemName" header="שם פריט" filter sortable filterPlaceholder="חיפוש על פי שם הפרטי" editor={(options) => textEditor(options)} style={{ width: '30%', color: "#12005B" }} />
+                        <Column className='text-right' field="itemName" header="שם פריט" filterField="itemName" filter sortable filterPlaceholder="חיפוש על פי שם הפרטי" editor={(options) => textEditor(options)} style={{ width: '30%', color: "#12005B" }} />
 
                         {/* <Column body={statusname} header="מצב החזרה" editor={(options) => statusEditor(options)} style={{ width: '20%' }}></Column> */}
 

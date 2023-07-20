@@ -136,15 +136,12 @@ export default function Home() {
     return (
         <>
   
-<CategoryMenu id="lla"></CategoryMenu>
-   
 
-            <div id="renderWhatWillU"><WhatWillUFindInUs ></WhatWillUFindInUs></div>
 
             <div id="backGround">
                 <div id="title"> מרכז הגמחים הדיגיטלי הגדול בעולם  </div>
                 <div id="miniTitle"> !כאן אפשר לנהל גמח בפלטפורמה אחרת</div>
-                <div id="papularCharities">גמחים פופולרים:)</div>
+                {/* <div id="papularCharities">גמחים פופולרים:)</div> */}
                 <button id="button" onClick={newCharity}>פתיחת גמח חדש</button>
                 <button id="Managebutton" onClick={managCharity}> לאיזור ניהול גמח</button>
                 <a id="homeLink" href="./AboutUs"> דף הבית </a>
@@ -158,6 +155,10 @@ export default function Home() {
             </div>
 
             {/* <Walla id="walla"></Walla> */}
+           
+           
+            <div id="lla"> <CategoryMenu ></CategoryMenu></div>
+            <div id="renderWhatWillU"><WhatWillUFindInUs ></WhatWillUFindInUs></div> 
             <div id="downLine">
                 < a id="conectWith">Connect With Us</a>
                 <a id="linkdin"><Linkdin /></a>

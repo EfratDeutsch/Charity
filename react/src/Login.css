@@ -36,7 +36,7 @@
     position: absolute;
     width: 358px;
     height: 43px;
-    top: 406px;
+    top: 380px;
     border: solid #ffffff;
     border-radius: 4px;
     box-sizing: border-box;
@@ -44,7 +44,7 @@
     box-shadow: 0px 4px 15px rgba(196, 111, 237, 0.2);
     position: absolute;
     left: 15%;
-    top: 373px;
+  
 }
 
 #inputush2 {
@@ -55,7 +55,7 @@
     width: 358px;
     height: 43px;
     left: 15%;
-    top: 428px;
+    top: 450px;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 15px rgba(196, 111, 237, 0.2);
@@ -78,7 +78,7 @@
     width: 358px;
     height: 43px;
     left: 15%;
-    top: 480px;
+    top: 520px;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 15px rgba(196, 111, 237, 0.2);
@@ -99,7 +99,7 @@
     width: 358px;
     height: 43px;
     left: 15%;
-    top: 540px;
+    top: 590px;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 15px rgba(196, 111, 237, 0.2);
@@ -191,7 +191,7 @@
     width: 358px;
     height: 43px;
     left: 15%;
-    top: 68%;
+    top: 75%;
    
     background: #751BA0;
     border-radius: 4px;
@@ -331,4 +331,29 @@ line-height: 150%;
 text-align: center;
 
 color: #3792DE;
+}
+
+#smalllastname{
+    position: absolute;
+    color: #12005B; 
+    left: 29.5%;
+    top: 66%;
+}
+#smallfirstname{
+    position: absolute;
+    color: #12005B; 
+    left: 29.5%;
+    top: 58%;
+}
+#smallpassword{
+    position: absolute;
+    color: #12005B; 
+    left: 29.5%;
+    top: 51%;
+}
+#smallemail{
+    position: absolute;
+    color: #12005B; 
+    left: 29.5%;
+    top: 43.5%;
 }
