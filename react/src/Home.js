@@ -129,7 +129,7 @@ export default function Home() {
         setUserFirstName(obj.firstName)
         setUserLastName(obj.lastName)
         setUserCharities(obj.charities)
-        navigate(`/Loan/1`, { state: { firstName: userFirstName, lastName: userLastName, charities: userCharities } });
+        navigate(`/Loan/0`, { state: { firstName: userFirstName, lastName: userLastName, charities: userCharities } });
 
     }
 

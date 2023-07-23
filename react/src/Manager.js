@@ -283,7 +283,7 @@ export default function Manager() {
     navigate(`/Home`)
   }
   const AddLoanPage = () => {
-
+//   navigate(`/Loan/0`, { state: { firstName: userFirstName, lastName: userLastName, charities: userCharities } });
   }
 
   return (

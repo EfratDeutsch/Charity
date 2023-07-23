@@ -5,35 +5,41 @@
 }
 
 #categoryTitle {
-    position: sticky !important ;
+    position: absolute   ;
     width: 551px;
     height: 155px;
     font-style: normal;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 116.5%;
     color: #12005B;;
     text-align: right;
-    left: 38%;
-    top: 100px;
+    left: 32%;
+    top: 280px;
 }
 
 
 #buttonStyle {
+    position: absolute ;
     margin-left: 3%;
-    margin-top: 6%;
+    margin-top:  6%;
     background-color: rgb(255, 255, 255);
     border-color: #ffffff;
     color: aliceblue;
     position: relative;
     width: 150px;
     height: 150px;
-    left: 0%;
-    top: -10%;
-     background-color:  #F6EAFF;
+    left: 2%;
+    top: 25%;
+    background-color:  #F6EAFF;
     color: #fff;
    
 
+}
+#omg{
+position: absolute;
+left: 10%;
+top:40%
 }
 #buttonStyle2 {
     margin-left: 3%;

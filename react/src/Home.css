@@ -2,7 +2,7 @@
     position: absolute;
     width: 45%;
     height: 97px;
-    left: calc(50% - 760px/2 - 0.5px);
+    left: calc(47% - 760px/2 - 0.5px);
     top: 218.7px;
 
     /* font-family: 'Rubik'; */
@@ -45,7 +45,7 @@
     width: 760px;
     height: 97px;
     left: calc(50% - 760px/2 - 0.5px);
-    top: 68%;
+    top: 75%;
     /* font-family: 'Rubik'; */
     font-style: normal;
     font-weight: 400;
@@ -303,7 +303,7 @@
     height: 45%;
     left: 0%;
     top: 0%;
-    background: #F8F0FF;
+    background: #F6EAFF;
     z-index: 2;
 }
 
@@ -453,7 +453,7 @@
 
 #renderWhatWillU {
     position: absolute;
-    top: 140% !important;
+    top: 138% !important;
     width: 100% !important;
     height: 100% !important;
 }

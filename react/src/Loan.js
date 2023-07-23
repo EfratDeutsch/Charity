@@ -35,6 +35,7 @@ export default function RowEditingDemo() {
     const params = useParams();
     // const charityId = params.id;
     const [charityId, setCharityId] = useState(params.id);
+    
     const [loans, setLoans] = useState([]);
     const [items, setsetItemsLoans] = useState(["grtgr", "rwerwe"])
     const [my, setMy] = useState("")
@@ -44,6 +45,7 @@ export default function RowEditingDemo() {
     const [userName, setUserName] = useState("")
     const [userPhone, setUserPhone] = useState("")
     const [userEmail, setUserEmail] = useState("")
+    const [userId, setUserId] = useState(Number)
     const [loanDate, setLoanDate] = useState(Date())
     const [statusId, setStatusId] = useState()
     const [bool, setBool] = useState(false)
@@ -57,12 +59,17 @@ export default function RowEditingDemo() {
     const [statusname, setStatusname] = useState('')
     const [anotherBool, setAnotherBool] = useState(false)
     const [lala, setLala] = useState(false)
-    const { state } = useLocation();
+    const { state: locationState } = useLocation();
     const [charity, setCharity] = useState("")
     const [isAddLaon, setIsAddLaon] = useState(false)
     const [ba, setba] = useState(false)
     const [value, setValue] = useState("")
-    const { firstName, lastName, charities } = state;
+    const [componentState, setComponentState] = useState(locationState || {
+        firstName: '',
+        lastName: '',
+        charities: [],
+      });
+      const { firstName, lastName, charities } = componentState;
     const [h, setH] = useState(<Return></Return>)
     const [o, setO] = useState("dasdsdas")
     const [errors, setErrors] = useState({});
@@ -94,14 +101,45 @@ export default function RowEditingDemo() {
         }
     }
 
+
     useEffect(() => {
+        inCase()
         getLoans()
+
         console.log("r " + statusname);
         console.log(firstName + "יאללה לעבודה");
         console.log(lastName + "יאללה לעבודה");
-        console.log(charities[1].charityId + "עכשיו מראים");
+        // console.log(charities[1].charityId + "עכשיו מראים");
         hey();
     }, [])
+
+
+const inCase=()=>{
+    if(userId==0){
+        GetDataFromSession()
+     
+    }
+}
+const GetDataFromSession = async () => {
+    const obj = await JSON.parse(sessionStorage.getItem("User"));
+    console.log(obj);
+    setUserId(obj.userId)
+    //setUserName(obj.userName)
+    console.log(obj.firstName);
+    setFirstName(obj.firstName)
+    setLastName(obj.lastName)
+    //setUserEmail(obj.email)
+
+
+  }
+  const setFirstName=(newFirstName)=>{
+  
+    setComponentState((firstName) => ({ ...firstName, ...newFirstName }))
+}
+const setLastName=(newLastName)=>{
+  
+    setComponentState((lastName) => ({ ...lastName, ...newLastName }))
+}
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
