@@ -22,9 +22,6 @@
     background-color: #12005B;
 }
 
-.p-button-p-component {
-    background-color: cyan !important;
-}
 
 #dairyCaption {
     display: flex;
@@ -258,13 +255,14 @@
 
 }
 
+
 .p-button {
     color: #ffffff;
-    background: #6C2290 !important;
+
     border: 1px solid #6C2290 !important;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
-    background: #6C2290 !important;
+    background: #33c612 !important;
     border-radius: 6px;
     left: 15% !important;
 }
@@ -306,60 +304,44 @@
 }
 
 #ui {
-  /* Buttons */
-
 box-sizing: border-box;
-
-/* Auto layout */
 display: flex;
 flex-direction: row;
 align-items: center;
 padding: 10px 12px;
 gap: 10px;
-
 position: absolute;
 width: 100px;
 height: 50px;
-left: 230px;
+left: 340px;
 top: 167px;
-
 background: #6C2290;
 border: 1px solid #6C2290;
 border-radius: 4px;
-
-
-/* Button Text */
-
 width: 150px;
 height: 50px;
-
-/* h5 */
-/* font-family: 'Inter'; */
 font-style: normal;
 font-weight: 400;
-font-size: 12px;
+
 line-height: 150%;
-/* identical to box height, or 18px */
 text-align: center;
-
 color: rgba(255, 255, 255, 0.87);
-
-
-/* Inside auto layout */
 flex: none;
 order: 0;
 flex-grow: 0;
 
+
+
 }
 .p-button {
     color: #ffffff;
-    background: #a0560a !important;
     border: 1px solid #6C2290 !important;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
-    background: #e4c7ee !important;
+    background: #6C2290 !important;
     border-radius: 6px;
     left: 15% !important;
+    width: 160% !important ;
 }
 .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd{
     background-color: #FCF9FF !important;
@@ -375,4 +357,70 @@ flex-grow: 0;
     left:60% !important;
 
 
+}
+#smallItemIn{
+    position: absolute;
+    color: #12005B; 
+    left: 14%;
+    top: 26%;
+    z-index: 1;
+    
+}
+#smallUserNameIn{
+    
+    position: absolute;
+    color: #12005B; 
+    left: 14%;
+    top: 35%;
+    z-index: 1;
+}
+#smallPhoneIn{
+    position: absolute;
+    color: #12005B; 
+    left: 11.5%;
+    top: 43.5%;
+    z-index: 1;
+}
+#smallPhoneToShortIn{
+    position: absolute;
+    color: #12005B; 
+    left: 3%;
+    top: 43.5%;
+    z-index: 1;
+}
+#smallEmailIn{
+    position: absolute;
+    color: #12005B; 
+    left: 14%;
+    top: 52.5%;
+    z-index: 1;
+}
+
+#captionNewLoan{
+    font-size: 150%;
+    /* Button Text */
+
+width: 123px;
+height: 18px;
+
+/* h5 */
+/* font-family: 'Inter'; */
+font-style: normal;
+font-weight: 400;
+font-size: 17px;
+line-height: 110%;
+/* identical to box height, or 18px */
+text-align: center;
+
+color: rgba(255, 255, 255, 0.87);
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+.sav{
+    width:30% !important;
 }

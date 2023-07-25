@@ -35,7 +35,7 @@ export default function RowEditingDemo() {
     const params = useParams();
     // const charityId = params.id;
     const [charityId, setCharityId] = useState(params.id);
-    
+
     const [loans, setLoans] = useState([]);
     const [items, setsetItemsLoans] = useState(["grtgr", "rwerwe"])
     const [my, setMy] = useState("")
@@ -64,14 +64,22 @@ export default function RowEditingDemo() {
     const [isAddLaon, setIsAddLaon] = useState(false)
     const [ba, setba] = useState(false)
     const [value, setValue] = useState("")
+    const [isInputTextItemName, setIsInputTextItemName] = useState(false)
+    const [isInputTextUserName, setIsInputTextUserName] = useState(false)
+    const [isValidEmail, setIsValidEmail] = useState(false)
+    const [isPhoneValidate, setIsPhoneValidate] = useState(false)
+    const [isPhoneLengthOk, setIsPhoneLengthOk] = useState(false)
     const [componentState, setComponentState] = useState(locationState || {
         firstName: '',
         lastName: '',
         charities: [],
-      });
-      const { firstName, lastName, charities } = componentState;
+    });
+    const [searchQuery, setSearchQuery] = useState('');
+    // const [filteredData, setFilteredData] = useState(data);
+    const { firstName, lastName, charities } = componentState;
     const [h, setH] = useState(<Return></Return>)
     const [o, setO] = useState("dasdsdas")
+    const [divIsOpen, setDivIsOpen] = useState(false)
     const [errors, setErrors] = useState({});
     const [showMessage, setShowMessage] = useState(false);
     const [formData, setFormData] = useState({});
@@ -114,32 +122,32 @@ export default function RowEditingDemo() {
     }, [])
 
 
-const inCase=()=>{
-    if(userId==0){
-        GetDataFromSession()
-     
+    const inCase = () => {
+        if (userId == 0) {
+            GetDataFromSession()
+
+        }
     }
-}
-const GetDataFromSession = async () => {
-    const obj = await JSON.parse(sessionStorage.getItem("User"));
-    console.log(obj);
-    setUserId(obj.userId)
-    //setUserName(obj.userName)
-    console.log(obj.firstName);
-    setFirstName(obj.firstName)
-    setLastName(obj.lastName)
-    //setUserEmail(obj.email)
+    const GetDataFromSession = async () => {
+        const obj = await JSON.parse(sessionStorage.getItem("User"));
+        console.log(obj);
+        setUserId(obj.userId)
+        //setUserName(obj.userName)
+        console.log(obj.firstName);
+        setFirstName(obj.firstName)
+        setLastName(obj.lastName)
+        //setUserEmail(obj.email)
 
 
-  }
-  const setFirstName=(newFirstName)=>{
-  
-    setComponentState((firstName) => ({ ...firstName, ...newFirstName }))
-}
-const setLastName=(newLastName)=>{
-  
-    setComponentState((lastName) => ({ ...lastName, ...newLastName }))
-}
+    }
+    const setFirstName = (newFirstName) => {
+
+        setComponentState((firstName) => ({ ...firstName, ...newFirstName }))
+    }
+    const setLastName = (newLastName) => {
+
+        setComponentState((lastName) => ({ ...lastName, ...newLastName }))
+    }
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
@@ -252,23 +260,24 @@ const setLastName=(newLastName)=>{
 
     const saveLoan = async () => {
 
+        if (!isInputTextItemName && !isInputTextUserName && !isPhoneLengthOk && !isPhoneValidate && !isValidEmail) {
 
-        await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
+            await axios.post(`https://localhost:44397/api/Loan`, NewLoan)
+                .then(res => {
+                    console.log((res.data));
+                    alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה");
+                    getLoans()
+                    console.log("הצליח");
 
-            .then(res => {
-
-                console.log((res.data));
-                alert("הלוואתו של" + res.data.borrowerName + "נרשמה בהצלחה");
-                getLoans()
-                console.log("הצליח");
-            }).catch(() => {
-                alert("לא הצליח")
-            }).finally(() => {
-                setIsAddLaon(false)
-            })
-
-
+                }).catch(() => {
+                    alert("לא הצליח")
+                }).finally(() => {
+                    setIsAddLaon(false)
+                })
+        }
+        else (alert("שים לב שהפרטים שהזנת תקינים"))
     }
+
 
     const onRowEditComplete = (e) => {
         console.log("אני עורך עכשיו");
@@ -310,9 +319,9 @@ const setLastName=(newLastName)=>{
 
     const textEditor = (options) => {
 
-        return <InputText type="text" value={options.value}  onChange={(e) => options.editorCallback(e.target.value)} />;
+        return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
     }
-   
+
     const statusEditor = (options) => {
         return (
             <Dropdown
@@ -413,6 +422,8 @@ const setLastName=(newLastName)=>{
     }
     const selectedCharity = async (e) => {
         console.log(e.value + "selected");
+
+
         setCharity(e.value)
         setCharityId(e.value)
     }
@@ -422,24 +433,83 @@ const setLastName=(newLastName)=>{
 
     const addLoan = () => {
         setIsAddLaon(true)
-
+       setDivIsOpen(true)
     }
 
     const hey = () => {
         return (<h1>akuo</h1>)
     }
-    const passToManger=()=>{
+    const passToManger = () => {
         navigate(`/Manager`)
-      }
-      const backHome=()=>{
+    }
+    const backHome = () => {
         navigate(`/Home`)
-      }
+    }
+
+    const validationFunctionName = (inputContex) => {
+
+        if (!inputContex) {
+            setIsInputTextItemName(true)
+
+        }
+        else (setIsInputTextItemName(false))
+    }
+
+    const validationFunctionUserName = (inputContex) => {
+
+        if (!inputContex) {
+            setIsInputTextUserName(true)
+
+        }
+        else (setIsInputTextUserName(false))
+    }
+
+    const validationFunctionEmail = (inputContex) => {
+
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputContex))
+            setIsValidEmail(true)
+        else {
+
+            setIsValidEmail(false)
+        }
+    }
+    const validationFunctionPhone = (inputContex) => {
+
+        const cond = /^[0-9]+$/;
+        if (!cond.test(inputContex)) {
+            setIsPhoneValidate(true)
+        }
+        else if (inputContex.length < 10) {
+            setIsPhoneLengthOk(true)
+        }
+        else {
+            setIsPhoneValidate(false)
+            setIsPhoneLengthOk(false)
+        }
+
+
+    }
+    // const handleSearch = (query) => {
+    //     const filtered = data.filter((item) =>
+    //       item.name.toLowerCase().includes(query.toLowerCase())
+    //     );
+    //     setFilteredData(filtered);
+    //     setSearchQuery(query);
+    //   };
     return (
 
-        <tbody>
+        < tbody >
+     
+<body >
+            <div>{isInputTextItemName ? (<small id="smallItemIn">זהו שדה חובה</small>) : <></>}</div>
+            <div>{isInputTextUserName ? (<small id="smallUserNameIn">זהו שדה חובה</small>) : <></>}</div>
+            <div>{isValidEmail ? (<small id="smallEmailIn"> אימייל לא תקין </small>) : <></>}</div>
+            <div>{isPhoneLengthOk ? (<small id="smallPhoneToShortIn">מספר הטלפון קצר מידי</small>) : <></>}</div>
+            <div>{isPhoneValidate ? (<small id="smallPhoneIn">מספר הטלפון אינו תקין</small>) : <></>}</div>
 
 
-            <button id="ui" tooltip="למה אתה לא כותב ךי תטולטיפ" tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} onClick={addLoan}>הלוואה חדשה</button>
+           {/* <input type='text' id="searchingLoan"  placeholder='רוצה לחפש משהו?'   value={searchQuery}   onChange={(e) => handleSearch(e.target.value)}/> */}
+            <button id="ui" tooltip="למה אתה לא כותב ךי תטולטיפ" tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} onClick={addLoan}><h1 id="captionNewLoan">הלוואה חדשה</h1></button>
 
             <div className="card flex justify-content-center">
 
@@ -460,12 +530,16 @@ const setLastName=(newLastName)=>{
                 <Ill11 id="ill11"></Ill11>
             </div>
             <a id="dairyCaption">יומן הלוואות</a>
+          
+
             <div id="loansTabls">
                 <div className="card p-fluid">
                     <div header={notReturnedLoans}>{notReturnedLoans}</div>
-                    <DataTable className='loansTableDataTable' value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={7}>
+                    {/* <DataTable className='loansTableDataTable' value={filteredData}  rowKey="value" value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={7}></DataTable> */}
+                    <DataTable className='loansTableDataTable'  value={loans} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} stripedRows tableStyle={{ minWidth: '50rem' }} filters={filters} paginator rows={7}>
                         <Column id="oo" header={notReturnedLoans}></Column>
                         <Column className='text-right' rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+               
                         <Column className='text-right' field="isReturned" body={returndFunction} header="סמן כפריט שהוחזר" style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="statusname" header="מצב החזרה  " body={statusname} editor={(options) => statusEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
                         <Column className='text-right' field="borrowerPhone" header="טלפון " editor={(options) => textEditor(options)} style={{ width: '20%', color: "#12005B" }}></Column>
@@ -491,33 +565,33 @@ const setLastName=(newLastName)=>{
                         <div className="p-inputgroup flex-1">
                             <br></br><br></br>
 
-                            <InputText placeholder="שם מוצר" onChange={(e) => setItemName(e.target.value)} />   <br></br><br></br>
+                            <InputText placeholder="שם מוצר" onChange={(e) => setItemName(e.target.value)} onBlur={(e) => validationFunctionName(e.target.value)} />   <br></br><br></br>
 
                         </div>
                         <br></br><br></br>
                         <div className="p-inputgroup flex-1">   <br></br><br></br>
                             <br></br><br></br>
-                            <InputText placeholder="שם הלווה" onChange={(e) => setUserName(e.target.value)} />   <br></br><br></br>
+                            <InputText placeholder="שם הלווה" onChange={(e) => setUserName(e.target.value)} onBlur={(e) => validationFunctionUserName(e.target.value)} />   <br></br><br></br>
 
                         </div>
 
                         <div className="p-inputgroup flex-1">   <br></br><br></br>
                             <br></br><br></br>
-                            <InputText placeholder="טלפון" onChange={(e) => setUserPhone(e.target.value)} />
+                            <InputText placeholder="טלפון" onChange={(e) => setUserPhone(e.target.value)} onBlur={(e) => validationFunctionPhone(e.target.value)} />
                         </div>
 
                         <div className="p-inputgroup flex-1">
                             <br></br><br></br>
-                            <InputText placeholder="אימייל " onChange={(e) => setUserEmail(e.target.value)} />
+                            <InputText placeholder="אימייל " onChange={(e) => setUserEmail(e.target.value)} onBlur={(e) => validationFunctionEmail(e.target.value)} />
                         </div>
                     </div>
                 </div>   <br></br><br></br>    <br></br><br></br>    <br></br><br></br>    <br></br><br></br>
                 <div className="card flex flex-wrap justify-content-center gap-3">   <br></br><br></br>
-                    <Button label="שמור" icon="pi pi-check" loading={loading} onClick={saveLoan} />   <br></br><br></br>
+                    <Button className='sav' label="שמור" icon="pi pi-check" loading={loading} onClick={saveLoan} />   <br></br><br></br>
                 </div>
             </div>}
 
-
+</body>
         </tbody>
     )
 }
